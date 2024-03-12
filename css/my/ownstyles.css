@@ -1,0 +1,226 @@
+@font-face {
+    font-family: "own";
+    src: url("own.ttf");
+}
+*{
+    font-family: "own";
+}
+
+body{
+    font-family: '"own"';
+}
+.image-cover {
+    width: 100%;
+    height: 680px;
+    object-fit: cover;
+    border: 3px solid black
+}
+
+.front-text {
+    width: 100%;  
+    top: 200px; 
+    position: absolute; 
+    text-align: center; 
+    /*word-wrap: break-word;*/
+    text-shadow: 3px 3px 3px black;
+}
+
+.frt1 pre{ 
+    font-size: 5vw; 
+    font-weight: 650; 
+    letter-spacing: 0.50px; 
+}
+
+.frt2{
+    font-size: 30px;
+    font-weight: 300;
+    letter-spacing: 0.30px; 
+}
+
+.ser-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 65px;
+}
+
+.sert1{
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 1px black;
+}
+
+.sert2{ 
+    width: 100%;
+    text-align: center;
+    color: black;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 0.24px;
+    word-wrap: break-word;    
+}
+
+.ser-card{
+    width: 275px;  
+    height: 320px;
+    top: 20px; 
+    border-radius: 20px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.65);
+}
+
+.cH-text{
+    height:40px; 
+    text-align: center; 
+    font-weight: bold;
+}
+
+.user-container{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 80px;
+}
+
+.user-card{
+    background-color: #4CAF50;
+    width: 340px;  
+    height: 230px;
+    margin-top: 20px; 
+    border-radius: 20px;
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.65);
+}
+
+.footer-container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    margin-top: 30px;
+}
+
+.footer-head{
+    width: 100%;
+    height: 45px;
+    background-color: #3CBC00;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    font-family: "own";
+    word-wrap: break-word
+}
+
+.footer-body{
+    background-color: #000;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 250px;
+}
+
+.footer-body-textH{
+    color: #818181;
+    font-size: 30px;
+    font-family: "own";
+    font-weight: 500;
+    word-wrap: break-word;
+
+}
+
+.footer-body-textD{
+    color: white;
+    font-size: 20px;
+    font-family: "own";
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+.about-us{
+    width: 300px;
+    height: 100%;
+}
+
+.contact-us{
+    width: 200px;
+    height: 100%;
+}
+
+.get-in-touch{
+    width: 250px;
+    height: 100%;
+}
+
+.footer-tail{
+    background-color: gray;
+    text-align: center;
+    height: 20px;
+}
+
+.btn-color {
+    background-color: #FF5722;
+}
+
+.btn-color:hover {
+    background-color:   #FF7043;
+    box-shadow: 0 0 10px rgba(255, 87, 34, 0.7), 0 0 20px rgba(255, 87, 34, 0.5);
+    
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+}
+
+/* styles.css */
+/* styles.css */
+
+.nav-item {
+    position: relative;
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: "own";
+    display: inline-block;
+  }
+  
+  .nav-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #FF5722;
+    transition: width 0.3s ease-in-out, background 0.3s ease-in-out; /* Add background transition */
+  }
+  
+  .nav-item:hover::before {
+    width: 100%;
+    background: #FF5722; /* Change background color on hover */
+    transition: width 0.3s ease-in-out, background 0.3s ease-in-out; /* Add background transition */
+  }
+
+  .nav-item:hover {
+    color : #FF5722;
+    transition: color 0.3s ease-in-out;
+  }
+  
+@keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+  }
+@media (min-width: 208px) {
+    .frt1{
+        font-size: 8vw;
+    
+    }
+}

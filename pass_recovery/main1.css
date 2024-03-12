@@ -1,0 +1,63 @@
+body {
+    background: #f2f2f2;
+    font-size: 1.1em;
+    font-family: sans-serif;
+    margin: 0; /* Add this line to remove default margin */
+}
+
+a {
+    text-decoration: none;
+}
+
+.form-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+form {
+    width: 25%;
+    max-width: 400px; /* Added max-width for responsiveness */
+    margin: 0 auto; /* Changed margin for better centering */
+    background: white;
+    padding: 20px;
+    border-radius: 3px;
+    box-sizing: border-box; /* Ensure padding is included in width */
+}
+
+h2.form-title {
+    text-align: center;
+}
+
+input {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px; /* Added margin-bottom for spacing */
+}
+
+form .form-group {
+    margin: 10px 0; /* Adjusted margin for spacing */
+}
+
+form button {
+    width: 100%;
+    border: none;
+    color: white;
+    background: #FF5722;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.msg {
+    margin: 10px 0; /* Adjusted margin for spacing */
+    border-radius: 5px;
+    border: 1px solid red;
+    background: pink;
+    text-align: left;
+    color: brown;
+    padding: 10px;
+}
