@@ -137,11 +137,11 @@ Nourishing Lives.</pre>
 
             <div class="max-w-sm bg-white rounded-lg shadow dark:bg-gray-900 ser-card" data-aos="zoom-in">
                 <div class="p-5">
-                    <a href="#">
+                    <a href="PriceAnalysis.php">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white cH-text">Price
                             Analysis</h5>
                     </a>
-                    <a href="#">
+                    <a href="PriceAnalysis.php">
                         <img class="rounded-t-lg border border-gray-900 rounded-lg shadow dark:bg-gray-900 dark:border-gray-900"
                             style="border-radius: 200px; height: 200px; width: 275px" src="res/images/price.png"
                             alt="Price Prediction" />
