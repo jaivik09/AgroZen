@@ -4,8 +4,8 @@ const locationButton = document.querySelector(".location-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".days-forecast .weather-cards");
 
-
 const createWeatherCard = (cityName, weatherItem, index) => {
+
     if (index === 0) {
         return `<div class="details">
                     <h2>${cityName} (${weatherItem.last_updated.split(" ")[0]})</h2>
@@ -33,6 +33,7 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 const getWeatherDetails = async () => {
+    
     const city = cityInput.value.trim();
     if (!city) return;
 

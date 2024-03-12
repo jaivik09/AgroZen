@@ -10,19 +10,25 @@
     {
         die("Error : Couldn't Connect ". mysqli_connect_error());
     }
-    
-    $id = $_SESSION['id'];
-    
-    $sql = "SELECT * FROM users WHERE id = $id";
+    if(isset($_SESSION['id'])){
 
-    $result =mysqli_query($link,$sql);
-    $row = mysqli_fetch_array($result);
-
-    if($row['Role'] === "farmer")
-    {
-        require_once('farmerdashboard.php');
-    } else {
-        require_once('userdashboard.php');
+        $id = $_SESSION['id'];
+        
+        $sql = "SELECT * FROM users WHERE id = $id";
+    
+        $result =mysqli_query($link,$sql);
+        $row = mysqli_fetch_array($result);
+    
+        if($row['Role'] === "farmer")
+        {
+            require_once('farmerdashboard.php');
+        } else {
+            require_once('userdashboard.php');
+        }
+    }
+    else{
+        echo "<script>alert('Your session has been expired !!'); window.location.href='index.php'</script>";
+        
     }
 
 ?>
