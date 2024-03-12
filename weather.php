@@ -27,21 +27,21 @@
           }
       ?>
   <div class="container">
-      <div class="weather-input">
-        <h3>Enter a City Name</h3>
-        <input class="city-input" type="text" placeholder="E.g., Anand, Vapi, Daman">
-        <button class="search-btn">Search</button>
+    <div class="weather-input">
+      <h3>Enter a City Name</h3>
+      <input class="city-input" type="text" placeholder="E.g., Anand, Vapi, Daman">
+      <button class="search-btn">Search</button>
+    </div>
+    <div class="weather-data">
+      <div class="current-weather">
       </div>
-      <div class="weather-data">
-        <div class="current-weather">
-        </div>
-        <div class="days-forecast">
-          <h2>FORECAST</h2>
-          <ul class="weather-cards">
-          </ul>
-        </div>
+      <div class="days-forecast">
+        <h2>FORECAST</h2>
+        <ul class="weather-cards">
+        </ul>
       </div>
     </div>
+  </div>
     
   </body>
 </html>
