@@ -1,5 +1,15 @@
 function populateStateDropdowns() {
-    const states = ["Andaman and Nicobar", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Dadra and Nagar", "Daman and Diu", "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
+    const states = ["Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Delhi", "Goa", "Gujarat", "Haryana", "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Telangana", "Tripura", "Uttarakhand", "West Bengal", 
+                    "Andaman", //Andaman
+                    "AndhraPradesh", //AndhraPradesh
+                    "Arunachal", //Arunacha;
+                    "DadraNagar", //DadraNagar
+                    "DamanDiu", //DamanDiu
+                    "HimachalPradesh", //HimachalPradesh
+                    "JammuKashmir", //JammuKashmir
+                    "MadhyaPradesh", //MadhyaPradesh
+                    "TamilNadu", //TamilNadu
+                    "UttarPradesh"];//UttarPradesh
   
     const dropdowns = document.querySelectorAll('.state-dropdown');
     dropdowns.forEach(dropdown => {
@@ -14,6 +24,8 @@ function populateStateDropdowns() {
 
 populateStateDropdowns();
 
+
+
 const stateDropdowns = document.querySelectorAll(".state-dropdown");
 const searchButton = document.querySelector(".search-btn");
 const dateInput = document.querySelector(".Date-input");
@@ -22,7 +34,7 @@ const getAgriPrice = async () => {
 
     stateDropdowns.forEach((dropdown) => {
         const stateInput = dropdown.value;
-        const apiUrl = `https://vegetablemarketprice.com/api/dataapi/market/${stateInput}/daywisedata?date=${dateInput.value}`;
+        const apiUrl = `https://vegetablemarketprice.com/api/dataapi/market/${stateDropdowns.value}/daywisedata?date=${dateInput.value}`;
         console.log(apiUrl);
         fetch(apiUrl)
             .then((response) => {
