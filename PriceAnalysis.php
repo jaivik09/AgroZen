@@ -25,21 +25,21 @@
         require_once('unsetheader.html');
     }
   ?>
-  <div class="flex justify-between gap-[30px] p-[30px]">
-    <div class="w-[550px]">
-        <h3 class="text-xl">Select State</h3>
-        <div class="flex justify-between mt-2">
-            <select id="state-dropdown"
-                    class="state-dropdown h-10 w-full outline-none text-lg px-4 border border-gray-300 rounded"></select>
-        </div>
-        <h3 class="text-xl mt-8">Enter Date</h3>
-        <input id="Date-input" class="Date-input h-10 w-full outline-none text-lg px-4 my-4 border border-gray-300 rounded"
-               type="date" value="2024-03-12">
-        <button type="button"
-                class="search-btn px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">Submit
-        </button>
+  <div class="flex flex-col md:flex-row justify-between gap-[30px] p-[30px]">
+    <div class="w-full md:w-[550px] md:order-1"> <!-- Changed md:order-1 to md:order-2 -->
+      <h3 class="text-xl">Select State</h3>
+      <div class="flex justify-between mt-2">
+        <select id="state-dropdown"
+                class="state-dropdown h-10 w-full outline-none text-lg px-4 border border-gray-300 rounded"></select>
+      </div>
+      <h3 class="text-xl mt-8">Enter Date</h3>
+      <input id="Date-input" class="Date-input h-10 w-full outline-none text-lg px-4 my-4 border border-gray-300 rounded"
+             type="date" value="2024-03-12">
+      <button type="button"
+              class="search-btn px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">Submit
+      </button>
     </div>
-    <div class="w-3/5">
+    <div class="w-full md:w-full md:order-2"> <!-- Changed md:order-2 to md:order-1 -->
       <div class="overflow-x-auto">
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -58,24 +58,11 @@
               <td class="px-6 py-4">Laptop</td>
               <td class="px-6 py-4">$2999</td>
             </tr>
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-              <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Microsoft Surface Pro
-              </td>
-              <td class="px-6 py-4">White</td>
-              <td class="px-6 py-4">Laptop PC</td>
-              <td class="px-6 py-4">$1999</td>
-            </tr>
-            <tr class="bg-white dark:bg-gray-800">
-              <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">Magic Mouse 2</td>
-              <td class="px-6 py-4">Black</td>
-              <td class="px-6 py-4">Accessories</td>
-              <td class="px-6 py-4">$99</td>
-            </tr>
           </tbody>
         </table>
       </div>
     </div>
-</div>
+  </div>
 
 </body>
 
