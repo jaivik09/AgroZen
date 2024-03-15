@@ -9,6 +9,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/my/in.css">
+    <link href="css/my/font.css" rel="stylesheet">
     <style>
     body {
     overflow: hidden;
@@ -186,8 +187,7 @@ if (isset($_POST['verify'])) {
       <div class="absolute inset-0">
         <img
           class="h-full w-full rounded-md object-cover object-top"
-          src="https://images.unsplash.com/photo-1526948128573-703ee1aeb6fa?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c2lnbnVwfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
-          alt=""
+          src="res/images/6721205_3411468.jpg" alt=""
         />
       </div>
       <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>

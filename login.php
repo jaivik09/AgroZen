@@ -7,9 +7,13 @@
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="css/my/font.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
     
+    <link href="res/images/logo.png" rel="icon">
+    <title> Login In </title>
     <style> 
     </style>
 
@@ -36,8 +40,8 @@
                     $_SESSION['id'] = $count['id'];
                     echo "<script>
                                     swal({
-                                        title: 'Regisetered',
-                                        text: 'You are successfully registered!!!!',
+                                        title: 'Hurray!!!!',
+                                        text: 'You are successfully logged in',
                                         icon: 'success'
                                     }).then((result) => {
                                         if (result) {

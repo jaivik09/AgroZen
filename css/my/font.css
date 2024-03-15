@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "own";
+    src: url("own.ttf");
+}
+*{
+    font-family: "own";
+}
+
+body{
+    font-family: '"own"';
+}

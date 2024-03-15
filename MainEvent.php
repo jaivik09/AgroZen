@@ -14,8 +14,12 @@
     <title>Document</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     
-    <link href="css/my/ownstyles.css" rel="stylesheet">    
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/my/font.css"/>    
     <link href="css/my/style.css" rel="stylesheet">
+    
+    <link href="res/images/logo.png" rel="icon">
+    <title> Events </title>
 
     <style>
         body,
@@ -46,13 +50,15 @@
     max-height: 20vh; /* Set the maximum height for the description */
     overflow-y: auto; /* Enable vertical scrolling when content exceeds the height */
     }
-
+    .myfont {
+        
+    }
     .card-button {
         background-color: #FF5722;
+        width: 35%;
     }
     .card-button:hover {
     background-color:   #FF7043;
-    box-shadow: 0 0 10px rgba(255, 87, 34, 0.7), 0 0 20px rgba(255, 87, 34, 0.5);
     
     transform: scale(1.1);
     transition: all 0.3s ease-in-out;
@@ -165,11 +171,9 @@
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "><?php echo $event['Title']; ?></h5>
                                 </a>
                                 <p class=" description mb-3 font-normal text-gray-700 "><?php echo $event['Description']; ?></p>
-                                <a href="event_register.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="card-button inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg">
-    Read more
-    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-    </svg>
+                                <a href="event_register.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="card-button inline-flex items-center px-3 py-2 text-md font-medium text-center text-white rounded-lg">
+    Register
+    
 </a>
 
 
@@ -215,7 +219,7 @@
     }
     else {
         echo "<script>alert('You are not logged in.')</script>";
-        echo "<script>window.location.href = 'fakelogin.php';</script>";
+        echo "<script>window.location.href = 'login.php';</script>";
     }
 ?>
 

@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/my/style.css" rel="stylesheet">
-    <link href="css/my/ownstyles.css" rel="stylesheet">
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link href="css/my/font.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
 
+    
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>
 
@@ -251,15 +254,15 @@ Nourishing Lives.</pre>
                                 class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="comment" required>
                         </div>
-                        <button type="submit"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            style="margin-top: 10px; width: 80px; height: 30px; box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.35);">Submit</button>
+                        <button type="submit" id="un"
+                            class="text-white  hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center me"
+                            style="margin-top: 10px; background-Color:#FF401C; #un:hover{background-Color:#FF401C;} ; width: 80px; height: 30px; box-shadow: 0px 4px 4px rgba(255, 255, 255, 0.35);">Submit</button>
                     </form>
                 </div>
             </div>
             <div class="footer-tail">
                 <div
-                    class="fixed bottom-0 left-0 z-20 w-full p-2 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
+                    class="fixed bottom-0 left-0 z-20 w-full p-2 bg-white border-t border-gr:hover{back}ay-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
                     <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a href="index.html"
                             class="hover:underline">AgroZen™</a>. All Rights Reserved.
                     </p>

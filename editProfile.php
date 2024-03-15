@@ -31,7 +31,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/my/ownstyles1.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>
 
@@ -84,13 +87,13 @@
             <label for="password"
                 class="block mb-2 text-lg/[24px] font-medium text-gray-900 dark:text-white">Password</label>
             <a href="changepass.php"
-                class="text-white bg-red-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change
+                class="text-white bg-red-600 hover:bg-red-800  focus:outline-none  font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change
                 Password</a>
         </div>
 
         <div class="flex justify-center w-full">
             <button type="submit" name="edit" value="edit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg/[24px] w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
+                class="text-white bg-[#FF5722] hover:bg-[#FF401C]  focus:outline-none font-medium rounded-lg text-lg/[24px] w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Edit</button>
         </div>
     </form>
 
@@ -121,7 +124,7 @@
 
     <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
         <div id="FOOTER">
-            <div class="bg-[#3CBC00] text-white text-3xl font-medium py-2 px-2">
+            <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2">
                 <p>LETS GET CONNECTED</p>
             </div>
             <div class="bg-gray-300 text-center">

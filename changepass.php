@@ -67,9 +67,12 @@ if (isset($_POST["changepassword"])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="css/my/ownstyles1.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+    
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>
 
@@ -117,7 +120,7 @@ if (isset($_POST["changepassword"])) {
         </div>
         <div class="flex justify-center">
             <button type="submit" name="changepassword" value="changepassword"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg/[24px] w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
+                class="text-white bg-[#FF5722] hover:bg-[#FF401C] focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg/[24px] w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Change Password</button>
         </div>
     </form>
 
@@ -140,7 +143,7 @@ if (isset($_POST["changepassword"])) {
 
     <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
         <div id="FOOTER">
-            <div class="bg-[#3CBC00] text-white text-3xl font-medium py-2 px-2 flex justify-between">
+            <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2 flex justify-between">
                 <p class="mr-2">LETS GET CONNECTED</p>
                 <div class="footer-icon">
                     <a href="https://www.instagram.com/your_instagram_username"><i class="fab fa-instagram mr-2"></i></a>

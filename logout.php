@@ -1,6 +1,14 @@
 <?php
 session_start();
 
+?>
+<html>
+    <head>
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+</html>
+<?php
 // Unset all session variables
 $_SESSION = array();
 
@@ -8,6 +16,16 @@ $_SESSION = array();
 session_destroy();
 
 // Redirect to the sign-in page
-header("Location: Login.php");
+echo "<script>
+                                    swal({
+                                        title: 'Log Out',
+                                        text: 'You are successfully logged out',
+                                        icon: 'success'
+                                    }).then((result) => {
+                                        if (result) {
+                                            window.location.href = 'login.php';
+                                        }
+                                    });
+                                </script>";
 exit;
 ?>

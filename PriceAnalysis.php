@@ -6,7 +6,7 @@
   <title>Price Analysis</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/my/style.css" rel="stylesheet">
-  <link href="css/my/ownstyles.css" rel="stylesheet">
+  <link href="css/my/ownstyles1.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

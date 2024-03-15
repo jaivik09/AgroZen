@@ -67,7 +67,7 @@ h1 {
   transition: 0.2s ease;
 }
 .weather-input .search-btn:hover {
-  background: #2c52ed;
+  background: #2e7d32;
 }
 .weather-input .location-btn {
   background: #6C757D;
@@ -240,7 +240,7 @@ h1 {
   transition: 0.2s ease;
 }
 .weather-input .search-btn:hover {
-  background: #2c52ed;
+  background: #2e7d32;
 }
 .weather-input .location-btn {
   background: #6C757D;

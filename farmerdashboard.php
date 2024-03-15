@@ -29,6 +29,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
+    
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>
 
@@ -50,27 +52,27 @@
                     <img  class="rounded-[100%]" src="<?php echo "res/profileImage/".$imageName; ?>" alt="User Avatar">
                     <ul>
                         <a href="usercart.html">
-                            <li class="mt-3 text-xl bg-[#3CBC00] text-center py-3 rounded-[10px]">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 View cart
                             </li>
                         </a>
                         <a href="orderhistory.html">
-                            <li class="mt-3 text-xl bg-[#3CBC00] text-center py-3 rounded-[10px]">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Order History
                             </li>
                         </a>
                         <a href="wishlist.html">
-                            <li class="mt-3 text-xl bg-[#3CBC00] text-center py-3 rounded-[10px]">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Wishlist
                             </li>
                         </a>
                         <a href="buyprod.html">
-                            <li class="mt-3 text-xl bg-[#3CBC00] text-center py-3 rounded-[10px]">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Buy Product
                             </li>
                         </a>
                         <a href="addprod.html">
-                            <li class="mt-3 text-xl bg-[#3CBC00] text-center py-3 rounded-[10px]">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Add Product
                             </li>
                         </a>
@@ -121,7 +123,7 @@
                         <div class="wrapper mt-10 mr-10">
                             <a href="editProfile.php">
                                 <button type="button"
-                                    class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="px-6 py-3.5 text-base font-medium text-white bg-[#FF5722] hover:bg-[#FF401C]  focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Edit Details
                                 </button>
                             </a>
@@ -129,7 +131,7 @@
                         <div class="wrapper mt-10 ml-10">
                             <a href="logout.php">
                                 <button type="button"
-                                    class="px-6 py-3.5 text-base font-medium text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    class="px-6 py-3.5 text-base font-medium text-white bg-[#FF5722] hover:bg-[#FF401C]  focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Logout
                                 </button>
                             </a>
@@ -142,7 +144,7 @@
 
     <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
         <div id="FOOTER">
-            <div class="bg-[#3CBC00] text-white text-3xl font-medium py-2 px-2">
+            <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2">
                 <p>LETS GET CONNECTED</p>
             </div>
             <div class="bg-gray-300 text-center">
