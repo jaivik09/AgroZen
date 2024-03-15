@@ -11,6 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="PriceScript.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </head>
 
 <body class="bg-[#E3F2FD]">
@@ -23,8 +25,8 @@
         require_once('unsetheader.html');
     }
   ?>
-  <div class="flex justify-between items-start w-full gap-8 mt-16 mx-auto max-w-screen-lg">
-    <div class="w-2/5">
+  <div class="flex justify-between gap-[30px] p-[30px]">
+    <div class="w-[550px]">
         <h3 class="text-xl">Select State</h3>
         <div class="flex justify-between mt-2">
             <select id="state-dropdown"
@@ -73,11 +75,8 @@
         </table>
       </div>
     </div>
-  </div>
+</div>
 
-
-  <script src="PriceAnalysisScript.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 
 </html>
