@@ -37,6 +37,9 @@ const getVegetablePrices = async (state, date) => {
         data.data.forEach(vegetable => {
             const row = `
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-[16px]">
+                    <td class="px-6 py-4 text-center"> <!-- Add text-center class to center the content -->
+                        <img src="https://vegetablemarketprice.com/${vegetable.table.table_image_url}" class="justify-center mx-auto h-[30px] w-[30px]">
+                    </td>
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         ${vegetable.vegetablename}
                     </th>

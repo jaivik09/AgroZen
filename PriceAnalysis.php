@@ -44,6 +44,7 @@
         <table class="w-full table-auto text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 text-center">
           <thead class="text-lg text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
+              <th scope="col" class="px-6 py-3">Image</th>
               <th scope="col" class="px-6 py-3">Vegetable</th>
               <th scope="col" class="px-6 py-3">Wholesale Price(₹)</th>
               <th scope="col" class="px-6 py-3">Retail Price(₹)</th>
