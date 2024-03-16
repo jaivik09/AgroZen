@@ -51,7 +51,6 @@ const getWeatherDetails = async () => {
             throw new Error('Failed to fetch weather data');
         }
         const result = await response.json();
-        console.log(result);
 
         const cityName = result.location.name;
         const currentWeather = result.current;
