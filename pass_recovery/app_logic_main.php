@@ -1,5 +1,8 @@
-
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<html>
+<head>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
 <?php 
     session_start();
     $con = mysqli_connect('localhost','root','','agrozen');
@@ -25,7 +28,7 @@
             mail($to, $subject, $msg, $headers);
             header('location: pending.php?email=' . $email);
         } else {
-            echo "<script>swal('Error!!!!','Email is not registered!!!!','error');</script>";;
+            echo "<script>swal('Error!!!!','Email is not registered!!!!','error');</script>";
         }
     }
 
@@ -36,7 +39,7 @@
         $otp = isset($_POST['otp']) ? trim($_POST['otp']) : '';
 
         $s_email = $_SESSION['email'];
-        echo "Email".$s_email;
+        //echo "Email".$s_email;
         $sql2 = mysqli_query($con,"SELECT token FROM password_reset WHERE email = '$s_email'");
         $re = mysqli_fetch_assoc($sql2);
 
@@ -52,6 +55,7 @@
                 // {
                     $hashpass = password_hash($new_pass, PASSWORD_DEFAULT);
                     $sql2 = mysqli_query($con,"UPDATE users SET Password='$hashpass' WHERE Email = '$s_email'");
+                    $sql3 = mysqli_query($con,"DELETE FROM password_reset WHERE email='$s_email'");
                     echo "<script>
                     swal({
                         title: 'Updated',
@@ -59,14 +63,19 @@
                         icon: 'success'
                     }).then((result) => {
                         if (result) {
-                            window.location.href = 'fakelogin.php';
+                            window.location.href = '/AgroZen/login.php';
                         }
                     });
                 </script>";
                 // }
+                
+            }else {
+                echo "<script>swal('Error!!!!','Passwords do not match!!!!','error');</script>";
             }
         } else {
-            echo "<script>swal('Error!!!!','OTP is incorrect!!!!','error');</script>";;
+            echo "<script>swal('Error!!!!','OTP is incorrect!!!!','error');</script>";
         }
     }
 ?>
+</body>
+</html>
