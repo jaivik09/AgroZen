@@ -18,33 +18,33 @@
     
   </head>
   <body>
-      <?php 
-      session_start();    
-      // echo "Session ID: " . $_SESSION['id']; 
-          $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-          if(isset($user_id))
-          {
-              require_once('setheader.php');
-          } else {
-              require_once('unsetheader.html');
-          }
-      ?>
-  <div class="container">
-    <div class="weather-input">
-      <h3>Enter a City Name</h3>
-      <input class="city-input" type="text" placeholder="E.g., Anand, Vapi, Daman">
-      <button class="search-btn">Search</button>
-    </div>
-    <div class="weather-data">
-      <div class="current-weather">
+    <?php 
+    session_start();    
+    // echo "Session ID: " . $_SESSION['id']; 
+        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        if(isset($user_id))
+        {
+            require_once('setheader.php');
+        } else {
+            require_once('unsetheader.html');
+        }
+    ?>
+    <div class="container">
+      <div class="weather-input">
+        <h3>Enter a City Name</h3>
+        <input class="city-input" type="text" placeholder="E.g., Anand, Vapi, Daman">
+        <button class="search-btn">Search</button>
       </div>
-      <div class="days-forecast">
-        <h2>FORECAST</h2>
-        <ul class="weather-cards">
-        </ul>
+      <div class="weather-data">
+        <div class="current-weather">
+        </div>
+        <div class="days-forecast">
+          <h2>FORECAST</h2>
+          <ul class="weather-cards">
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
     
   </body>
 </html>

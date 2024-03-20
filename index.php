@@ -160,16 +160,15 @@ Nourishing Lives.</pre>
 
     <div class="user-container" id=USER>
 
-        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 user-card"
+        <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 user-card wrap-content"
             data-aos="fade-zoom-in" data-aos-easing="ease-in-back" data-aos-delay="300" data-aos-offset="0">
             <a href="#">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
                     style="text-align: center; margin-top: 10px; font-size: 28px;">Farmer</h5>
             </a>
             <p class="mb-3 font-normal text-gray-900 dark:text-gray-900"
-                style="text-align: center; margin-top: 10px; width: 100%; color: white;">If you are farmer then you are
-                at a perfect platform from from where you can order all of your farming related products and you can
-                sell your products also.</p>
+                style="text-align: center; margin-top: 10px; width: 100%; color: white;">As a farmer, this platform is your's one-stop destination for all farming needs. 
+                Buy and sell farming products hassle-free.</p>
             <a href="#"
                 class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white  rounded-lg btn-color focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 style="margin-top:10px; margin-left: 130px; align-content: center; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55)">

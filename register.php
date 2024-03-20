@@ -194,7 +194,7 @@ if (isset($_POST['verify'])) {
       <div class="relative">
         <div class="w-full max-w-xl xl:mx-auto xl:w-full xl:max-w-xl xl:pr-24">
           <h3 class="text-4xl font-bold text-white">
-            Now you dont have to rely on your designer to create a new page
+            Now you dont have to go to market to buy and sell agricultural products.
           </h3>
           <ul class="mt-10 grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
             <li class="flex items-center space-x-3">
@@ -213,8 +213,7 @@ if (isset($_POST['verify'])) {
                 </svg>
               </div>
               <span class="text-lg font-medium text-white">
-                
-                Commercial License
+                Agricultural Products
               </span>
             </li>
             <li class="flex items-center space-x-3">
@@ -233,8 +232,7 @@ if (isset($_POST['verify'])) {
                 </svg>
               </div>
               <span class="text-lg font-medium text-white">
-                
-                Unlimited Exports
+                Weather Forcaste
               </span>
             </li>
             <li class="flex items-center space-x-3">
@@ -253,8 +251,7 @@ if (isset($_POST['verify'])) {
                 </svg>
               </div>
               <span class="text-lg font-medium text-white">
-                
-                120+ Coded Blocks
+                Price Analysis
               </span>
             </li>
             <li class="flex items-center space-x-3">
@@ -273,8 +270,7 @@ if (isset($_POST['verify'])) {
                 </svg>
               </div>
               <span class="text-lg font-medium text-white">
-                
-                Design Files Included
+                Event Organization
               </span>
             </li>
           </ul>
