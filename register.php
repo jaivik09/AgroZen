@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="css/my/in.css">
     <link href="css/my/font.css" rel="stylesheet">
+    <link href="res/images/logo.png" rel="icon">
     <style>
     body {
     overflow: hidden;

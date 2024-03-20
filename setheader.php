@@ -39,9 +39,9 @@
                                     style="font-size: 22px; font-family: Inter;">SERVICES</a>
                             </li>
                             <li>
-                                <a href="index.php#USER"
+                                <a href="#"
                                     class="nav-item"
-                                    style="font-size: 22px; font-family: Inter;">USERS</a>
+                                    style="font-size: 22px; font-family: Inter;">PRODUCTS</a>
                             </li>
                             <li>
                                 <a href="index.php#FOOTER"

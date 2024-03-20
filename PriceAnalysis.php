@@ -13,6 +13,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="PriceAnanlysisScript.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <link href="res/images/logo.png" rel="icon">
 </head>
 
 <body class="bg-[#E3F2FD]">
@@ -36,7 +37,7 @@
       <input id="Date-input" class="Date-input h-10 w-full outline-none text-lg px-4 my-4 border border-gray-300 rounded"
              type="date">
       <button type="button"
-              class="search-btn px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">Submit
+              class="search-btn px-5 py-3 text-base font-medium text-center text-white bg-[#4CAF50] rounded-lg hover:bg-[#2e7d32] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 w-full">Submit
       </button>
     </div>
     <div class="table-head w-full md:w-full md:order-2">
