@@ -10,9 +10,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 
-    
     <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>
@@ -213,15 +214,17 @@ Nourishing Lives.</pre>
     </div>
 
     <footer>
-        <div class="footer-container" id="FOOTER" data-aos="fade-up">
+        <div class="footer-container w-full fixed bottom-0 left-0" id="FOOTER" data-aos="fade-up">
             <div class="footer-head">
-                <p>LETS GET CONNECTED</p>
-                <div class="footer-icon">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-square-google-plus"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
+                <div class="bg-[#4CAF50] text-white text-3xl font-medium flex justify-between">
+                    <p class="mr-2">LETS GET CONNECTED</p>
+                    <div class="footer-icon">
+                        <a href="https://www.instagram.com/your_instagram_username"><i class="fab fa-instagram gap-2"></i></a>
+                        <a href="https://www.linkedin.com/in/your_linkedin_profile"><i class="fab fa-linkedin gap-2"></i></a>
+                        <a href="https://plus.google.com/your_google_plus_profile"><i class="fab fa-google-plus-square mr-2"></i></a>
+                        <a href="https://www.facebook.com/your_facebook_profile"><i class="fab fa-facebook mr-2"></i></a>
+                        <a href="https://twitter.com/your_twitter_profile"><i class="fab fa-twitter mr-2"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-body">
