@@ -14,8 +14,8 @@ if ($id) {
     $result = mysqli_query($link, $sql);
     $row = mysqli_fetch_array($result);
 } else {
-    // Handle the case where the user ID is not set
-    exit("User ID not set.");
+    echo "<script>alert('You are not logged in.')</script>";
+    echo "<script>window.location.href = 'login.php';</script>";
 }
 
 if (isset($_POST["changepassword"])) {
@@ -60,7 +60,7 @@ if (isset($_POST["changepassword"])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/my/style.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
