@@ -171,7 +171,7 @@
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "><?php echo $event['Title']; ?></h5>
                                 </a>
                                 <p class=" description mb-3 font-normal text-gray-700 "><?php echo $event['Description']; ?></p>
-                                <a href="event_register.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="card-button inline-flex items-center px-3 py-2 text-md font-medium text-center text-white rounded-lg">
+                                <a href="event_details.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="card-button inline-flex items-center px-3 py-2 text-md font-medium text-center text-white rounded-lg">
     Register
     
 </a>
