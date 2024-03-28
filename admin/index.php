@@ -8,6 +8,7 @@
         require_once('login.html');
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +21,8 @@
     <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
-    <title>Dashboard Admin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>AgroZen Admin Dashboard</title>
 </head>
 
 <body>
@@ -59,7 +61,7 @@
 
                 <ul class="list-reset flex flex-col">
                     <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
-                        <a href="index.html"
+                        <a href="index.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fas fa-tachometer-alt float-left mx-2"></i>
                             Dashboard
@@ -278,45 +280,6 @@
                     </div>
                     <!-- /Cards Section Ends Here -->
 
-                    <!-- Progress Bar -->
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 mt-2">
-                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full pt-2">
-                            <div class="px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">Progress Among Projects</div>
-                            </div>
-                            <div class="">
-                                <div class="w-full">
-
-                                    <div class="shadow w-full bg-grey-light">
-                                        <div class="bg-blue-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 45%">45%
-                                        </div>
-                                    </div>
-
-
-                                    <div class="shadow w-full bg-grey-light mt-2">
-                                        <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 55%">55%
-                                        </div>
-                                    </div>
-
-
-                                    <div class="shadow w-full bg-grey-light mt-2">
-                                        <div class="bg-orange-500 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 65%">65%
-                                        </div>
-                                    </div>
-
-
-                                    <div class="shadow w-full bg-grey-300 mt-2">
-                                        <div class="bg-red-800 text-xs leading-none py-1 text-center text-white"
-                                             style="width: 75%">75%
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                     <!--Profile Tabs-->
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 p-1 mt-2 mx-auto lg:mx-2 md:mx-2 justify-between">
                         <!--Top user 1-->
@@ -395,9 +358,12 @@
             <!--/Main-->
         </div>
         <!--Footer-->
-        <footer class="bg-grey-darkest text-white p-2">
-            <div class="flex flex-1 mx-auto">&copy; My Design</div>
-            <div class="flex flex-1 mx-auto">Distributed by:  <a href="https://themewagon.com/" target=" _blank">Themewagon</a></div>
+        <footer class="bg-[#4CAF50] text-white p-2 ">
+            <div class="bg-gray-300 text-center">
+                <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">
+                    © 2024 <a href="index.php" class="hover:underline">AgroZen™</a>. All Rights Reserved.
+                </p>
+            </div>
         </footer>
         <!--/footer-->
 
