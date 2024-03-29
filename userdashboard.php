@@ -54,7 +54,7 @@
                 <div class="w-[250px] h-[250px] rounded-full py-3">
                     <img class="rounded-[100%]" src="<?php echo "res/profileImage/".$imageName; ?>" alt="User Avatar">
                     <ul>
-                        <a href="usercart.html">
+                        <a href="prod_cart.php">
                             <li class="mt-3 text-xl text-white bg-[#4CAF50] text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 View cart
                             </li>
@@ -69,7 +69,7 @@
                                 Wishlist
                             </li>
                         </a>
-                        <a href="buyprod.html">
+                        <a href="sample_Prod_cat.php">
                             <li class="mt-3 text-xl text-white bg-[#4CAF50] text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Buy Product
                             </li>
