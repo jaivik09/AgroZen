@@ -93,53 +93,6 @@
         font-size: 14px;
         color: #555;
         }
-
-        .input-field {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        .file-input {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .file-input input {
-            font-size: 100px;
-            position: absolute;
-            top: 0;
-            right: 0;
-            opacity: 0;
-        }
-
-        .file-btn {
-            background-color: #008cff;
-            color: #ffffff;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .selected-file {
-            margin-top: 8px;
-            font-size: 14px;
-            color: #555;
-        }
-
-        .submit-btn {
-            background-color: #008cff;
-            color: #ffffff;
-            padding: 8px 12px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
     </style>
 
 </head>
@@ -168,7 +121,7 @@
                             <span><i class="fas fa-angle-right float-right"></i></span>
                         </a>
                     </li>
-                    <li class="w-full h-full py-3 px-2 border-b border-light-border  bg-white">
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
                         <a href="addevent.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
@@ -176,7 +129,7 @@
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
-                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border bg-white">
                         <a href="upload_product.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
@@ -261,73 +214,65 @@
             </aside>
             <!--/Sidebar-->
             <!--Main-->
-            <div class="mr-20 ml-20" >
-  
-                <?php
-                    if(isset($_POST['verify']))
-                    {
-                    $title = isset($_POST['title']) ? trim($_POST['title']) : '';
-                    $description = isset($_POST['description']) ? trim($_POST['description']) : ''; 
-                    
-                    $con = mysqli_connect('localhost','root','','agrozen');
+            <div class="container">
+                <div class="add" align="center">Add Product</div>
+                <form action="upload.php" method="post" enctype="multipart/form-data" class="form mr-20 ml-20">
 
-                    if($_FILES['profile_image']['error'] == UPLOAD_ERR_OK)
-                    {
-                        $targetDir = "../res/eventImage/";
-
-                        // Get the original name of the uploaded file
-                        $imageName = basename($_FILES['profile_image']['name']);
-                        $targetFile = $targetDir . $imageName;
-
-                        if(file_exists($targetFile))
-                        {
-                        echo "<script>alert('File is already exits')</script>";
-                        } else {
-                        if(move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetFile))
-                        {
-                            $sql = "INSERT INTO events(Title,Description,Image) VALUES ('$title','$description','$imageName')";
-
-                            if(mysqli_query($con,$sql))
-                            {
-                            echo "<script>alert('Event added successfully!!!!')</script>";
-                            } else {
-                            echo "<script>alert('Error while uploading the Event')</script>";
-                            }
-                        } else {
-                            echo "<script>alert('Error while uploading the Event')</script>";
-                        }
-                        }
-                    } else {
-                        echo "<script>alert('No file uploaded')</script>";
-                    }      
-                    }
-                ?>
-            
-                <div class="container">
-                    <b><div class="title">Add New Event</div></b>
-                    <div class="content ">
-                        <form class="max-w-sm mx-auto" method="post" action="" enctype="multipart/form-data">
-                            <div class="mb-5">
-                                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                <input type="text" id="title" name="title" placeholder="Enter event title" class="input-field" required />
-                            </div>
-                            <div class="mb-5">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                <textarea id="description" name="description" placeholder="Enter event description" rows="4" class="input-field"></textarea>
-                            </div>
-                            <div class="mb-5 file-input">
-                                <label for="profile-image"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image</label>
-                                <input type="file" id="profile-image" name="profile_image" accept="image/*" class="input-field" />
-                                <button type="button" class="file-btn">Choose File</button>
-                                <div class="selected-file" id="selected-file">No file selected</div>
-                            </div>
-                            <div class="flex items-start mb-5">
-                                <button type="submit" name="verify" class="submit-btn">Upload</button>
-                            </div>
-                        </form>
+                <div class="input-box">
+                    <label class="block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product ID</label>
+                    <input type="text" name="pid" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product name" required />
                     </div>
-                </div>
 
+                    <div class="input-box">
+                    <label class="block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product Name</label>
+                    <input type="text" name="pname" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product name" required />
+                    </div>
+
+                    <div class="input-box">
+                    <label for="message" class="  block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product Description</label>
+                    <textarea id="message" name="pdes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
+                    </div>
+
+                    <div class="input-box">
+                    <label for="price" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
+                    <input type="text" name="pprice" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter Price" required />
+                    </div>
+
+                    <div class="input-box">
+                    <label for="quant" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product quantity</label>
+                    <input type="text" name="pquant" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter quantity" required />
+                    </div>
+
+                    <div class="input-box">
+                    <label for="categories" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
+            <select name="pcategory" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Choose a category</option>
+                <option value="crops">crops</option>
+                <option value="vegetables">vegetables</option>
+                <option value="fruits">fruits</option>
+                <option value="cereals">cereals</option>
+                <option value="Pulses">Pulses</option>
+                <option value="fertilizers">fertilizers</option>
+                <option value="pesticides">pesticides</option>
+                
+            </select>
+                    </div>
+
+                    <div class="input-box">
+                    <label class=" label block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Main Image</label>
+                        <input type="file" name="main_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" required>
+                        </div>
+
+                        <div class="input-box">
+                    <label class=" label block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">More Images</label>
+                        <input type="file" name="extra_images[]"  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help"   multiple>
+                        </div>
+                
+                        
+                        <div class="sub_but">
+                        <input type="submit" name="submit" value="submit" class="sub">
+                        </div>   
+                </form>
             </div>
             <!--/Main-->
         </div>
