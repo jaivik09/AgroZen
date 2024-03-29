@@ -39,7 +39,7 @@
                                     style="font-size: 22px; font-family: Inter;">SERVICES</a>
                             </li>
                             <li>
-                                <a href="#"
+                                <a href="sample_Prod_cat.php"
                                     class="nav-item"
                                     style="font-size: 22px; font-family: Inter;">PRODUCTS</a>
                             </li>
@@ -49,12 +49,8 @@
                                     style="font-size: 22px; font-family: Inter;">ABOUT US</a>
                             </li>
                             <li>
-                                <a href="usercart.html">
-                                    <svg class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24"
-                                        stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
+                                <a href="prod_cart.php">
+                                <a href="prod_cart.php" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style = "font-size: 22px; font-family: Inter;"><i class="fas fa-shopping-cart"></i><span id="cart-item" class="badge badge-danger"></span></a>
                                 </a>
                             </li>
                             <li>
@@ -68,3 +64,62 @@
                 </div>
             </nav>
         </header>
+
+
+        
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Send product details to the server
+    $(".addItemBtn").click(function(e) {
+        e.preventDefault();
+        var $form = $(this).closest(".form-submit"); // Corrected to find the closest form
+        var productId = $form.find(".pid").val();
+        var productName = $form.find(".pname").val();
+        var productPrice = $form.find(".pprice").val();
+        var productImage = $form.find(".pimage").val();
+        var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
+
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'post',
+            data: {
+                pid: productId,            // Key: Different variable name, Value: Value of the productId variable
+                pname: productName,        // Key: Different variable name, Value: Value of the productName variable
+                pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
+                pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
+                pimage: productImage 
+            },
+            success: function(response) {
+                $("#message").html(response);
+                console.log("Success")
+                window.scrollTo(0, 0);
+                load_cart_item_number();
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
+    // Load total number of items added to the cart
+    load_cart_item_number();
+
+    function load_cart_item_number() {
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'get',
+            data: {
+                cartItem: "cart_item"
+            },
+            success: function(response) {
+                $("#cart-item").html(response);
+            }
+        });
+    }
+});
+
+  </script>
