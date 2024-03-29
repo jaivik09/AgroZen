@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+  ?>
 <?php
 	require 'config.php';
 
@@ -35,7 +38,7 @@
 
 <body>
  
-<header>
+<!-- <header>
   <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" style="background: #3CBC00; position:relative;">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -70,8 +73,18 @@
           </div>
       </div>
   </nav>
-</header>
-
+</header> -->
+<?php     
+    // echo "Session ID: " . $_SESSION['id']; 
+        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        if(isset($user_id))
+        {
+            require_once('setheader.php');
+        } else {
+            require_once('unsetheader.html');
+        }
+    ?>
+    
 
   <div class="container">
     <div class="row justify-content-center">

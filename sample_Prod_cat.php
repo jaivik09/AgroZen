@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +19,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen</title>
 </head>
 
@@ -59,8 +63,7 @@
       </div>
   </nav>
 </header> -->
-<?php 
-    session_start();    
+<?php     
     // echo "Session ID: " . $_SESSION['id']; 
         $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         if(isset($user_id))
