@@ -121,7 +121,7 @@
      </li>
      <li>
        <a href="fertilizers.php">
-       <<i class="fa-solid fa-seedling"></i>
+       <i class="fa-solid fa-seedling"></i>
          <span class="links_name">Fertilizers</span>
        </a>
        <span class="tooltip">Fertilizers</span>

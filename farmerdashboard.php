@@ -29,7 +29,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <link rel="stylesheet" href="./css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;600&display=swap" rel="stylesheet">
-    
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
 </head>

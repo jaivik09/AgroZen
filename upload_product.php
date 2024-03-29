@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+?>
 <!DOCTYPE html>
 <!---Coding By CodingLab | www.codinglabweb.com--->
 <html lang="en">
@@ -13,6 +16,8 @@
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link href="res/images/logo.png" rel="icon">
     <style>
         header {
             position: fixed;
@@ -38,7 +43,7 @@
     </style>
   </head>
   <body>
-  <header>
+  <!-- <header>
   <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" style="background: #3CBC00; position:relative;">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -72,7 +77,17 @@
           </div>
       </div>
   </nav>
-</header>
+</header> -->
+<?php     
+    // echo "Session ID: " . $_SESSION['id']; 
+        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        if(isset($user_id))
+        {
+            require_once('setheader.php');
+        } else {
+            require_once('unsetheader.html');
+        }
+    ?>
     <div class="container">
       <div class="add" align="center">Add Product</div>
       <form action="upload.php" method="post" enctype="multipart/form-data" class="form">
