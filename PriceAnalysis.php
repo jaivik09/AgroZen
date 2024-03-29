@@ -62,15 +62,15 @@
 
     <script>
       document.addEventListener('DOMContentLoaded', async () => {
-          populateStateDropdowns(); // Populate dropdowns after DOM is loaded
+        populateStateDropdowns(); // Populate dropdowns after DOM is loaded
 
-          const defaultState = 'Gujarat';
-          const today = new Date();
-          const formattedDate = today.toISOString().split('T')[0];
-          
-          document.getElementById('Date-input').value = formattedDate;
-          await getVegetablePrices(defaultState, formattedDate);
-      });
+        const defaultState = 'Gujarat';
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        
+        document.getElementById('Date-input').value = formattedDate;
+        await getVegetablePrices(defaultState, formattedDate);
+    });
     </script>
 
 </body>

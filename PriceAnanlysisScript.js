@@ -1,7 +1,7 @@
 const populateStateDropdowns = () => {
     const states = [
-        "Gujarat", "Andaman", "AndhraPradesh", "Arunachal", "Assam", "Bihar", "Chandigarh", "Chhattisgarh",
-        "DadraNagar", "DamanDiu", "Delhi", "Goa", "Haryana", "HimachalPradesh", "JammuKashmir",
+        "Andaman", "AndhraPradesh", "Arunachal", "Assam", "Bihar", "Chandigarh", "Chhattisgarh",
+        "DadraNagar", "DamanDiu", "Delhi", "Goa", "Gujarat", "Haryana", "HimachalPradesh", "JammuKashmir",
         "Jharkhand", "Karnataka", "Kerala", "Lakshadweep", "MadhyaPradesh", "Maharashtra", "Manipur",
         "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim",
         "TamilNadu", "Telangana", "Tripura", "UttarPradesh", "Uttarakhand", "West Bengal"
