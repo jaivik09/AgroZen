@@ -8,15 +8,33 @@
 	$allItems = '';
 	$items = [];
 
-	$sql = "SELECT CONCAT(product_name, '(',qty,')') AS ItemQty, total_price FROM cart";
-	$stmt = $connection->prepare($sql);
-	$stmt->execute();
-	$result = $stmt->get_result();
-	while ($row = $result->fetch_assoc()) {
-	  $grand_total += $row['total_price'];
-	  $items[] = $row['ItemQty'];
-	}
-	$allItems = implode(', ', $items);
+  $productId = isset($_GET['pid']) ? $_GET['pid'] : null;
+  $productName = isset($_GET['pname']) ? $_GET['pname'] : null;
+  $productPrice = isset($_GET['pprice']) ? $_GET['pprice'] : null;
+  $productQuantity = isset($_GET['pqty']) ? $_GET['pqty'] : null;
+  $productImage = isset($_GET['pimage']) ? $_GET['pimage'] : null;
+
+  // Check if product details are provided in URL parameters
+  if ($productId && $productName && $productPrice && $productQuantity && $productImage) {
+      // Append the details of the clicked product to the list of items
+      $allItems .= $productName . ' (' . $productQuantity . ')';
+      $grand_total += $productQuantity*$productPrice;
+  }
+  else{
+
+    $sql = "SELECT CONCAT(product_name, '(',qty,')') AS ItemQty, total_price FROM cart";
+    $stmt = $connection->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+      $grand_total += $row['total_price'];
+      $items[] = $row['ItemQty'];
+    }
+    $allItems = implode(', ', $items);
+
+  }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

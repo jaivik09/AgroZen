@@ -204,7 +204,7 @@ $multiple_img=$connection->query($sql2);
                 <input type="hidden" class="pdesc" value="<?php echo $row['prod_desc']; ?>">
             <div class = "btn-groups">
             <button class=" addItemBtn text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Add to cart</button>
-            <button class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
+            <button class=" buyNowBtn text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
             </div>
            </form>
         </div>
@@ -311,6 +311,48 @@ function resetActiveImg(){
                 console.error(xhr.responseText);
             }
         });
+    });
+
+    // Load total number of items added to the cart
+    load_cart_item_number();
+
+    function load_cart_item_number() {
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'get',
+            data: {
+                cartItem: "cart_item"
+            },
+            success: function(response) {
+                $("#cart-item").html(response);
+            }
+        });
+    }
+});
+
+  </script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    // Redirect to checkout page with details of the clicked product
+    $(".buyNowBtn").click(function(e) {
+        e.preventDefault();
+        var $form = $(this).closest(".form-submit");
+        var productId = $form.find(".pid").val();
+        var productName = $form.find(".pname").val();
+        var productPrice = $form.find(".pprice").val();
+        var productImage = $form.find(".pimage").val();
+        var productQuantity = $form.find("#quantity-input").val();
+
+        // Construct the URL with details of the clicked product
+        var url = 'checkout.php?pid=' + encodeURIComponent(productId) +
+                  '&pname=' + encodeURIComponent(productName) +
+                  '&pprice=' + encodeURIComponent(productPrice) +
+                  '&pqty=' + encodeURIComponent(productQuantity) +
+                  '&pimage=' + encodeURIComponent(productImage);
+
+        // Redirect to the checkout page
+        window.location.href = url;
     });
 
     // Load total number of items added to the cart
