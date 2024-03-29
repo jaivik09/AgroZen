@@ -1,3 +1,6 @@
+<?php 
+    session_start();
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,11 +18,13 @@
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link href="res/images/logo.png" rel="icon">
     <title>AgroZen</title>
 </head>
 
 <body>
-
+<!-- 
 <header>
   <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" style="background: #3CBC00; position:relative;">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -57,7 +62,17 @@
           </div>
       </div>
   </nav>
-</header>
+</header> -->
+<?php     
+    // echo "Session ID: " . $_SESSION['id']; 
+        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        if(isset($user_id))
+        {
+            require_once('setheader.php');
+        } else {
+            require_once('unsetheader.html');
+        }
+    ?>
     
     
 <div class="sidebar">

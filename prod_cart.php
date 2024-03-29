@@ -46,6 +46,8 @@
     <link href="css/my/product_view.css" rel="stylesheet">
     <link href="css/my/product_catalog.css" rel="stylesheet">
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <link href="res/images/logo.png" rel="icon">
     <script
       src="https://example.com/fontawesome/v6.5.1/js/all.js"
       data-auto-a11y="true"
@@ -76,7 +78,7 @@
     </div>
   </nav> -->
 
-  <header>
+  <!-- <header>
   <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" style="background: #3CBC00; position:relative;">
       <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -110,8 +112,18 @@
           </div>
       </div>
   </nav>
-</header>
-
+</header> -->
+<?php     
+    // echo "Session ID: " . $_SESSION['id']; 
+        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+        if(isset($user_id))
+        {
+            require_once('setheader.php');
+        } else {
+            require_once('unsetheader.html');
+        }
+    ?>
+    
 
 
   <div class="container">
