@@ -39,16 +39,16 @@
                 {
                     $_SESSION['id'] = $count['id'];
                     echo "<script>
-                                    swal({
-                                        title: 'Hurray!!!!',
-                                        text: 'You are successfully logged in',
-                                        icon: 'success'
-                                    }).then((result) => {
-                                        if (result) {
-                                            window.location.href = 'index.php';
-                                        }
-                                    });
-                                </script>";
+                            swal({
+                                title: 'Hurray!!!!',
+                                text: 'You are successfully logged in',
+                                icon: 'success'
+                            }).then((result) => {
+                                if (result) {
+                                    window.location.href = 'index.php';
+                                }
+                            });
+                        </script>";
                 }
                 else
                 {

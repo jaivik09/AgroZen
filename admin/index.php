@@ -1,12 +1,24 @@
-<php
-    session_start();    
-    $admin_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+<?php 
+    session_start();
+
+    $db_server = "localhost";
+    $db_user = "root";
+    $db_pass = "";
+    $db_name = "agrozen";
+    $link = mysqli_connect($db_server,$db_user,$db_pass,$db_name);
+    if($link == false)
+    {
+        die("Error : Couldn't Connect ". mysqli_connect_error());
+    }
+
+    $admin_id = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : null;
     if(isset($admin_id))
     {
-        require_once('index.php');
-    } else {
-        require_once('login.html');
-    }
+        $id = $_SESSION['admin_id'];
+        $sql = "SELECT * FROM admin WHERE admin_id = $id";
+
+        $result =mysqli_query($link,$sql);
+        $row = mysqli_fetch_array($result);
 ?>
 
 <!DOCTYPE html>
@@ -31,28 +43,9 @@
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
-        <header class="bg-nav">
-            <div class="flex justify-between">
-                <div class="p-1 mx-3 inline-flex items-center">
-                    <img onclick="sidebarToggle()" src="../res/images/logo.png" class="h-8 border border-gray-200 " alt="AgroZen Logo" style=" box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8); border-radius: 50px; border: 1.5px white solid;"/>
-                    <a href="index.php"><h1 class="text-white p-2">AgroZen Admin</h1></a>
-                </div>
-                <div class="p-1 flex flex-row items-center">
-                    <!--<a href="https://github.com/tailwindadmin/admin" class="text-white p-2 mr-2 no-underline hidden md:block lg:block">Github</a>-->
-
-                    <img onclick="profileToggle()" class="inline-block h-8 w-8 rounded-full" src="../res/images/logo.png" alt="Admin Image">
-                    <a href="#" onclick="profileToggle()" class="text-white p-2 no-underline hidden md:block lg:block">Admin Name</a>
-                    <div id="ProfileDropDown" class="rounded hidden shadow-md bg-white absolute pin-t mt-12 mr-1 pin-r">
-                        <ul class="list-reset">
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">My account</a></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Notifications</a></li>
-                          <li><hr class="border-t mx-2 border-grey-ligght"></li>
-                          <li><a href="#" class="no-underline px-4 py-2 block text-black hover:bg-grey-light">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </header>
+        <?php
+            include_once 'header.php';
+        ?>
         <!--/Header-->
 
         <div class="flex flex-1">
@@ -68,6 +61,15 @@
                             <span><i class="fas fa-angle-right float-right"></i></span>
                         </a>
                     </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="addevent.php"
+                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fab fa-wpforms float-left mx-2"></i>
+                                Add Event
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <!--
                     <li class="w-full h-full py-3 px-2 border-b border-light-border">
                         <a href="forms.html"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
@@ -138,6 +140,7 @@
                             </li>
                         </ul>
                     </li>
+                    -->
                 </ul>
 
             </aside>
@@ -151,29 +154,12 @@
                         <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    $244
-                                </a>
-                                <a href="#" class="no-underline text-white text-lg">
-                                    Total Sales
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
-                            <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
-                                    $199.4
-                                </a>
-                                <a href="#" class="no-underline text-white text-lg">
-                                    Total Cost
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
-                            <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
-                                    900
+                                    <?php 
+                                        $result1 =mysqli_query($link,"SELECT * FROM users");
+                                        $row1 = mysqli_fetch_array($result);
+                                        $row_count = mysqli_num_rows($result1);
+                                        echo $row_count;
+                                    ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Users
@@ -181,10 +167,47 @@
                             </div>
                         </div>
 
+                        <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="#" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result1 =mysqli_query($link,"SELECT id FROM users WHERE Role='farmer'");
+                                        $row1 = mysqli_fetch_array($result);
+                                        $row_count = mysqli_num_rows($result1);
+                                        echo $row_count;
+                                    ?>
+                                </a>
+                                <a href="#" class="no-underline text-white text-lg">
+                                    Farmers
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="#" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result1 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
+                                        $row1 = mysqli_fetch_array($result);
+                                        $row_count = mysqli_num_rows($result1);
+                                        echo $row_count;
+                                    ?>
+                                </a>
+                                <a href="#" class="no-underline text-white text-lg">
+                                    consumer
+                                </a>
+                            </div>
+                        </div>
+
                         <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
                                 <a href="#" class="no-underline text-white text-2xl">
-                                    500
+                                    <?php 
+                                        $result1 =mysqli_query($link,"SELECT prod_id FROM product_view");
+                                        $row1 = mysqli_fetch_array($result);
+                                        $row_count = mysqli_num_rows($result1);
+                                        echo $row_count;
+                                    ?>
                                 </a>
                                 <a href="#" class="no-underline text-white text-lg">
                                     Total Products
@@ -357,7 +380,7 @@
             </main>
             <!--/Main-->
         </div>
-        <!--Footer-->
+        <!--Footer
         <footer class="bg-[#4CAF50] text-white p-2 ">
             <div class="bg-gray-300 text-center">
                 <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">
@@ -365,12 +388,40 @@
                 </p>
             </div>
         </footer>
-        <!--/footer-->
+        /footer-->
 
     </div>
 
 </div>
+
+<footer class="w-full fixed bottom-0 left-0" id="FOOTER">
+    <div id="FOOTER">
+        <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2 flex justify-between">
+            <p class="mr-2">LETS GET CONNECTED</p>
+            <div class="footer-icon">
+                <a href="https://www.instagram.com/your_instagram_username"><i class="fab fa-instagram mr-2"></i></a>
+                <a href="https://www.linkedin.com/in/your_linkedin_profile"><i class="fab fa-linkedin mr-2"></i></a>
+                <a href="https://plus.google.com/your_google_plus_profile"><i class="fab fa-google-plus-square mr-2"></i></a>
+                <a href="https://www.facebook.com/your_facebook_profile"><i class="fab fa-facebook mr-2"></i></a>
+                <a href="https://twitter.com/your_twitter_profile"><i class="fab fa-twitter mr-2"></i></a>
+            </div>
+        </div>
+        <div class="bg-gray-300 text-center">
+            <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">
+                © 2024 <a href="indexal.html" class="hover:underline">AgroZen™</a>. All Rights Reserved.
+            </p>
+        </div>
+    </div>
+</footer>
+
 <script src="./main.js"></script>
 </body>
 
 </html>
+
+<?php 
+    }
+    else {
+        echo "<script>window.location.href = 'login.php';</script>";
+    }
+?>
