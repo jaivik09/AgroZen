@@ -158,7 +158,8 @@ Nourishing Lives.</pre>
         </div>
 
     </div>
-
+    
+    <!--
     <div class="user-container" id=USER>
 
         <div class="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 user-card wrap-content"
@@ -212,6 +213,7 @@ Nourishing Lives.</pre>
         </div>
 
     </div>
+    -->
 
     <footer>
         <div class="footer-container w-full fixed bottom-0 left-0" id="FOOTER" data-aos="fade-up">

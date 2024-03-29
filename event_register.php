@@ -45,16 +45,16 @@
         $msg = wordwrap($msg,70);
         mail($to, $subject, $msg, $headers);
         echo "<script>
-                                    swal({
-                                        title: 'Regisetered',
-                                        text: 'You are successfully registered in the event!!!!',
-                                        icon: 'success'
-                                    }).then((result) => {
-                                        if (result) {
-                                            window.location.href = 'MainEvent.php';
-                                        }
-                                    });
-                                </script>";
+                swal({
+                    title: 'Regisetered',
+                    text: 'You are successfully registered in the event!!!!',
+                    icon: 'success'
+                }).then((result) => {
+                    if (result) {
+                        window.location.href = 'MainEvent.php';
+                    }
+                });
+            </script>";
     } else {
         echo "<script>swal('Error!!!!','Something Happened Try Again!!!!','error');</script>";;
     }
