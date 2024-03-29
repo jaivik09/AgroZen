@@ -23,7 +23,7 @@ echo "<script>
                                         icon: 'success'
                                     }).then((result) => {
                                         if (result) {
-                                            window.location.href = 'login.php';
+                                            window.location.href = 'index.php';
                                         }
                                     });
                                 </script>";
