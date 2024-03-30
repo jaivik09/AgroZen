@@ -285,7 +285,7 @@
     </div>
 
 </div>
-
+<!--
 <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
     <div id="FOOTER">
         <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2 flex justify-between">
@@ -305,7 +305,7 @@
         </div>
     </div>
 </footer>
-
+-->
 <script src="./main.js"></script>
 
 <script>
