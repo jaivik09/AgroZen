@@ -220,7 +220,7 @@
 <?php 
     }
     else {
-        echo "<script>alert('You are not logged in.')</script>";
+        echo "<script>alert('Please Login first.')</script>";
         echo "<script>window.location.href = 'login.php';</script>";
     }
 ?>
