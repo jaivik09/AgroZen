@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-    if(isset($user_id))
-    {
+    // $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    // if(isset($user_id))
+    // {
 
 ?>
 
@@ -103,16 +103,16 @@
 </head>
 <body>
  <?php 
- require_once('setheader.php');
+ //require_once('setheader.php');
         // session_start();    
         // // echo "Session ID: " . $_SESSION['id']; 
-        //     $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        //     if(isset($user_id))
-        //     {
-        //         require_once('setheader.php');
-        //     } else {
-        //         require_once('unsetheader.html');
-        //     }
+            $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+            if(isset($user_id))
+            {
+                require_once('setheader.php');
+            } else {
+                require_once('unsetheader.html');
+            }
         ?> 
 
 <?php 
@@ -216,9 +216,9 @@
 </html>
 
 <?php 
-    }
-    else {
-        echo "<script>alert('Please Login first.')</script>";
-        echo "<script>window.location.href = 'login.php';</script>";
-    }
+    // }
+    // else {
+    //     echo "<script>alert('Please Login first.')</script>";
+    //     echo "<script>window.location.href = 'login.php';</script>";
+    // }
 ?>

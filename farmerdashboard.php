@@ -56,14 +56,14 @@
                                 View cart
                             </li>
                         </a>
-                        <a href="orderhistory.html">
+                        <!-- <a href="orderhistory.html">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Machineries
                             </li>
-                        </a>
-                        <a href="wishlist.html">
+                        </a> -->
+                         <a href="wishlist.html">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Wishlist
+                                Order List
                             </li>
                         </a>
                         <a href="sample_Prod_cat.php">

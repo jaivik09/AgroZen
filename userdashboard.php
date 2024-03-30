@@ -64,11 +64,11 @@
                                 Order History
                             </li>
                         </a>
-                        <a href="wishlist.html">
+                        <!-- <a href="wishlist.html">
                             <li class="mt-3 text-xl text-white bg-[#4CAF50] text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Wishlist
                             </li>
-                        </a>
+                        </a> -->
                         <a href="sample_Prod_cat.php">
                             <li class="mt-3 text-xl text-white bg-[#4CAF50] text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Buy Product

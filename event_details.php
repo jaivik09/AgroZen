@@ -2,6 +2,8 @@
 session_start();    
 // echo "Session ID: " . $_SESSION['id']; 
     $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    if(isset($user_id))
+     {
     require_once('setheader.php');
 
     $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
@@ -146,5 +148,12 @@ session_start();
         });
     }
 </script>
+<?php 
+    }
+    else {
+        echo "<script>alert('Please Login first.')</script>";
+        echo "<script>window.location.href = 'login.php';</script>";
+    }
+?>
 </body>
 </html>
