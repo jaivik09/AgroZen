@@ -59,11 +59,11 @@ Nourishing Lives.</pre>
 
             <div class="max-w-sm bg-white rounded-lg shadow dark:bg-gray-900 ser-card py-3" data-aos="zoom-in">
                 <div class="p-5">
-                    <a href="#">
+                    <a href="sample_Prod_cat.php">
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white cH-text">
                             Commerce</h5>
                     </a>
-                    <a href="#">
+                    <a href="sample_Prod_cat.php">
                         <img class="rounded-t-lg border border-gray-900 rounded-lg shadow dark:bg-gray-900 dark:border-gray-900"
                             style="border-radius: 200px; height: 200px; width: 275px" src="res/images/commerce.jpg"
                             alt="Commerce" />
@@ -72,7 +72,7 @@ Nourishing Lives.</pre>
                         worry about were to sell and what to buy. Here you can get all.</p>
                 </div>
             </div>
-
+<!--
             <div class="max-w-sm bg-white rounded-lg shadow dark:bg-gray-900 ser-card" data-aos="zoom-in">
                 <div class="p-5">
                     <a href="#">
@@ -105,7 +105,7 @@ Nourishing Lives.</pre>
                         rates.</p>
                 </div>
             </div>
-
+-->
             <div class="max-w-sm bg-white rounded-lg shadow dark:bg-gray-900 ser-card" data-aos="zoom-in">
                 <div class="p-5">
                     <a href="weather.php">
