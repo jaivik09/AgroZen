@@ -50,7 +50,7 @@
   <link href="css/my/product_view.css" rel="stylesheet">
     <link href="css/my/product_catalog.css" rel="stylesheet">
     <link href="css/my/style.css" rel="stylesheet">
-    <link href="ownstyles.css" rel="stylesheet">
+    <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
@@ -138,7 +138,7 @@
             </select>
           </div>
           <div class="form-group">
-            <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block">
+            <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block" style="color : black;">
           </div>
         </form>
       </div>
