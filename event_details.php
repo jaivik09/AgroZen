@@ -119,6 +119,19 @@ session_start();
                     <td><?php echo $event_result['Description']; ?></td>
                 </tr>
                 <tr>
+                    <td>Date </td>
+                    <td><?php echo $event_result['Date']; ?></td>
+                </tr>
+                <tr>
+                    <td>Time </td>
+                    <td><?php echo $event_result['Time']; ?></td>
+                </tr>
+                <tr>
+                    <td>Location </td>
+                    <td><?php echo $event_result['Location']; ?></td>
+                </tr>
+                
+                <tr>
                 <td colspan="2">
                     <div class="btn1-container">
                         <button class="btn1" onclick="showConfirmation()">Register</button>

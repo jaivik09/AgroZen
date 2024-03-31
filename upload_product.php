@@ -97,6 +97,8 @@
         
             $result =mysqli_query($link,$sql);
             $row = mysqli_fetch_array($result);
+
+            require_once('setheader.php');
         } else {
             require_once('unsetheader.html');
         }

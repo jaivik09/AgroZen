@@ -69,12 +69,17 @@
 
 <body style="background-color: #f2f2f2;">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+  <script src="../path/to/flowbite/dist/datepicker.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/datepicker.min.js"></script>
 
   <?php
     if(isset($_POST['verify']))
     {
       $title = isset($_POST['title']) ? trim($_POST['title']) : '';
-      $description = isset($_POST['description']) ? trim($_POST['description']) : ''; 
+      $description = isset($_POST['description']) ? trim($_POST['description']) : '';
+      $time = isset($_POST['time']) ? trim($_POST['time']) : '';
+      $location = isset($_POST['location']) ? trim($_POST['location']) : '';
+      $date = isset($_POST['date']) ? trim($_POST['date']) : ''; 
       
       $con = mysqli_connect('localhost','root','','agrozen');
 
@@ -92,7 +97,7 @@
         } else {
           if(move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetFile))
           {
-            $sql = "INSERT INTO events(Title,Description,Image) VALUES ('$title','$description','$imageName')";
+            $sql = "INSERT INTO events(Title,Description,Time,Date,Location,Image) VALUES ('$title','$description','$time','$date','$location','$imageName')";
 
             if(mysqli_query($con,$sql))
             {
@@ -123,6 +128,19 @@
             <div class="mt-2.5">
               <textarea name="description" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
             </div>
+        </div>
+        <div class="mb-5">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
+          <input type="text" id="name" name="time" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
+        </div>
+        <div class="mb-5">
+    <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+    <input type="date" id="date" name="date" class="datepicker shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Select date" required />
+</div>
+
+<div class="mb-5">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+          <input type="text" id="name" name="location" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
         </div>
         <div class="mb-5 file-input">
             <label for="profile-image"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image</label>
