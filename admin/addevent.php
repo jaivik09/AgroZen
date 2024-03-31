@@ -19,7 +19,6 @@
 
         $result =mysqli_query($link,$sql);
         $row = mysqli_fetch_array($result);
-    }
 ?>
 
 <!DOCTYPE html>
@@ -181,6 +180,14 @@
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
                                 Add Product
+                            <span><i class="fa fa-angle-right float-right"></i></span>
+                        </a>
+                    </li>
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                        <a href="farmer_product.php"
+                           class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
+                            <i class="fab fa-wpforms float-left mx-2"></i>
+                                Farmer Product
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
@@ -375,3 +382,10 @@
 </body>
 
 </html>
+
+<?php 
+    }
+    else {
+        echo "<script>window.location.href = 'login.php';</script>";
+    }
+?>

@@ -19,7 +19,10 @@
 
         $result =mysqli_query($link,$sql);
         $row = mysqli_fetch_array($result);
-    }
+        
+        $sql1 = "SELECT * FROM farmer_add_prod";
+        
+        $result1 =mysqli_query($link,$sql1);
 ?>
 
 <!DOCTYPE html>
@@ -29,77 +32,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,admin templates, admin template, admin dashboard, free tailwind templates, tailwind example">
     <!-- Css -->
     <link rel="stylesheet" href="./dist/styles.css">
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    <title>Add Event</title>
-
-    <style>
-        body {
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-        margin: 0;
-        }
-
-        .container .title{
-            text-align: center;
-            margin-bottom: 30px;
-
-        }
-
-        .title {
-        display: block;
-        align-self: center;
-        }
-
-        .content {
-        min-width: 800px; /* Adjust the width as needed */
-        }
-
-        .box{
-            border: 2px solid black;
-        }
-
-        /* Style for the file input */
-        .file-input {
-        position: relative;
-        overflow: hidden;
-        }
-
-        .file-input input {
-        font-size: 100px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        opacity: 0;
-        }
-
-        .file-input button {
-        background-color: #008cff;
-        color: #ffffff;
-        padding: 8px 12px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        }
-
-        /* Style for the selected file name display */
-        .selected-file {
-        margin-top: 8px;
-        font-size: 14px;
-        color: #555;
-        }
-    </style>
-
+    <title>AgroZen Admin Dashboard</title>
 </head>
+
+<style>
+    /* Overlay style */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Modal style */
+    .modal {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Close button style */
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+</style>
 
 <body>
 <!--Container -->
-<div class="mx-auto bg-grey-lightest">
+<div class="mx-auto bg-grey-400">
     <!--Screen-->
     <div class="min-h-screen flex flex-col">
         <!--Header Section Starts Here-->
@@ -107,7 +83,7 @@
             include_once 'header.php';
         ?>
         <!--/Header-->
-        
+
         <div class="flex flex-1">
             <!--Sidebar-->
             <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
@@ -129,7 +105,7 @@
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
-                    <li class="w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
                         <a href="upload_product.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
@@ -137,7 +113,7 @@
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
-                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border bg-white">
                         <a href="farmer_product.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
@@ -222,77 +198,73 @@
             </aside>
             <!--/Sidebar-->
             <!--Main-->
-            <div class="container">
-                <div class="add" align="center">Add Product</div>
-                <form action="upload.php" method="post" enctype="multipart/form-data" class="form mr-20 ml-20">
+            <main class="bg-white-300 flex-1 p-3 overflow-hidden">
 
-                <div class="input-box">
-                    <label class="block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product ID</label>
-                    <input type="text" name="pid" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product name" required />
-                    </div>
-
-                    <div class="input-box">
-                    <label class="block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product Name</label>
-                    <input type="text" name="pname" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product name" required />
-                    </div>
-
-                    <div class="input-box">
-                    <label for="message" class="  block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product Description</label>
-                    <textarea id="message" name="pdes" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write your thoughts here..."></textarea>
-                    </div>
-
-                    <div class="input-box">
-                    <label for="price" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Price</label>
-                    <input type="text" name="pprice" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter Price" required />
-                    </div>
-
-                    <div class="input-box">
-                    <label for="quant" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product quantity</label>
-                    <input type="text" name="pquant" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Enter quantity" required />
-                    </div>
-
-                    <div class="input-box">
-                    <label for="categories" class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Category</label>
-            <select name="pcategory" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Choose a category</option>
-                <option value="crops">crops</option>
-                <option value="vegetables">vegetables</option>
-                <option value="fruits">fruits</option>
-                <option value="cereals">cereals</option>
-                <option value="Pulses">Pulses</option>
-                <option value="fertilizers">fertilizers</option>
-                <option value="pesticides">pesticides</option>
-                
-            </select>
-                    </div>
-
-                    <div class="input-box">
-                    <label class=" label block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">Main Image</label>
-                        <input type="file" name="main_image" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" required>
+                <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
+                    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
+                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
+                            Farmer Product Table
                         </div>
-
-                        <div class="input-box">
-                    <label class=" label block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">More Images</label>
-                        <input type="file" name="extra_images[]"  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help"   multiple>
+                        <div class="p-3">
+                            <table class="table-responsive w-full rounded">
+                                <thead>
+                                    <tr>
+                                    <th class="border w-1/5 px-4 py-2">Product Name</th>
+                                    <th class="border w-1/7 px-4 py-2">Price</th>
+                                    <th class="border w-1/6 px-4 py-2">Description</th>
+                                    <th class="border w-1/6 px-4 py-2">Quantity(in Kg)</th>
+                                    <th class="border w-1/6 px-4 py-2">Catogary</th>
+                                    <th class="border w-1/6 px-4 py-2">Farmer</th>
+                                    <th class="border w-1/6 px-4 py-2">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                                            echo "<tr>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_name'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_price'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_desc'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_quant'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_cat'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['farmer_name'] . "</td>";
+                                            echo "<td class='border px-4 py-2'>";
+                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' href='../uploads/farmer upload/" . $row1['main_img'] . "'>";
+                                            echo "<i class='fas fa-eye'></i>";
+                                            echo "</a>";
+                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' onclick='openTextBox()'>
+                                                    <i class='fas fa-comment'></i>
+                                                  </a>";
+                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
+                                            echo "<i class='fas fa-trash'></i>";
+                                            echo "</a>";
+                                            echo "</td>";
+                                            echo "</tr>";
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
                         </div>
-                
-                        
-                        <div class="sub_but">
-                        <input type="submit" name="submit" value="submit" class="sub">
-                        </div>   
-                </form>
-            </div>
+                    </div>
+                </div>
+
+            </main>
             <!--/Main-->
         </div>
         <!--Footer
-        <footer class="bg-grey-darkest text-white p-2">
-            <div class="flex flex-1 mx-auto">&copy; My Design</div>
+        <footer class="bg-[#4CAF50] text-white p-2 ">
+            <div class="bg-gray-300 text-center">
+                <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">
+                    © 2024 <a href="index.php" class="hover:underline">AgroZen™</a>. All Rights Reserved.
+                </p>
+            </div>
         </footer>
         /footer-->
 
     </div>
 
 </div>
+
 <!--
 <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
     <div id="FOOTER">
@@ -314,16 +286,47 @@
     </div>
 </footer>
 -->
+
 <script src="./main.js"></script>
 
+<!-- Hovering text box -->
+<div id="hovering-text-box" class="overlay" style="display: none;">
+    <div class="modal">
+        <div class="close-btn" onclick="closeTextBox()">X</div>
+        <input type="text" id="messageInput" placeholder="Enter your message">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
 <script>
-    // Add script to display selected file name
-    document.getElementById('profile-image').addEventListener('change', function () {
-    var fileName = this.files[0].name;
-    document.getElementById('selected-file').innerText = 'Selected File: ' + fileName;
-    });
+    function openTextBox() {
+        document.getElementById('hovering-text-box').style.display = 'flex';
+    }
+
+    function closeTextBox() {
+        document.getElementById('hovering-text-box').style.display = 'none';
+    }
+
+    function sendMessage() {
+        // Get the message input value
+        var message = document.getElementById('messageInput').value;
+
+        // Add your code to send the message here
+        // For testing purposes, let's just log the message to the console
+        console.log("Message sent:", message);
+
+        // Close the text box after sending the message
+        closeTextBox();
+    }
 </script>
 
 </body>
 
 </html>
+
+<?php 
+    }
+    else {
+        echo "<script>window.location.href = 'login.php';</script>";
+    }
+?>
