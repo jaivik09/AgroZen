@@ -340,7 +340,6 @@
     </div>
 
 </div>
-
 <!--
 <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
     <div id="FOOTER">
