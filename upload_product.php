@@ -83,7 +83,20 @@
         $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         if(isset($user_id))
         {
-            require_once('setheader.php');
+            $db_server = "localhost";
+            $db_user = "root";
+            $db_pass = "";
+            $db_name = "agrozen";
+            $link = mysqli_connect($db_server,$db_user,$db_pass,$db_name);
+            if($link == false)
+            {
+                die("Error : Couldn't Connect ". mysqli_connect_error());
+            }
+            // $id = $_SESSION['id'];
+            $sql = "SELECT * FROM users WHERE id = $user_id";
+        
+            $result =mysqli_query($link,$sql);
+            $row = mysqli_fetch_array($result);
         } else {
             require_once('unsetheader.html');
         }
@@ -141,7 +154,7 @@
           <label class=" label block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="user_avatar">More Images</label>
             <input type="file" name="extra_images[]"  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help"   multiple>
             </div>
-       
+            <input type="hidden" name="farmer" class="farmer_name" value="<?php echo $row['Name']; ?>">
             
             <div class="sub_but">
             <input type="submit" name="submit" value="submit" class="sub">

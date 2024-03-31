@@ -2,7 +2,7 @@
 // Include the database configuration file
 include_once 'config.php';
 
-if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && isset($_POST['pprice']) && isset($_POST['pcategory']) && isset($_POST['pquant']) && isset($_POST['submit'])){ 
+if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && isset($_POST['pprice']) && isset($_POST['pcategory']) && isset($_POST['pquant']) && isset($_POST['submit']) && isset($_POST['farmer'])){ 
     // File upload configuration 
     $targetDir = "uploads/"; 
     $allowTypes = array('jpg','png','jpeg','gif'); 
@@ -13,6 +13,7 @@ if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && is
     $pprice = $_POST['pprice'];
     $pcategory = $_POST['pcategory'];
     $pquant = $_POST['pquant'];
+    $farmer_name = $_POST['farmer'];
 
     // Upload main image
     if(!empty($_FILES['main_image']['name'])) {
@@ -23,7 +24,7 @@ if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && is
         if(in_array($mainImageFileType, $allowTypes)){
             if(move_uploaded_file($_FILES['main_image']['tmp_name'], $mainImageTargetPath)){
                 // Insert main image file name into database
-                $insertProductSQL = "INSERT INTO product_view (prod_id, prod_name, prod_price, prod_desc, prod_quant, prod_cat,main_img) VALUES ('$pid', '$pname', '$pprice', '$pdes', '$pquant', '$pcategory', '$mainImageName')";
+                $insertProductSQL = "INSERT INTO farmer_add_prod (prod_id, prod_name, prod_price, prod_desc, prod_quant, prod_cat,main_img,farmer_name) VALUES ('$pid', '$pname', '$pprice', '$pdes', '$pquant', '$pcategory', '$mainImageName','$farmer_name')";
                 $resultProduct = mysqli_query($connection, $insertProductSQL);
             }
         }
@@ -63,5 +64,8 @@ if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && is
 // }
 
 // Display status message
+}
+else{
+    echo 'error in adding.....';
 }
 ?>
