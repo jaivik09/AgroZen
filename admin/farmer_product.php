@@ -42,35 +42,19 @@
 </head>
 
 <style>
-    /* Overlay style */
-    .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-        z-index: 9999;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Modal style */
-    .modal {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Close button style */
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-    }
+  /* Styles for popup form */
+  .popup-form {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    z-index: 1000;
+  }
 </style>
 
 <body>
@@ -232,7 +216,7 @@
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' href='../uploads/farmer upload/" . $row1['main_img'] . "'>";
                                             echo "<i class='fas fa-eye'></i>";
                                             echo "</a>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' onclick='openTextBox()'>
+                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' id='openPopupBtn'>
                                                     <i class='fas fa-comment'></i>
                                                   </a>";
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
@@ -289,35 +273,39 @@
 
 <script src="./main.js"></script>
 
-<!-- Hovering text box -->
-<div id="hovering-text-box" class="overlay" style="display: none;">
-    <div class="modal">
-        <div class="close-btn" onclick="closeTextBox()">X</div>
-        <input type="text" id="messageInput" placeholder="Enter your message">
-        <button onclick="sendMessage()">Send</button>
-    </div>
+<div id="popupForm" class="popup-form">
+  <h2>Popup Form</h2>
+  <form>
+    <!-- Your form fields go here -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
 </div>
 
 <script>
-    function openTextBox() {
-        document.getElementById('hovering-text-box').style.display = 'flex';
+  // Function to open the popup form
+  function openPopup() {
+    document.getElementById("popupForm").style.display = "block";
+  }
+
+  // Function to close the popup form
+  function closePopup() {
+    document.getElementById("popupForm").style.display = "none";
+  }
+
+  // Event listener for the button click to open the popup form
+  document.getElementById("openPopupBtn").addEventListener("click", openPopup);
+
+  // Close the popup form when clicking outside of it
+  window.onclick = function(event) {
+    var popup = document.getElementById("popupForm");
+    if (event.target == popup) {
+      popup.style.display = "none";
     }
-
-    function closeTextBox() {
-        document.getElementById('hovering-text-box').style.display = 'none';
-    }
-
-    function sendMessage() {
-        // Get the message input value
-        var message = document.getElementById('messageInput').value;
-
-        // Add your code to send the message here
-        // For testing purposes, let's just log the message to the console
-        console.log("Message sent:", message);
-
-        // Close the text box after sending the message
-        closeTextBox();
-    }
+  }
 </script>
 
 </body>
