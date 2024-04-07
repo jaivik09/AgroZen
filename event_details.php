@@ -24,6 +24,7 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     
+    
     <link href="css/my/style.css" rel="stylesheet">
     <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link href="res/images/logo.png" rel="icon">
@@ -166,6 +167,20 @@ session_start();
     else {
         echo "<script>alert('Please Login first.')</script>";
         echo "<script>window.location.href = 'login.php';</script>";
+
+        // echo "<script>
+        //                     swal({
+        //                         title: 'Hurray!!!!',
+        //                         text: 'You are successfully logged in',
+        //                         icon: 'success'
+        //                     }).then((result) => {
+        //                         if (result) {
+        //                             window.location.href = 'login.php';
+        //                         }
+        //                     });
+        //                 </script>";
+        
+        
     }
 ?>
 </body>

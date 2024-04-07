@@ -1,4 +1,5 @@
 <?php
+     session_start();
     $db_server = "localhost";
     $db_user = "root";
     $db_pass = "";
@@ -13,6 +14,11 @@
 
     $result =mysqli_query($link,$sql);
     $row = mysqli_fetch_array($result);
+    $imagename = $row['ProfileImage'];
+    $email = $row['Email'];
+
+    $reg_events = mysqli_query($link,"SELECT * FROM events_reg WHERE Email = '$email'");
+    $events = mysqli_fetch_all($reg_events, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +38,28 @@
     <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
+    <style>
+        /* Additional CSS styles for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 
 <body class="font-['Inter']">
@@ -75,7 +103,7 @@
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Add Product
                             </li>
-                        </a><a href="far_display_reg_events.php">
+                        </a><a href="upload_product.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Regisetered Events
                             </li>
@@ -89,58 +117,30 @@
                 <div class="col-lg-8 mt-8 mr-8">
                     <div class="bg-white shadow-sm rounded-md border border-gray-300">
                         <div class="border-b border-gray-900 px-4 py-3">
-                            <h3 class="font-medium text-3xl"><i class="far fa-clone pr-1"></i>General Information</h3>
+                            <h3 class="font-medium text-3xl"><i class="far fa-clone pr-1"></i>Event Details</h3>
                         </div>
                         <div class="px-6 py-4">
                             <table class="table-auto w-full border-collapse">
-                                <tbody>
-                                <tr>
-                                    <td class='py-3 pr-3 text-lg text-right border-b border-gray-300 w-1/3'>Name</td>
-                                    <td class='py-3 px-3 text-lg border-b border-gray-300'>::</td>
-                                    <td class='py-3 pl-3 text-lg border-b border-gray-300'><?php echo $row['Name']; ?></td>
+                            <tr>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Location</th>
                                 </tr>
+                                <?php foreach ($events as $event): ?>
                                 <tr>
-                                    <td class='py-3 pr-3 text-lg text-right border-b border-gray-300 w-1/3'>E-mail</td>
-                                    <td class='py-3 px-3 text-lg border-b border-gray-300'>::</td>
-                                    <td class='py-3 pl-3 text-lg border-b border-gray-300'><?php echo $row['Email']; ?></td>
+                                    <td><?php echo $event['R_id']; ?></td>
+                                    <td><?php echo $event['Title']; ?></td>
+                                    <td><?php echo $event['Date']; ?></td>
+                                    <td><?php echo $event['Time']; ?></td>
+                                    <td><?php echo $event['Location']; ?></td>
                                 </tr>
-                                <tr>
-                                    <td class='py-3 pr-3 text-lg text-right border-b border-gray-300 w-1/3'>Contact</td>
-                                    <td class='py-3 px-3 text-lg border-b border-gray-300'>::</td>
-                                    <td class='py-3 pl-3 text-lg border-b border-gray-300'><?php echo $row['Phone']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class='py-3 pr-3 text-lg text-right border-b border-gray-300 w-1/3'>Gender</td>
-                                    <td class='py-3 px-3 text-lg border-b border-gray-300'>::</td>
-                                    <td class='py-3 pl-3 text-lg border-b border-gray-300'><?php echo $row['Gender']; ?></td>
-                                </tr>
-                                <tr>
-                                    <td class='py-3 pr-3 text-lg text-right border-b border-gray-300 w-1/3'>Role</td>
-                                    <td class='py-3 px-3 text-lg border-b border-gray-300'>::</td>
-                                    <td class='py-3 pl-3 text-lg border-b border-gray-300'><?php echo $row['Role']; ?></td>
-                                </tr>
-                                </tbody>
+                                <?php endforeach; ?>
                             </table>
                         </div>
                     </div>
-                    <div class="w-full flex justify-between">
-                        <div class="wrapper mt-10 mr-10">
-                            <a href="editProfile.php">
-                                <button type="button"
-                                    class="px-6 py-3.5 text-base font-medium text-white bg-[#FF5722] hover:bg-[#FF401C]  focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Edit Details
-                                </button>
-                            </a>
-                        </div>
-                        <div class="wrapper mt-10 ml-10">
-                            <a href="logout.php">
-                                <button type="button"
-                                    class="px-6 py-3.5 text-base font-medium text-white bg-[#FF5722] hover:bg-[#FF401C]  focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Logout
-                                </button>
-                            </a>
-                        </div>
-                    </div>
+                   
                 </div>
             </form>
         </div>
