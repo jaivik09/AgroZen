@@ -185,58 +185,99 @@
     </div>
 </section>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        // Send product details to the server
-        $(".addItemBtn").click(function (e) {
-            e.preventDefault();
-            var $form = $(this).closest("form.product-form");
-            var productId = $form.find(".pid").val();
-            var productName = $form.find(".pname").val();
-            var productPrice = $form.find(".pprice").val();
-            var productImage = $form.find(".pimage").val();
-            var productQuantity = 1;
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var addToCartButtons = document.querySelectorAll('.addItemBtn');
 
-            $.ajax({
-                url: 'cart_action.php',
-                method: 'post',
-                data: {
-                    pid: productId,
-                    pname: productName,
-                    pprice: productPrice,
-                    pqty: productQuantity,
-                    pimage: productImage
-                },
-                success: function (response) {
-                    $("#message").html(response);
-                    console.log("Success");
-                    window.scrollTo(0, 0);
-                    load_cart_item_number();
-                },
-                error: function (xhr, status, error) {
-                    console.error(xhr.responseText);
-                }
+    addToCartButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var productId = this.parentElement.querySelector('.pid').value;
+            var productName = this.parentElement.querySelector('.pname').value;
+            var productPrice = this.parentElement.querySelector('.pprice').value;
+            var productImage = this.parentElement.querySelector('.pimage').value;
+            var userId = this.parentElement.querySelector('.uid').value;
+
+            var formData = new FormData();
+            formData.append('pid', productId);
+            formData.append('pname', productName);
+            formData.append('pprice', productPrice);
+            formData.append('pqty', 1); // Default quantity, you can change this if needed
+            formData.append('pimage', productImage);
+            formData.append('uid', userId);
+
+            fetch('cart_action.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                // Handle the response as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors here
             });
         });
-
-        // Load total number of items added to the cart
-        load_cart_item_number();
-
-        function load_cart_item_number() {
-            $.ajax({
-                url: 'cart_action.php',
-                method: 'get',
-                data: {
-                    cartItem: "cart_item"
-                },
-                success: function (response) {
-                    $("#cart-item").html(response);
-                }
-            });
-        }
     });
+});
+
 </script>
+<!-- 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script type="text/javascript">
+//     $(document).ready(function () {
+//         // Send product details to the server
+//         $(".addItemBtn").click(function (e) {
+//             e.preventDefault();
+//             var $form = $(this).closest("form.product-form");
+//             var productId = $form.find(".pid").val();
+//             var productName = $form.find(".pname").val();
+//             var productPrice = $form.find(".pprice").val();
+//             var productImage = $form.find(".pimage").val();
+//             var productQuantity = 1;
+
+//             $.ajax({
+//                 url: 'cart_action.php',
+//                 method: 'post',
+//                 data: {
+//                     pid: productId,
+//                     pname: productName,
+//                     pprice: productPrice,
+//                     pqty: productQuantity,
+//                     pimage: productImage
+//                 },
+//                 success: function (response) {
+//                     $("#message").html(response);
+//                     console.log("Success");
+//                     window.scrollTo(0, 0);
+//                     load_cart_item_number();
+//                 },
+//                 error: function (xhr, status, error) {
+//                     console.error(xhr.responseText);
+//                 }
+//             });
+//         });
+
+//         // Load total number of items added to the cart
+//         load_cart_item_number();
+
+//         function load_cart_item_number() {
+//             $.ajax({
+//                 url: 'cart_action.php',
+//                 method: 'get',
+//                 data: {
+//                     cartItem: "cart_item"
+//                 },
+//                 success: function (response) {
+//                     $("#cart-item").html(response);
+//                 }
+//             });
+//         }
+//     });
+// </script> -->
 
   <script>
   let sidebar = document.querySelector(".sidebar");

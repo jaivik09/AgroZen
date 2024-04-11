@@ -153,7 +153,7 @@
                 </td>
               </tr>
               <tr>
-                <th>ID</th>
+                <!-- <th>ID</th> -->
                 <th>Image</th>
                 <th>Product</th>
                 <th>Price</th>
@@ -175,7 +175,7 @@
                 while ($row = $result->fetch_assoc()):
               ?>
               <tr>
-                <td><?= $row['id'] ?></td>
+
                 <input type="hidden" class="pid" value="<?= $row['id'] ?>">
                 <td><img src="uploads/<?php echo $row['product_image']; ?>" width="50"></td>
                 <td><?= $row['product_name'] ?></td>
