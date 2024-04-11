@@ -162,7 +162,8 @@
             <tbody>
               <?php
                 require 'config.php';
-                $stmt = $connection->prepare('SELECT * FROM cart');
+                $stmt = $connection->prepare('SELECT * FROM cart WHERE user_id = ?');
+                $stmt->bind_param('i', $user_id);
                 $stmt->execute();
                 $result = $stmt->get_result();
                 $grand_total = 0;
@@ -204,6 +205,10 @@
       </div>
     </div>
   </div>
+  <?php
+// Close the statement
+$stmt->close();
+?>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>

@@ -56,42 +56,7 @@
 
 <body>
  
-<!-- <header>
-  <nav class="border-gray-200 bg-gray-50 dark:bg-gray-800 dark:border-gray-700" style="background: #3CBC00; position:relative;">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-          <img src="res/images/logo.png" class="h-8 border border-gray-200 " alt="AgroZen Logo" style=" box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.8); border-radius: 50px; border: 1.5px white solid;"/>
-              <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white" style = "font-size: 30px; font-family: Inter; color: white; text-align:center">AgroZen</span>
-          </a>
-          <button data-collapse-toggle="navbar-solid-bg" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
-              <span class="sr-only">Open main menu</span>
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-              </svg>
-          </button>
-          <div class="hidden w-full md:block md:w-auto" id="navbar-solid-bg">
-          <ul class="flex flex-col font-medium mt-4 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
-              <li>
-              <a href="#HOME" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style = "font-size: 22px; font-family: Inter;">HOME</a>
-              </li>
-              <li>
-              <a href="#SERVICES" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style="font-size: 22px; font-family: Inter;">SERVICES</a>
-              </li>
-              <li>
-              <a href="#USER" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style = "font-size: 22px; font-family: Inter;">USERS</a>
-              </li>
-              <li>
-              <a href="#FOOTER" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style = "font-size: 22px; font-family: Inter;">ABOUT US</a>
-              </li>
-              
-              <li>
-              <a href="prod_cart.php" class="block py-2 px-3 md:p-0 text-white rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent" style = "font-size: 22px; font-family: Inter;"><i class="fa-solid fa-cart-shopping "></i><span id="cart-item" class="badge badge-danger"></span></a>
-              </li>
-          </ul>
-          </div>
-      </div>
-  </nav>
-</header> -->
+
 <?php     
     // echo "Session ID: " . $_SESSION['id']; 
         $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
@@ -114,73 +79,137 @@
           <h5><b>Total Amount Payable : </b><?= number_format($grand_total,2) ?>/-</h5>
         </div>
         <form action="" method="post" id="placeOrder">
-          <input type="hidden" name="products" value="<?= $allItems; ?>">
-          <input type="hidden" name="grand_total" value="<?= $grand_total; ?>">
+          <input type="hidden" class="products" name="products" value="<?= $allItems; ?>">
+          <input type="hidden" class="tot_amount" name="grand_total" value="<?= $grand_total; ?>">
           <div class="form-group">
-            <input type="text" name="name" class="form-control" placeholder="Enter Name" required>
+            <input type="text" name="name" class=" name form-control " placeholder="Enter Name" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email" class="form-control" placeholder="Enter E-Mail" required>
+            <input type="email" name="email" class=" email form-control" placeholder="Enter E-Mail" required>
           </div>
           <div class="form-group">
-            <input type="tel" name="phone" class="form-control" placeholder="Enter Phone" required>
+            <input type="tel" name="phone" class=" phone form-control" placeholder="Enter Phone" required>
           </div>
           <div class="form-group">
-            <textarea name="address" class="form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."></textarea>
+            <textarea name="address" class="address form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."></textarea>
           </div>
-          <h6 class="text-center lead">Select Payment Mode</h6>
+          <!-- <h6 class="text-center lead">Select Payment Mode</h6>
           <div class="form-group">
-            <select name="pmode" class="form-control">
+             <select name="pmode" class="form-control">
               <option value="" selected disabled>-Select Payment Mode-</option>
               <option value="cod">Cash On Delivery</option>
               <option value="netbanking">Net Banking</option>
               <option value="cards">Debit/Credit Card</option>
             </select>
-          </div>
+          </div> -->
           <div class="form-group">
-            <input type="submit" name="submit" value="Place Order" class="btn btn-danger btn-block" style="color : black;">
+          <button  id="PayNow" class="btn btn-success btn-lg btn-block" >Submit & Pay</button>
           </div>
         </form>
       </div>
     </div>
   </div>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-  <script type="text/javascript">
-  $(document).ready(function() {
+<script>
+    //Pay Amount
+    jQuery(document).ready(function($){
 
-    // Sending Form data to the server
-    $("#placeOrder").submit(function(e) {
-      e.preventDefault();
-      $.ajax({
-        url: 'cart_action.php',
-        method: 'post',
-        data: $('form').serialize() + "&action=order",
-        success: function(response) {
-          $("#order").html(response);
-        }
-      });
-    });
+jQuery('#PayNow').click(function(e){
 
-    // Load total no.of items added in the cart and display in the navbar
-    load_cart_item_number();
+	var paymentOption='';
+let billing_name = $('.name').val();
+	let billing_mobile = $('.phone').val();
+	let billing_email = $('.email').val();
+var paymentOption= "netbanking";
+var payAmount = $('.tot_amount').val();
+			
+var request_url="submitpayment.php";
+		var formData = {
+			billing_name:billing_name,
+			billing_mobile:billing_mobile,
+			billing_email:billing_email,
+			paymentOption:paymentOption,
+			payAmount:payAmount,
+			action:'payOrder'
+		}
+		
+		$.ajax({
+			type: 'POST',
+			url:request_url,
+			data:formData,
+			dataType: 'json',
+			encode:true,
+		}).done(function(data){
+		
+		if(data.res=='success'){
+				var orderID=data.order_number;
+				var orderNumber=data.order_number;
+				var options = {
+    "key": data.razorpay_key, // Enter the Key ID generated from the Dashboard
+    "amount": data.userData.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Tutorialswebsite", //your business name
+    "description": data.userData.description,
+    "image": "https://www.tutorialswebsite.com/wp-content/uploads/2022/02/cropped-logo-tw.png",
+    "order_id": data.userData.rpay_order_id, //This is a sample Order ID. Pass 
+    "handler": function (response){
 
-    function load_cart_item_number() {
-      $.ajax({
-        url: 'cart_action.php',
-        method: 'get',
-        data: {
-          cartItem: "cart_item"
+    window.location.replace("payment-success.php?oid="+orderID+"&rp_payment_id="+response.razorpay_payment_id+"&rp_signature="+response.razorpay_signature);
+
+    },
+    "modal": {
+    "ondismiss": function(){
+         window.location.replace("payment-success.php?oid="+orderID);
+     }
+},
+    "prefill": { //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
+        "name": data.userData.name, //your customer's name
+        "email": data.userData.email,
+        "contact": data.userData.mobile //Provide the customer's phone number for better conversion rates 
+    },
+    "notes": {
+        "address": "Tutorialswebsite"
+    },
+    "config": {
+    "display": {
+      "blocks": {
+        "banks": {
+          "name": 'Pay using '+paymentOption,
+          "instruments": [
+           
+            {
+                "method": paymentOption
+            },
+            ],
         },
-        success: function(response) {
-          $("#cart-item").html(response);
-        }
-      });
+      },
+      "sequence": ['block.banks'],
+      "preferences": {
+        "show_default_blocks": true,
+      },
+    },
+  },
+    "theme": {
+        "color": "#3399cc"
     }
-  });
-  </script>
+};
+var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+
+    window.location.replace("payment-failed.php?oid="+orderID+"&reason="+response.error.description+"&paymentid="+response.error.metadata.payment_id);
+
+         });
+      rzp1.open();
+     e.preventDefault(); 
+}
+ 
+});
+ });
+    });
+</script>
+
 </body>
 
 </html>

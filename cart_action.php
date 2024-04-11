@@ -1,12 +1,12 @@
 <?php
 	session_start();
 	require 'config.php';
-
+	
 
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST['pid'], $_POST['pname'], $_POST['pprice'], $_POST['pqty'], $_POST['pimage'])) {
+        if(isset($_POST['pid'], $_POST['pname'], $_POST['pprice'], $_POST['pqty'], $_POST['pimage'],$_POST['uid'])) {
             // Sanitize and store the POST data
             $pid = $_POST['pid'];
             $pname = $_POST['pname'];
@@ -14,6 +14,7 @@
             $pqty = $_POST['pqty'];
             $pimage = $_POST['pimage'];
             $total_price = $pprice * $pqty;
+			$userid = $_POST['uid'];
 
 
 			$stmt = $connection->prepare('SELECT id FROM cart WHERE id=?');
@@ -25,9 +26,9 @@
                 if($code==0)
                 {
                     // Prepare SQL statement to insert data into the cart table
-            $stmt = $connection->prepare("INSERT INTO cart (id, product_name, product_price, product_image, qty, total_price) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt = $connection->prepare("INSERT INTO cart (id,user_id, product_name, product_price, product_image, qty, total_price) VALUES (?,?, ?, ?, ?, ?, ?)");
             // Bind parameters
-            $stmt->bind_param("isdsdd", $pid, $pname, $pprice, $pimage, $pqty, $total_price);
+            $stmt->bind_param("iisdsdd", $pid,$userid, $pname, $pprice, $pimage, $pqty, $total_price);
             // Execute the statement
             if ($stmt->execute()) {
                 echo "Product added to cart successfully.";
@@ -48,15 +49,16 @@
         echo "";
     }
 
-
+	$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     
     
 	// Get no.of items available in the cart table
 	if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
-	  $stmt = $connection->prepare('SELECT * FROM cart');
-	  $stmt->execute();
-	  $stmt->store_result();
-	  $rows = $stmt->num_rows;
+		$stmt = $connection->prepare('SELECT * FROM cart WHERE user_id = ?');
+		$stmt->bind_param('i', $userId);
+		$stmt->execute();
+		$stmt->store_result();
+		$rows = $stmt->num_rows;
 
 	  echo $rows;
 	}
@@ -65,9 +67,9 @@
 	if (isset($_GET['remove'])) {
 	  $id = $_GET['remove'];
 
-	  $stmt = $connection->prepare('DELETE FROM cart WHERE id=?');
-	  $stmt->bind_param('i',$id);
-	  $stmt->execute();
+	  $stmt = $connection->prepare('DELETE FROM cart WHERE id=? AND user_id=?');
+    $stmt->bind_param('ii', $id, $userId);
+    $stmt->execute();
 
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'Item removed from the cart!';
@@ -76,8 +78,9 @@
 
 	// Remove all items at once from cart
 	if (isset($_GET['clear'])) {
-	  $stmt = $connection->prepare('DELETE FROM cart');
-	  $stmt->execute();
+		$stmt = $connection->prepare('DELETE FROM cart WHERE user_id=?');
+		$stmt->bind_param('i', $userId);
+		$stmt->execute();
 	  $_SESSION['showAlert'] = 'block';
 	  $_SESSION['message'] = 'All Item removed from the cart!';
 	  header('location:prod_cart.php');
@@ -104,12 +107,12 @@
 	  $products = $_POST['products'];
 	  $grand_total = $_POST['grand_total'];
 	  $address = $_POST['address'];
-	  $pmode = $_POST['pmode'];
+	  //$pmode = $_POST['pmode'];
 
 	  $data = '';
 
-	  $stmt = $connection->prepare('INSERT INTO orders (name,email,phone,address,pmode,products,amount_paid)VALUES(?,?,?,?,?,?,?)');
-	  $stmt->bind_param('sssssss',$name,$email,$phone,$address,$pmode,$products,$grand_total);
+	  $stmt = $connection->prepare('INSERT INTO orders (name,email,phone,address,products,amount_paid)VALUES(?,?,?,?,?,?)');
+	  $stmt->bind_param('ssssss',$name,$email,$phone,$address,$products,$grand_total);
 	  $stmt->execute();
 	  $stmt2 = $connection->prepare('DELETE FROM cart');
 	  $stmt2->execute();
@@ -121,7 +124,7 @@
 								<h4>Your E-mail : ' . $email . '</h4>
 								<h4>Your Phone : ' . $phone . '</h4>
 								<h4>Total Amount Paid : ' . number_format($grand_total,2) . '</h4>
-								<h4>Payment Mode : ' . $pmode . '</h4>
+								// <h4>Payment Mode : ' . $pmode . '</h4>
 						  </div>';
 	  echo $data;
 	}
