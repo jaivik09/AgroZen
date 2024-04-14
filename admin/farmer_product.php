@@ -130,10 +130,10 @@ if(isset($admin_id))
                                         <th class="border w-1/7 px-4 py-2">Price(₹)</th>
                                         <th class="border w-1/6 px-4 py-2">Description</th>
                                         <th class="border w-1/6 px-4 py-2">Quantity(in Kg)</th>
-                                        <th class="border w-1/6 px-4 py-2">Category</th>
+                                        <th class="border w-1/7 px-4 py-2">Category</th>
                                         <th class="border w-1/7 px-4 py-2">Farmer</th>
+                                        <th class="border w-1/6 px-4 py-2">Preview</th>
                                         <th class="border w-1/6 px-4 py-2">Action</th>
-                                        <th class="border w-1/8 px-4 py-2">Accept</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -154,18 +154,12 @@ if(isset($admin_id))
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' id='openPopupBtn'>";
                                             echo "<i class='fas fa-comment'></i>";
                                             echo "</a>";
+                                            echo "</td>";
+                                            echo "<td class='border px-4 py-2'>";
+                                            echo"<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='showConfirmation()'></button>";                                         
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
                                             echo "<i class='fas fa-trash'></i>";
                                             echo "</a>";
-                                            echo "</td>";
-                                            echo "<td class='border px-4 py-2'>";
-                                            // echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'].")'></button>";
-                                            // echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView()'></button>";
-                                            ?>
-                                            <!-- <button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick="insertProductView()"></button>"; -->
-                                            <button class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check" onclick="showConfirmation()"></button>
-                                            <?php
-
                                             echo "</td>";
                                             echo "</tr>";
                                         }
