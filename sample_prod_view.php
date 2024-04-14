@@ -172,7 +172,7 @@ $multiple_img=$connection->query($sql2);
         </div>
         <div class = "product-div-right">
             <span class = "product-name"><?php echo $row['prod_name']; ?></span>
-            <span class = "product-price">$ <?php echo $row['prod_price']; ?></span>
+            <span class = "product-price">₹ <?php echo $row['prod_price']; ?></span>
             <div class = "product-rating">
                 <span><i class = "fas fa-star"></i></span>
                 <span><i class = "fas fa-star"></i></span>  
@@ -202,6 +202,7 @@ $multiple_img=$connection->query($sql2);
                 <input type="hidden" class="pprice" value="<?php echo $row['prod_price']; ?>">
                 <input type="hidden" class="pimage" value="<?php echo $row['main_img']; ?>">
                 <input type="hidden" class="pdesc" value="<?php echo $row['prod_desc']; ?>">
+                <input type="hidden" class="userid" value="<?php echo $user_id; ?>">
             <div class = "btn-groups">
             <button class=" addItemBtn text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Add to cart</button>
             <button class=" buyNowBtn text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Buy Now</button>
@@ -276,6 +277,7 @@ function resetActiveImg(){
         var productName = $form.find(".pname").val();
         var productPrice = $form.find(".pprice").val();
         var productImage = $form.find(".pimage").val();
+        var userid = $form.find(".userid").val();
         var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
         addButton.prop('disabled', true);
 
@@ -287,7 +289,8 @@ function resetActiveImg(){
                 pname: productName,        // Key: Different variable name, Value: Value of the productName variable
                 pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
                 pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
-                pimage: productImage 
+                pimage: productImage,
+                uid:userid
             },
             success: function(response) {
                 $("#message").html(response);

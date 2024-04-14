@@ -1,19 +1,6 @@
 <?php 
-session_start();    
-// echo "Session ID: " . $_SESSION['id']; 
-    $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-    if(isset($user_id))
-     {
-    require_once('setheader.php');
-
-    $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
-    $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
-    $con = mysqli_connect('localhost','root','','agrozen');
-
-    $event_row = mysqli_query($con,"SELECT * FROM events WHERE id='$event_id'");
-    $event_result = mysqli_fetch_array($event_row);
-    $imageName = $event_result['Image'];
- ?>   
+session_start();  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,10 +11,13 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     
+    
     <link href="css/my/style.css" rel="stylesheet">
     <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link href="res/images/logo.png" rel="icon">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
     <title>Event Details</title>
     <style>
         .main-body {
@@ -98,6 +88,22 @@ session_start();
 }
     </style>
 </head>
+<?php
+// echo "Session ID: " . $_SESSION['id']; 
+    $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    if(isset($user_id))
+     {
+    require_once('setheader.php');
+
+    $event_id = isset($_GET['event_id']) ? $_GET['event_id'] : null;
+    $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : null;
+    $con = mysqli_connect('localhost','root','','agrozen');
+
+    $event_row = mysqli_query($con,"SELECT * FROM events WHERE id='$event_id'");
+    $event_result = mysqli_fetch_array($event_row);
+    $imageName = $event_result['Image'];
+ ?>   
+
 <body>
     <div class="main-body">
         
@@ -164,8 +170,22 @@ session_start();
 <?php 
     }
     else {
-        echo "<script>alert('Please Login first.')</script>";
-        echo "<script>window.location.href = 'login.php';</script>";
+        // echo "<script>alert('Please Login first.')</script>";
+        // echo "<script>window.location.href = 'login.php';</script>";
+
+        echo "<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        swal({
+            title: 'Error',
+            text: 'Please Login first!!!!',
+            icon: 'warning'
+        }).then(() => {
+            window.location.href = 'login.php';
+        });
+    });
+</script>";
+        
+        
     }
 ?>
 </body>

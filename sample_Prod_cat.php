@@ -7,7 +7,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="style.css" rel="stylesheet">
+    <link href="css/my/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    
     <link href="ownstyles.css" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -19,6 +21,12 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="css/my/ownstyles1.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+  
+     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+     -->
     <link href="res/images/logo.png" rel="icon">
     <title>AgroZen</title>
 </head>
@@ -134,54 +142,143 @@
   </div>
 
   <section class="home-section">
-     <div class="card_comp">
+    <div class="card_comp">
+        <?php
+        include_once 'config.php';
 
-     <?php
-include_once 'config.php';
-
-// SQL query to fetch product data
-$sql = "SELECT * FROM product_view WHERE prod_cat='crops'";
-$result = $connection->query($sql);
-?>
-<?php while ($row = $result->fetch_assoc()): ?>    
-<div class=" card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-    <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-        <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
-    </a>
-    <div class="px-5 pb-5">
-        <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5">
-            <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
-        </div>
-        <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
-            <a href="#" class=" addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
-        </div>
+        // SQL query to fetch product data
+        $sql = "SELECT * FROM product_view WHERE prod_cat='crops'";
+        $result = $connection->query($sql);
+        ?>
+        <?php while ($row = $result->fetch_assoc()): ?>
+            <form class="product-form">
+                <div class="card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                        <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
+                    </a>
+                    <div class="px-5 pb-5">
+                        <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
+                        </a>
+                        <div class="flex items-center mt-2.5 mb-5">
+                            <!-- Star ratings -->
+                            <!-- Your star rating SVGs -->
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
+                            <!-- Hidden inputs for product details -->
+                            <input type="hidden" class="pid" value="<?php echo $row['prod_id']; ?>">
+                            <input type="hidden" class="pname" value="<?php echo $row['prod_name']; ?>">
+                            <input type="hidden" class="pprice" value="<?php echo $row['prod_price']; ?>">
+                            <input type="hidden" class="pimage" value="<?php echo $row['main_img']; ?>">
+                            <input type="hidden" class="userid" value="<?php echo $user_id; ?>">
+                            <!-- Quantity input -->
+                            <!-- <input type="number" id="quantity-input" class="quantity" value="1"> -->
+                            <!-- Add to cart button -->
+                            <button type="submit" class="addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <?php endwhile; ?>
     </div>
-</div>
-<?php endwhile; ?>
-    
-     </div> 
-  </section>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var addToCartButtons = document.querySelectorAll('.addItemBtn');
+
+    addToCartButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default form submission
+
+            var productId = this.parentElement.querySelector('.pid').value;
+            var productName = this.parentElement.querySelector('.pname').value;
+            var productPrice = this.parentElement.querySelector('.pprice').value;
+            var productImage = this.parentElement.querySelector('.pimage').value;
+            var userId = this.parentElement.querySelector('.uid').value;
+
+            var formData = new FormData();
+            formData.append('pid', productId);
+            formData.append('pname', productName);
+            formData.append('pprice', productPrice);
+            formData.append('pqty', 1); // Default quantity, you can change this if needed
+            formData.append('pimage', productImage);
+            formData.append('uid', userId);
+
+            fetch('cart_action.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                // Handle the response as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle errors here
+            });
+        });
+    });
+});
+
+</script>
+<!-- 
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script type="text/javascript">
+//     $(document).ready(function () {
+//         // Send product details to the server
+//         $(".addItemBtn").click(function (e) {
+//             e.preventDefault();
+//             var $form = $(this).closest("form.product-form");
+//             var productId = $form.find(".pid").val();
+//             var productName = $form.find(".pname").val();
+//             var productPrice = $form.find(".pprice").val();
+//             var productImage = $form.find(".pimage").val();
+//             var productQuantity = 1;
+
+//             $.ajax({
+//                 url: 'cart_action.php',
+//                 method: 'post',
+//                 data: {
+//                     pid: productId,
+//                     pname: productName,
+//                     pprice: productPrice,
+//                     pqty: productQuantity,
+//                     pimage: productImage
+//                 },
+//                 success: function (response) {
+//                     $("#message").html(response);
+//                     console.log("Success");
+//                     window.scrollTo(0, 0);
+//                     load_cart_item_number();
+//                 },
+//                 error: function (xhr, status, error) {
+//                     console.error(xhr.responseText);
+//                 }
+//             });
+//         });
+
+//         // Load total number of items added to the cart
+//         load_cart_item_number();
+
+//         function load_cart_item_number() {
+//             $.ajax({
+//                 url: 'cart_action.php',
+//                 method: 'get',
+//                 data: {
+//                     cartItem: "cart_item"
+//                 },
+//                 success: function (response) {
+//                     $("#cart-item").html(response);
+//                 }
+//             });
+//         }
+//     });
+// </script> -->
+
   <script>
   let sidebar = document.querySelector(".sidebar");
   let closeBtn = document.querySelector("#btn");
@@ -204,8 +301,7 @@ $result = $connection->query($sql);
   }
   </script>
 
-
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
 <script type="text/javascript">
@@ -260,7 +356,9 @@ $result = $connection->query($sql);
     }
 });
 
-  </script>
+  </script> -->
+
+
 
 </body>
 </html>

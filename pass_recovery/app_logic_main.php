@@ -11,20 +11,24 @@
     {
         $email = isset($_POST['email']) ? trim($_POST['email']) : '';
         $_SESSION['email'] = $email;
-        $sql = "SELECT Email FROM users WHERE Email = '$email' ";
+        $sql = "SELECT * FROM users WHERE Email = '$email' ";
         $re = mysqli_query($con,$sql);
         $row = mysqli_num_rows($re);
+        $name = $row['Name'];
+        
         if($row)
         {
             $otp = sprintf('%06d', mt_rand(100000, 999999));
             $re_query = mysqli_query($con,"INSERT INTO password_reset(email,token) values ('$email','$otp')");
 
             $to = $email;
-            $subject = "Reset your password on examplesite.com";
+            $subject = "Reset your password";
             $headers = "From: hunterdogs21@gmail.com\r\n";
             $headers .= "Content-type: text/html\r\n";
-            $msg = "Your One-Time Password is".$otp." for reset your password";
-            $msg = wordwrap($msg,70);
+            $msg = file_get_contents("for_email_template.php");
+            $msg = str_replace("[UserName]", $name, $msg);
+            $msg = str_replace("[OTP]", $otp, $msg);
+        
             mail($to, $subject, $msg, $headers);
             header('location: pending.php?email=' . $email);
         } else {
