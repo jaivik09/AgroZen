@@ -54,7 +54,7 @@
     
 	// Get no.of items available in the cart table
 	if (isset($_GET['cartItem']) && isset($_GET['cartItem']) == 'cart_item') {
-		$stmt = $connection->prepare('SELECT * FROM cart WHERE user_id = ?');
+		$stmt = $connection->prepare('SELECT * FROM cart WHERE id = ?');
 		$stmt->bind_param('i', $userId);
 		$stmt->execute();
 		$stmt->store_result();
