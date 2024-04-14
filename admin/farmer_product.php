@@ -23,6 +23,15 @@ if(isset($admin_id))
     $sql1 = "SELECT * FROM farmer_add_prod";
     
     $result1 =mysqli_query($link,$sql1);
+    $row2 = mysqli_fetch_assoc($result1);
+    $name = $row2["prod_name"];
+    $price = $row2["prod_price"];
+    $description = $row2["prod_desc"];
+    $cat = $row2["prod_cat"];
+    $quan = $row2["prod_quant"];
+    $image = $row2["main_img"];
+    $fname = $row2["farmer_name"];
+    $result2 =mysqli_query($link,$sql1);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +47,19 @@ if(isset($admin_id))
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Farmer Product</title>
+
+    <script>
+       
+    </script>
 </head>
 
 <style>
@@ -131,7 +152,7 @@ if(isset($admin_id))
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while ($row1 = mysqli_fetch_assoc($result1)) {
+                                        while ($row1 = mysqli_fetch_assoc($result2)) {
                                             echo "<tr>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_name'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_price'] . "</td>";
@@ -151,7 +172,13 @@ if(isset($admin_id))
                                             echo "</a>";
                                             echo "</td>";
                                             echo "<td class='border px-4 py-2'>";
-                                            echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'].")'></button>";
+                                            // echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'].")'></button>";
+                                            // echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView()'></button>";
+                                            ?>
+                                            <!-- <button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick="insertProductView()"></button>"; -->
+                                            <button class="bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check" onclick="showConfirmation()"></button>
+                                            <?php
+
                                             echo "</td>";
                                             echo "</tr>";
                                         }
@@ -168,33 +195,34 @@ if(isset($admin_id))
 </div>
 
 <script>
-    function insertProductView(productId, productName, productPrice, productDescription, productQuantity, productCategory, mainImageName) {
-        // Prepare the data to send
-        var data = "product_id=" + productId +
-                   "&product_name=" + encodeURIComponent(productName) +
-                   "&product_price=" + productPrice +
-                   "&product_description=" + encodeURIComponent(productDescription) +
-                   "&product_quantity=" + productQuantity +
-                   "&product_category=" + encodeURIComponent(productCategory) +
-                   "&main_image_name=" + encodeURIComponent(mainImageName);
+    // function insertProductView(productId, productName, productPrice, productDescription, productQuantity, productCategory, mainImageName) {
+    //     // Prepare the data to send
+    //     var data = "product_id=" + productId +
+    //                "&product_name=" + encodeURIComponent(productName) +
+    //                "&product_price=" + productPrice +
+    //                "&product_description=" + encodeURIComponent(productDescription) +
+    //                "&product_quantity=" + productQuantity +
+    //                "&product_category=" + encodeURIComponent(productCategory) +
+    //                "&main_image_name=" + encodeURIComponent(mainImageName);
 
-        // Send AJAX request to PHP script
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "insert_product_view.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Handle successful response
-                    console.log(xhr.responseText);
-                } else {
-                    // Handle error
-                    console.error('Error:', xhr.status);
-                }
-            }
-        };
-        xhr.send(data);
-    }
+    //     // Send AJAX request to PHP script
+    //     var xhr = new XMLHttpRequest();
+    //     xhr.open("POST", "insert_product_view.php", true);
+    //     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //     xhr.onreadystatechange = function() {
+    //         if (xhr.readyState === XMLHttpRequest.DONE) {
+    //             if (xhr.status === 200) {
+    //                 // Handle successful response
+    //                 console.log(xhr.responseText);
+    //             } else {
+    //                 // Handle error
+    //                 console.error('Error:', xhr.status);
+    //             }
+    //         }
+    //     };
+    //     xhr.send(data);
+    // }
+    
 </script>
 
 <script src="./main.js"></script>
@@ -232,7 +260,24 @@ if(isset($admin_id))
       popup.style.display = "none";
     }
   }
-</script>
+
+  function showConfirmation() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to verified this product!!!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = 'insert_product_view.php?name=<?php echo $name; ?>&price=<?php echo $price; ?>&description=<?php echo $description; ?>&quan=<?php echo $quan; ?>&cat=<?php echo $cat; ?>&fname=<?php echo $fname; ?>&image=<?php echo $image; ?>'
+            }
+        });
+    }
+
+  </script>
 
 </body>
 
