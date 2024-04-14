@@ -237,7 +237,7 @@
 
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
                             <div class="px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">User Data Table</div>
+                                <div class="font-bold text-xl">Total User Data Table</div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table text-grey-darkest">
