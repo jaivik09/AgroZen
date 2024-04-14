@@ -17,12 +17,13 @@ if(isset($admin_id))
     $id = $_SESSION['admin_id'];
     $sql = "SELECT * FROM admin WHERE admin_id = $id";
 
-    $result =mysqli_query($link,$sql);
+    $result = mysqli_query($link,$sql);
     $row = mysqli_fetch_array($result);
     
     $sql1 = "SELECT * FROM farmer_add_prod";
     
-    $result1 =mysqli_query($link,$sql1);
+    $result1 = mysqli_query($link,$sql1);
+
 ?>
 
 <!DOCTYPE html>
@@ -40,22 +41,6 @@ if(isset($admin_id))
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Farmer Product</title>
 </head>
-
-<style>
-  /* Styles for popup form */
-  .popup-form {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    z-index: 1000;
-  }
-</style>
 
 <body>
 <!--Container -->
@@ -119,20 +104,22 @@ if(isset($admin_id))
                             <table class="table-responsive w-full rounded">
                                 <thead>
                                     <tr>
-                                        <th class="border w-1/5 px-4 py-2">Product Name</th>
-                                        <th class="border w-1/7 px-4 py-2">Price</th>
+                                        <th class="border w-1/6 px-4 py-2">Product Id</th>
+                                        <th class="border w-1/6 px-4 py-2">Product Name</th>
+                                        <th class="border w-1/7 px-4 py-2">Price(₹)</th>
                                         <th class="border w-1/6 px-4 py-2">Description</th>
                                         <th class="border w-1/6 px-4 py-2">Quantity(in Kg)</th>
                                         <th class="border w-1/6 px-4 py-2">Category</th>
-                                        <th class="border w-1/6 px-4 py-2">Farmer</th>
+                                        <th class="border w-1/7 px-4 py-2">Farmer</th>
                                         <th class="border w-1/6 px-4 py-2">Action</th>
-                                        <th class="border w-1/6 px-4 py-2">Accept</th>
+                                        <th class="border w-1/8 px-4 py-2">Accept</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                         while ($row1 = mysqli_fetch_assoc($result1)) {
                                             echo "<tr>";
+                                            echo "<td class='border px-4 py-2'>" . $row1['prod_id'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_name'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_price'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_desc'] . "</td>";
@@ -140,7 +127,7 @@ if(isset($admin_id))
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_cat'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['farmer_name'] . "</td>";
                                             echo "<td class='border px-4 py-2'>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' href='../uploads/farmer upload/" . $row1['main_img'] . "'>";
+                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' target='_blank' href='../uploads/farmer upload/" . $row1['main_img'] . "'>";
                                             echo "<i class='fas fa-eye'></i>";
                                             echo "</a>";
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' id='openPopupBtn'>";
@@ -165,6 +152,53 @@ if(isset($admin_id))
             <!--/Main-->
         </div>
     </div>
+</div>
+
+<?php
+    if (isset($_POST['send'])) {
+        // Get feedback from the form
+        $feedback = $_POST['feedback'];
+        
+        // Fetch farmer name based on product or any other relevant information
+        // For now, let's assume you have a product_id sent along with the feedback form
+        $product_id = $_POST['product_id'];
+        $sql_farmer_name = "SELECT farmer_name FROM farmer_add_prod WHERE prod_id = $product_id";
+        $result_farmer_name = mysqli_query($link, $sql_farmer_name);
+        $row_farmer_name = mysqli_fetch_assoc($result_farmer_name);
+        $farmer_name = $row_farmer_name['farmer_name'];
+
+        // Insert the feedback into the feedback_table using prepared statement
+        $sql_insert = "INSERT INTO feedback_table (feedback, farmer_name) VALUES (?, ?)";
+        $stmt = mysqli_prepare($link, $sql_insert);
+        mysqli_stmt_bind_param($stmt, "ss", $feedback, $farmer_name);
+        
+        if (mysqli_stmt_execute($stmt)) {
+            echo "<script>alert('Feedback submitted successfully');</script>";
+            // Redirect to a different page to avoid resubmission
+            echo "<script>window.location.href = 'thankyou.php';</script>";
+            exit(); // Ensure script execution stops after redirection
+        } else {
+            echo "Error: " . mysqli_error($link);
+        }
+    } 
+?>
+
+<div id="popupForm" class="hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-50 shadow-md rounded-lg z-50 w-96">
+  <button onclick="closePopup()" class="absolute top-4 right-4 text-red-500 hover:text-red-700 focus:outline-none">
+    <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M2.293 2.293a1 1 0 011.414 0L10 8.586l6.293-6.293a1 1 0 111.414 1.414L11.414 10l6.293 6.293a1 1 0 01-1.414 1.414L10 11.414l-6.293 6.293a1 1 0 01-1.414-1.414L8.586 10 2.293 3.707a1 1 0 010-1.414z" clip-rule="evenodd"/>
+    </svg>
+  </button>
+  <h1 class="text-center text-xl font-bold mt-8 mb-4">Send Notification</h1>
+  <form class="px-8 pb-6" method="post" action="">
+    <!-- Add a hidden input field to store the product ID -->
+    <input  id="product_id" name="product_id" value="<?php echo isset($row1['prod_id']) ? $row1['prod_id'] : ''; ?>">
+    <!-- Feedback textarea -->
+    <label for="feedback" class="block mb-2 text-gray-700">Feedback:</label>
+    <textarea id="feedback" name="feedback" rows="4" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring focus:border-blue-500" required></textarea>
+    <!-- Send button -->
+    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-500" name="send" type="submit">Send</button>
+  </form>
 </div>
 
 <script>
@@ -199,17 +233,6 @@ if(isset($admin_id))
 
 <script src="./main.js"></script>
 
-<div id="popupForm" class="popup-form">
-  <h2>Popup Form</h2>
-  <form>
-    <!-- Your form fields go here -->
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    <button type="submit">Submit</button>
-  </form>
-</div>
 
 <script>
   // Function to open the popup form
