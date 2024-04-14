@@ -19,7 +19,7 @@ if(isset($admin_id))
 
     $result = mysqli_query($link,$sql);
     $row = mysqli_fetch_array($result);
-    
+
     $sql1 = "SELECT * FROM farmer_add_prod";
     
     $result1 =mysqli_query($link,$sql1);
@@ -32,6 +32,7 @@ if(isset($admin_id))
     $image = $row2["main_img"];
     $fname = $row2["farmer_name"];
     $result2 =mysqli_query($link,$sql1);
+
 ?>
 
 <!DOCTYPE html>
@@ -181,28 +182,24 @@ if(isset($admin_id))
 </div>
 
 <?php
+    // Fetch the product details again
+    $sql_prod_det = "SELECT * FROM farmer_add_prod";
+    $result_prod_det = mysqli_query($link, $sql_prod_det);
+    $prod_det = mysqli_fetch_array($result_prod_det);
+
     if (isset($_POST['send'])) {
         // Get feedback from the form
         $feedback = $_POST['feedback'];
-        
-        // Fetch farmer name based on product or any other relevant information
-        // For now, let's assume you have a product_id sent along with the feedback form
-        $product_id = $_POST['product_id'];
-        $sql_farmer_name = "SELECT farmer_name FROM farmer_add_prod WHERE prod_id = $product_id";
-        $result_farmer_name = mysqli_query($link, $sql_farmer_name);
-        $row_farmer_name = mysqli_fetch_assoc($result_farmer_name);
-        $farmer_name = $row_farmer_name['farmer_name'];
+        $farmer_name = $_POST['farmer_name'];
 
         // Insert the feedback into the feedback_table using prepared statement
         $sql_insert = "INSERT INTO feedback_table (feedback, farmer_name) VALUES (?, ?)";
         $stmt = mysqli_prepare($link, $sql_insert);
         mysqli_stmt_bind_param($stmt, "ss", $feedback, $farmer_name);
-        
+
         if (mysqli_stmt_execute($stmt)) {
             echo "<script>alert('Feedback submitted successfully');</script>";
-            // Redirect to a different page to avoid resubmission
-            echo "<script>window.location.href = 'thankyou.php';</script>";
-            exit(); // Ensure script execution stops after redirection
+            exit(); 
         } else {
             echo "Error: " . mysqli_error($link);
         }
@@ -218,12 +215,12 @@ if(isset($admin_id))
   <h1 class="text-center text-xl font-bold mt-8 mb-4">Send Notification</h1>
   <form class="px-8 pb-6" method="post" action="">
     <!-- Add a hidden input field to store the product ID -->
-    <input type="hidden" id="product_id" name="product_id" value="<?php echo isset($row1['prod_id']) ? $row1['prod_id'] : ''; ?>">
+    <input type="hidden" id="farmer_name" name="farmer_name" value="<?php echo $prod_det['farmer_name']; ?>">
     <!-- Feedback textarea -->
     <label for="feedback" class="block mb-2 text-gray-700">Feedback:</label>
     <textarea id="feedback" name="feedback" rows="4" class="w-full p-2 border border-gray-300 rounded mb-4 focus:outline-none focus:ring focus:border-blue-500" required></textarea>
     <!-- Send button -->
-    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-500" name="send" type="submit">Send</button>
+    <button class="bg-blue-700 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-500" name="send" value="send" type="send">Send</button>
   </form>
 </div>
 
