@@ -169,15 +169,14 @@
                     <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
                         <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
+                                <a href="index.php" class="no-underline text-white text-2xl">
                                     <?php 
                                         $result1 =mysqli_query($link,"SELECT * FROM users");
-                                        $row1 = mysqli_fetch_array($result);
                                         $row_count = mysqli_num_rows($result1);
                                         echo $row_count;
                                     ?>
                                 </a>
-                                <a href="#" class="no-underline text-white text-lg">
+                                <a href="index.php" class="no-underline text-white text-lg">
                                     Total Users
                                 </a>
                             </div>
@@ -185,15 +184,14 @@
 
                         <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
+                                <a href="farmertable.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result1 =mysqli_query($link,"SELECT id FROM users WHERE Role='farmer'");
-                                        $row1 = mysqli_fetch_array($result);
-                                        $row_count = mysqli_num_rows($result1);
-                                        echo $row_count;
+                                        $result2 =mysqli_query($link,"SELECT id FROM users WHERE Role='farmer'");
+                                        $row_count1 = mysqli_num_rows($result2);
+                                        echo $row_count1;
                                     ?>
                                 </a>
-                                <a href="#" class="no-underline text-white text-lg">
+                                <a href="farmertable.php" class="no-underline text-white text-lg">
                                     Farmers
                                 </a>
                             </div>
@@ -201,15 +199,14 @@
 
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
+                                <a href="consumertable.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result1 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
-                                        $row1 = mysqli_fetch_array($result);
-                                        $row_count = mysqli_num_rows($result1);
-                                        echo $row_count;
+                                        $result3 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
+                                        $row_count2 = mysqli_num_rows($result3);
+                                        echo $row_count2;
                                     ?>
                                 </a>
-                                <a href="#" class="no-underline text-white text-lg">
+                                <a href="consumertable.php" class="no-underline text-white text-lg">
                                     consumer
                                 </a>
                             </div>
@@ -217,15 +214,14 @@
 
                         <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="#" class="no-underline text-white text-2xl">
+                                <a href="producttable.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result1 =mysqli_query($link,"SELECT prod_id FROM product_view");
-                                        $row1 = mysqli_fetch_array($result);
-                                        $row_count = mysqli_num_rows($result1);
-                                        echo $row_count;
+                                        $result4 =mysqli_query($link,"SELECT prod_id FROM product_view");
+                                        $row_count3 = mysqli_num_rows($result4);
+                                        echo $row_count3;
                                     ?>
                                 </a>
-                                <a href="#" class="no-underline text-white text-lg">
+                                <a href="producttable.php" class="no-underline text-white text-lg">
                                     Total Products
                                 </a>
                             </div>
@@ -241,75 +237,44 @@
 
                         <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
                             <div class="px-6 py-2 border-b border-light-grey">
-                                <div class="font-bold text-xl">Trending Categories</div>
+                                <div class="font-bold text-xl">User Data Table</div>
                             </div>
                             <div class="table-responsive">
                                 <table class="table text-grey-darkest">
                                     <thead class="bg-grey-dark text-white text-normal">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Item</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Current</th>
-                                        <th scope="col">Change</th>
-                                    </tr>
+                                        <tr>
+                                            <th scope="col">id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Contact</th>
+                                            <th scope="col">Role</th>
+                                            <th scope="col">Gender</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>
-                                            <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                Twitter
-                                            </button>
-                                        </td>
-                                        <td>4500</td>
-                                        <td>4600</td>
-                                        <td>
-                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>5%</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>
-                                            <button class="bg-primary hover:bg-primary-dark text-white font-light py-1 px-2 rounded-full">
-                                                Facebook
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-red-500"><i class="fas fa-arrow-down"></i>65%</span>
-                                        </td>
-                                    </tr>
+                                        <?php
+                                            // Fetch all users
+                                            $sql = "SELECT * FROM users";
+                                            $result = mysqli_query($link, $sql);
 
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>
-                                            <button class="bg-success hover:bg-success-dark text-white font-light py-1 px-2 rounded-full">
-                                                Amazon
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-red-500"><i class="fas fa-arrow-down"></i>65%</span>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <th scope="row">4</th>
-                                        <td>
-                                            <button class="bg-blue-500 hover:bg-blue-800 text-white font-light py-1 px-2 rounded-full">
-                                                Microsoft
-                                            </button>
-                                        </td>
-                                        <td>10000</td>
-                                        <td>3000</td>
-                                        <td>
-                                            <span class="text-green-500"><i class="fas fa-arrow-up"></i>65%</span>
-                                        </td>
-                                    </tr>
-
+                                            // Check if there are any users
+                                            if (mysqli_num_rows($result) > 0) {
+                                                // Loop through each user
+                                                while ($row = mysqli_fetch_assoc($result)) {
+                                                    // Display user data in table rows
+                                                    echo "<tr>";
+                                                    echo "<td>" . $row['id'] . "</td>";
+                                                    echo "<td>" . $row['Name'] . "</td>";
+                                                    echo "<td>" . $row['Email'] . "</td>";
+                                                    echo "<td>" . $row['Phone'] . "</td>";
+                                                    echo "<td>" . $row['Role'] . "</td>";
+                                                    echo "<td>" . $row['Gender'] . "</td>";
+                                                    echo "</tr>";
+                                                }
+                                            } else {
+                                                echo "No users found";
+                                            }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -319,79 +284,6 @@
                     </div>
                     <!-- /Cards Section Ends Here -->
 
-                    <!--Profile Tabs-->
-                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2 p-1 mt-2 mx-auto lg:mx-2 md:mx-2 justify-between">
-                        <!--Top user 1-->
-                        <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
-                            <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
-                            </div>
-                            <div class="text-center px-3 pb-6 pt-2">
-                                <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
-                                <p class="mt-2 font-sans font-light text-grey-700">Hello, i'm from another the other
-                                    side!</p>
-                            </div>
-                            <div class="flex justify-center pb-3 text-grey-dark">
-                                <div class="text-center mr-3 border-r pr-3">
-                                    <h2>34</h2>
-                                    <span>Photos</span>
-                                </div>
-                                <div class="text-center">
-                                    <h2>42</h2>
-                                    <span>Friends</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Top user 2-->
-                        <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
-                            <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
-                            </div>
-                            <div class="text-center px-3 pb-6 pt-2">
-                                <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
-                                <p class="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other
-                                    side!</p>
-                            </div>
-                            <div class="flex justify-center pb-3 text-grey-dark">
-                                <div class="text-center mr-3 border-r pr-3">
-                                    <h2>34</h2>
-                                    <span>Photos</span>
-                                </div>
-                                <div class="text-center">
-                                    <h2>42</h2>
-                                    <span>Friends</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Top user 3-->
-                        <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-                            <img src="https://i.imgur.com/w1Bdydo.jpg" alt="" class="w-full"/>
-                            <div class="flex justify-center -mt-8">
-                                <img src="https://i.imgur.com/8Km9tLL.jpg" alt=""
-                                     class="rounded-full border-solid border-white border-2 -mt-3">
-                            </div>
-                            <div class="text-center px-3 pb-6 pt-2">
-                                <h3 class="text-black text-sm bold font-sans">Olivia Dunham</h3>
-                                <p class="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other
-                                    side!</p>
-                            </div>
-                            <div class="flex justify-center pb-3 text-grey-dark">
-                                <div class="text-center mr-3 border-r pr-3">
-                                    <h2>34</h2>
-                                    <span>Photos</span>
-                                </div>
-                                <div class="text-center">
-                                    <h2>42</h2>
-                                    <span>Friends</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--/Profile Tabs-->
                 </div>
             </main>
             <!--/Main-->

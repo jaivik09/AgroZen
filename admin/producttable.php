@@ -19,10 +19,6 @@
 
         $result =mysqli_query($link,$sql);
         $row = mysqli_fetch_array($result);
-        
-        $sql1 = "SELECT * FROM farmer_add_prod";
-        
-        $result1 =mysqli_query($link,$sql1);
 ?>
 
 <!DOCTYPE html>
@@ -38,24 +34,8 @@
     <link rel="stylesheet" href="./dist/all.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,600i,700,700i" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Farmer Product</title>
+    <title>AgroZen Admin Dashboard</title>
 </head>
-
-<style>
-  /* Styles for popup form */
-  .popup-form {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #f9f9f9;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    z-index: 1000;
-  }
-</style>
 
 <body>
 <!--Container -->
@@ -73,7 +53,7 @@
             <aside id="sidebar" class="bg-side-nav w-1/2 md:w-1/6 lg:w-1/6 border-r border-side-nav hidden md:block lg:block">
 
                 <ul class="list-reset flex flex-col">
-                    <li class=" w-full h-full py-3 px-2 border-b border-light-border">
+                    <li class=" w-full h-full py-3 px-2 border-b border-light-border bg-white">
                         <a href="index.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fas fa-tachometer-alt float-left mx-2"></i>
@@ -97,7 +77,7 @@
                             <span><i class="fa fa-angle-right float-right"></i></span>
                         </a>
                     </li>
-                    <li class="w-full h-full py-3 px-2 border-b border-light-border bg-white">
+                    <li class="w-full h-full py-3 px-2 border-b border-light-border">
                         <a href="farmer_product.php"
                            class="font-sans font-hairline hover:font-normal text-sm text-nav-item no-underline">
                             <i class="fab fa-wpforms float-left mx-2"></i>
@@ -184,58 +164,127 @@
             <!--Main-->
             <main class="bg-white-300 flex-1 p-3 overflow-hidden">
 
-                <div class="flex flex-1  flex-col md:flex-row lg:flex-row mx-2">
-                    <div class="mb-2 border-solid border-gray-300 rounded border shadow-sm w-full">
-                        <div class="bg-gray-200 px-2 py-3 border-solid border-gray-200 border-b">
-                            Farmer Product Table
-                        </div>
-                        <div class="p-3">
-                            <table class="table-responsive w-full rounded">
-                                <thead>
-                                    <tr>
-                                        <th class="border w-1/5 px-4 py-2">Product Name</th>
-                                        <th class="border w-1/7 px-4 py-2">Price</th>
-                                        <th class="border w-1/6 px-4 py-2">Description</th>
-                                        <th class="border w-1/6 px-4 py-2">Quantity(in Kg)</th>
-                                        <th class="border w-1/6 px-4 py-2">Category</th>
-                                        <th class="border w-1/6 px-4 py-2">Farmer</th>
-                                        <th class="border w-1/6 px-4 py-2">Action</th>
-                                        <th class="border w-1/6 px-4 py-2">Accept</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                        while ($row1 = mysqli_fetch_assoc($result1)) {
-                                            echo "<tr>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['prod_name'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['prod_price'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['prod_desc'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['prod_quant'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['prod_cat'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>" . $row1['farmer_name'] . "</td>";
-                                            echo "<td class='border px-4 py-2'>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' href='../uploads/farmer upload/" . $row1['main_img'] . "'>";
-                                            echo "<i class='fas fa-eye'></i>";
-                                            echo "</a>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white' id='openPopupBtn'>";
-                                            echo "<i class='fas fa-comment'></i>";
-                                            echo "</a>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
-                                            echo "<i class='fas fa-trash'></i>";
-                                            echo "</a>";
-                                            echo "</td>";
-                                            echo "<td class='border px-4 py-2'>";
-                                            echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='insertProductView(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'].")'></button>";
-                                            echo "</td>";
-                                            echo "</tr>";
-                                        }
+                <div class="flex flex-col">
+                    <!-- Stats Row Starts Here -->
+                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+                        <div class="shadow-lg bg-red-vibrant border-l-8 hover:bg-red-vibrant-dark border-red-vibrant-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="index.php" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result1 =mysqli_query($link,"SELECT * FROM users");
+                                        $row_count = mysqli_num_rows($result1);
+                                        echo $row_count;
                                     ?>
-                                </tbody>
-                            </table>
+                                </a>
+                                <a href="index.php" class="no-underline text-white text-lg">
+                                    Total Users
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="farmertable.php" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result2 =mysqli_query($link,"SELECT id FROM users WHERE Role='farmer'");
+                                        $row_count1 = mysqli_num_rows($result2);
+                                        echo $row_count1;
+                                    ?>
+                                </a>
+                                <a href="farmertable.php" class="no-underline text-white text-lg">
+                                    Farmers
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="consumertable.php" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result3 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
+                                        $row_count2 = mysqli_num_rows($result3);
+                                        echo $row_count2;
+                                    ?>
+                                </a>
+                                <a href="consumertable.php" class="no-underline text-white text-lg">
+                                    consumer
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="shadow bg-success border-l-8 hover:bg-success-dark border-success-dark mb-2 p-2 md:w-1/4 mx-2">
+                            <div class="p-4 flex flex-col">
+                                <a href="producttable.php" class="no-underline text-white text-2xl">
+                                    <?php 
+                                        $result4 =mysqli_query($link,"SELECT prod_id FROM product_view");
+                                        $row_count3 = mysqli_num_rows($result4);
+                                        echo $row_count3;
+                                    ?>
+                                </a>
+                                <a href="producttable.php" class="no-underline text-white text-lg">
+                                    Total Products
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- /Stats Row Ends Here -->
+
+                    <!-- Card Sextion Starts Here -->
+                    <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
+
+                        <!-- card -->
+
+                        <div class="rounded overflow-hidden shadow bg-white mx-2 w-full">
+                            <div class="px-6 py-2 border-b border-light-grey">
+                                <div class="font-bold text-xl">User Data Table</div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table text-grey-darkest">
+                                    <thead class="bg-grey-dark text-white text-normal">
+                                        <tr>
+                                            <th scope="col">id</th>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Price</th>
+                                            <th scope="col">Description</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Catogary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                        // Fetch products
+                                        $sql = "SELECT * FROM product_view";
+                                        $result = mysqli_query($link, $sql);
+
+                                        // Check if there are any product
+                                        if (mysqli_num_rows($result) > 0) {
+                                            // Loop through each consumer
+                                            while ($row = mysqli_fetch_assoc($result)) {
+                                                // Display product data in table rows
+                                                echo "<tr>";
+                                                echo "<td>" . $row['prod_id'] . "</td>";
+                                                echo "<td>" . $row['prod_name'] . "</td>";
+                                                echo "<td>" . $row['prod_price'] . "</td>";
+                                                echo "<td>" . $row['prod_desc'] . "</td>";
+                                                echo "<td>" . $row['prod_quant'] . "</td>";
+                                                echo "<td>" . $row['prod_cat'] . "</td>";
+                                                echo "</tr>";
+                                            }
+                                        } else {
+                                            echo "No consumers found";
+                                        }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /card -->
+
+                    </div>
+                    <!-- /Cards Section Ends Here -->
+
+                </div>
             </main>
             <!--/Main-->
         </div>
@@ -275,74 +324,7 @@
 </footer>
 -->
 
-<script>
-    function insertProductView(productId, productName, productPrice, productDescription, productQuantity, productCategory, mainImageName, extraImageNames) {
-        // Prepare the data to send
-        var data = "product_id=" + productId +
-                   "&product_name=" + encodeURIComponent(productName) +
-                   "&product_price=" + productPrice +
-                   "&product_description=" + encodeURIComponent(productDescription) +
-                   "&product_quantity=" + productQuantity +
-                   "&product_category=" + encodeURIComponent(productCategory) +
-                   "&main_image_name=" + encodeURIComponent(mainImageName) +
-                   "&extra_image_names=" + encodeURIComponent(extraImageNames.join(',')); // Convert array to string
-        
-        // Send AJAX request to PHP script
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "insert_product_view.php", true);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    // Handle successful response
-                    console.log(xhr.responseText);
-                } else {
-                    // Handle error
-                    console.error('Error:', xhr.status);
-                }
-            }
-        };
-        xhr.send(data);
-    }
-</script>
-
 <script src="./main.js"></script>
-
-<div id="popupForm" class="popup-form">
-  <h2>Popup Form</h2>
-  <form>
-    <!-- Your form fields go here -->
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required><br><br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-    <button type="submit">Submit</button>
-  </form>
-</div>
-
-<script>
-  // Function to open the popup form
-  function openPopup() {
-    document.getElementById("popupForm").style.display = "block";
-  }
-
-  // Function to close the popup form
-  function closePopup() {
-    document.getElementById("popupForm").style.display = "none";
-  }
-
-  // Event listener for the button click to open the popup form
-  document.getElementById("openPopupBtn").addEventListener("click", openPopup);
-
-  // Close the popup form when clicking outside of it
-  window.onclick = function(event) {
-    var popup = document.getElementById("popupForm");
-    if (event.target == popup) {
-      popup.style.display = "none";
-    }
-  }
-</script>
-
 </body>
 
 </html>
