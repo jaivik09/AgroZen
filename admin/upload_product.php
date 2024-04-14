@@ -223,7 +223,7 @@
             <!--/Sidebar-->
             <!--Main-->
             <div class="container">
-                <div class="add" align="center">Add Product</div>
+                <div class="add text-[30px]" align="center">Add Product</div>
                 <form action="upload.php" method="post" enctype="multipart/form-data" class="form mr-20 ml-20">
 
                 <div class="input-box">
@@ -278,7 +278,7 @@
                 
                         
                         <div class="sub_but">
-                        <input type="submit" name="submit" value="submit" class="sub">
+                        <input type="submit" name="submit" value="submit" class="mt-2 mb-2 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                         </div>   
                 </form>
             </div>
