@@ -3,6 +3,13 @@
 ?>
 <?php
 	require 'config.php';
+  $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+  if(isset($user_id))
+  {
+      require_once('setheader.php');
+  } else {
+      require_once('unsetheader.html');
+  }
 
 	$grand_total = 0;
 	$allItems = '';
@@ -22,7 +29,7 @@
   }
   else{
 
-    $sql = "SELECT CONCAT(product_name, '(',qty,')') AS ItemQty, total_price FROM cart";
+    $sql = "SELECT CONCAT(product_name, '(',qty,')') AS ItemQty, total_price FROM cart WHERE user_id=$user_id";
     $stmt = $connection->prepare($sql);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -59,19 +66,6 @@
 
 <body>
  
-
-<?php     
-    // echo "Session ID: " . $_SESSION['id']; 
-        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        if(isset($user_id))
-        {
-            require_once('setheader.php');
-        } else {
-            require_once('unsetheader.html');
-        }
-    ?>
-    
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 px-4 pb-4" id="order">
