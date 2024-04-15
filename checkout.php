@@ -52,6 +52,9 @@
     <link href="css/my/style.css" rel="stylesheet">
     <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
 </head>
 
 <body>
@@ -80,18 +83,18 @@
         </div>
         <form action="" method="post" id="placeOrder">
           <input type="hidden" class="products" name="products" value="<?= $allItems; ?>">
-          <input type="hidden" class="tot_amount" name="grand_total" value="<?= $grand_total; ?>">
+          <input type="hidden" class="tot_amount" name="grand_total" id="grand_total" value="<?= $grand_total; ?>">
           <div class="form-group">
-            <input type="text" name="name" class=" name form-control " placeholder="Enter Name" required>
+            <input type="text" name="name" id="name" class=" name form-control " placeholder="Enter Name" required>
           </div>
           <div class="form-group">
-            <input type="email" name="email" class=" email form-control" placeholder="Enter E-Mail" required>
+            <input type="email" name="email" id="email" class=" email form-control" placeholder="Enter E-Mail" required>
           </div>
           <div class="form-group">
-            <input type="tel" name="phone" class=" phone form-control" placeholder="Enter Phone" required>
+            <input type="tel" name="phone" id="phone" class=" phone form-control" placeholder="Enter Phone" required>
           </div>
           <div class="form-group">
-            <textarea name="address" class="address form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."></textarea>
+            <textarea name="address" id="address" class="address form-control" rows="3" cols="10" placeholder="Enter Delivery Address Here..."></textarea>
           </div>
           <!-- <h6 class="text-center lead">Select Payment Mode</h6>
           <div class="form-group">
@@ -110,8 +113,6 @@
     </div>
   </div>
 
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
 <script>
     //Pay Amount
     jQuery(document).ready(function($){
@@ -119,11 +120,11 @@
 jQuery('#PayNow').click(function(e){
 
 	var paymentOption='';
-let billing_name = $('.name').val();
-	let billing_mobile = $('.phone').val();
-	let billing_email = $('.email').val();
+let billing_name = $('#name').val();
+	let billing_mobile = $('#phone').val();
+	let billing_email = $('#email').val();
 var paymentOption= "netbanking";
-var payAmount = $('.tot_amount').val();
+var payAmount = $('#grand_total').val();
 			
 var request_url="submitpayment.php";
 		var formData = {
@@ -150,7 +151,7 @@ var request_url="submitpayment.php";
     "key": data.razorpay_key, // Enter the Key ID generated from the Dashboard
     "amount": data.userData.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     "currency": "INR",
-    "name": "Tutorialswebsite", //your business name
+    "name": "Agrozen", //your business name
     "description": data.userData.description,
     "image": "https://www.tutorialswebsite.com/wp-content/uploads/2022/02/cropped-logo-tw.png",
     "order_id": data.userData.rpay_order_id, //This is a sample Order ID. Pass 
