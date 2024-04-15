@@ -184,15 +184,15 @@
 
                         <div class="shadow bg-info border-l-8 hover:bg-info-dark border-info-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="farmertable.php" class="no-underline text-white text-2xl">
+                                <a href="EventRegestrationtable.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result2 =mysqli_query($link,"SELECT id FROM users WHERE Role='farmer'");
+                                        $result2 =mysqli_query($link,"SELECT id FROM events_reg");
                                         $row_count1 = mysqli_num_rows($result2);
                                         echo $row_count1;
                                     ?>
                                 </a>
-                                <a href="farmertable.php" class="no-underline text-white text-lg">
-                                    Farmers
+                                <a href="EventRegestrationtable.php" class="no-underline text-white text-lg">
+                                    Event Regestration
                                 </a>
                             </div>
                         </div>
@@ -227,7 +227,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- /Stats Row Ends Here -->
 
                     <!-- Card Sextion Starts Here -->
