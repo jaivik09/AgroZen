@@ -23,15 +23,6 @@ if(isset($admin_id))
     $sql1 = "SELECT * FROM farmer_add_prod";
     
     $result1 =mysqli_query($link,$sql1);
-    $row2 = mysqli_fetch_assoc($result1);
-    $name = $row2["prod_name"];
-    $price = $row2["prod_price"];
-    $description = $row2["prod_desc"];
-    $cat = $row2["prod_cat"];
-    $quan = $row2["prod_quant"];
-    $image = $row2["main_img"];
-    $fname = $row2["farmer_name"];
-    $result2 =mysqli_query($link,$sql1);
 
 ?>
 
@@ -138,7 +129,7 @@ if(isset($admin_id))
                                 </thead>
                                 <tbody>
                                     <?php
-                                        while ($row1 = mysqli_fetch_assoc($result2)) {
+                                        while ($row1 = mysqli_fetch_assoc($result1)) {
                                             echo "<tr>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_id'] . "</td>";
                                             echo "<td class='border px-4 py-2'>" . $row1['prod_name'] . "</td>";
@@ -156,7 +147,7 @@ if(isset($admin_id))
                                             echo "</a>";
                                             echo "</td>";
                                             echo "<td class='border px-4 py-2'>";
-                                            echo"<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='showConfirmation()'></button>";                                         
+                                            echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='showConfirmation(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'] . "\", \"" . $row1['farmer_name'] . "\")'></button>";
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
                                             echo "<i class='fas fa-trash'></i>";
                                             echo "</a>";
@@ -242,21 +233,23 @@ if(isset($admin_id))
     }
   }
 
-  function showConfirmation() {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You want to verified this product!!!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                window.location.href = 'insert_product_view.php?name=<?php echo $name; ?>&price=<?php echo $price; ?>&description=<?php echo $description; ?>&quan=<?php echo $quan; ?>&cat=<?php echo $cat; ?>&fname=<?php echo $fname; ?>&image=<?php echo $image; ?>'
-            }
-        });
-    }
+  function showConfirmation(id, name, price, description, quantity, category, image, farmerName) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to verify this product!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to insert_product_view.php with all the values as parameters
+            window.location.href = 'insert_product_view.php?id=' + id + '&name=' + encodeURIComponent(name) + '&price=' + price + '&description=' + encodeURIComponent(description) + '&quan=' + quantity + '&cat=' + encodeURIComponent(category) + '&fname=' + encodeURIComponent(farmerName) + '&image=' + encodeURIComponent(image);
+        }
+    });
+}
+
 
   </script>
 
