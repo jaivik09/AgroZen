@@ -139,14 +139,15 @@ include_once 'config.php';
 $sql = "SELECT * FROM product_view WHERE prod_cat='fruits' ";
 $result = $connection->query($sql);
 ?>
-<?php while ($row = $result->fetch_assoc()): ?>    
+<?php while ($row = $result->fetch_assoc()): ?>
+  <form class="form-submit">    
 <div class=" card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-    <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-        <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
+    <a class="pid" href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+        <img class=" pimage p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
     </a>
     <div class="px-5 pb-5">
         <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
+            <h5 class=" pname text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
         </a>
         <div class="flex items-center mt-2.5 mb-5">
             <div class="flex items-center space-x-1 rtl:space-x-reverse">
@@ -170,10 +171,11 @@ $result = $connection->query($sql);
         </div>
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
-            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+            <button class="addToCart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
         </div>
     </div>
 </div>
+</form>
 <?php endwhile; ?>
     
      </div> 
@@ -206,26 +208,26 @@ $result = $connection->query($sql);
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
   <script type="text/javascript">
-  $(document).ready(function() {
+ $(document).ready(function() {
     // Send product details to the server
-    $(".addItemBtn").click(function(e) {
+    $(".form-submit").submit(function(e) {
         e.preventDefault();
-        var $form = $(this).closest(".form-submit"); // Corrected to find the closest form
-        var productId = $form.find(".pid").val();
-        var productName = $form.find(".pname").val();
-        var productPrice = $form.find(".pprice").val();
-        var productImage = $form.find(".pimage").val();
-        var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
+        var $form = $(this); // Get the form that was submitted
+        var productId = $form.find(".pid").attr("href");
+        var productName = $form.find(".pname").text();
+        var productPrice = $form.find(".pprice").text();
+        var productImage = $form.find(".pimage").attr("src");
 
         $.ajax({
             url: 'cart_action.php',
             method: 'post',
             data: {
-                pid: productId,            // Key: Different variable name, Value: Value of the productId variable
-                pname: productName,        // Key: Different variable name, Value: Value of the productName variable
-                pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
-                pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
-                pimage: productImage 
+                pid: productId,
+                pname: productName,
+                pprice: productPrice,
+                pqty: 1,
+                pimage: productImage,
+                uid: <?php echo isset($_SESSION['id']) ? $_SESSION['id'] : null; ?> // Pass user ID from PHP session
             },
             success: function(response) {
                 $("#message").html(response);
@@ -234,7 +236,6 @@ $result = $connection->query($sql);
                 load_cart_item_number();
             },
             error: function(xhr, status, error) {
-                // Handle errors
                 console.error(xhr.responseText);
             }
         });
@@ -256,6 +257,7 @@ $result = $connection->query($sql);
         });
     }
 });
+
 
   </script>
 

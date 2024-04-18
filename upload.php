@@ -4,7 +4,7 @@ include_once 'config.php';
 
 if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && isset($_POST['pprice']) && isset($_POST['pcategory']) && isset($_POST['pquant']) && isset($_POST['submit']) && isset($_POST['farmer'])){ 
     // File upload configuration 
-    $targetDir = "uploads/"; 
+    $targetDir = "uploads/farmer upload/"; 
     $allowTypes = array('jpg','png','jpeg','gif'); 
 
     $pid = $_POST['pid'];
