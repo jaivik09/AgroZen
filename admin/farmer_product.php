@@ -149,7 +149,7 @@ if(isset($admin_id))
                                             echo "<td class='border px-4 py-2'>";
                                             echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='showConfirmation(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'] . "\", \"" . $row1['farmer_name'] . "\")'></button>";
                                             echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
-                                            echo "<i class='fas fa-trash'></i>";
+                                            echo "<button name='delete'> <i class='fas fa-trash'></i> </button>";
                                             echo "</a>";
                                             echo "</td>";
                                             echo "</tr>";
@@ -165,6 +165,11 @@ if(isset($admin_id))
         </div>
     </div>
 </div>
+
+<?php
+        
+
+?>
 
 <?php
     // Fetch the product details again
