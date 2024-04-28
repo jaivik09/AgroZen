@@ -148,9 +148,11 @@ if(isset($admin_id))
                                             echo "</td>";
                                             echo "<td class='border px-4 py-2'>";
                                             echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-white fas fa-check' onclick='showConfirmation(" . $row1['prod_id'] . ", \"" . $row1['prod_name'] . "\", " . $row1['prod_price'] . ", \"" . $row1['prod_desc'] . "\", " . $row1['prod_quant'] . ", \"" . $row1['prod_cat'] . "\", \"" . $row1['main_img'] . "\", \"" . $row1['farmer_name'] . "\")'></button>";
-                                            echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
-                                            echo "<button name='delete'> <i class='fas fa-trash'></i> </button>";
-                                            echo "</a>";
+                                            // echo "<a class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' href=''>";
+                                            // echo "<button onclick='showDelete(" .$row1['prod_id']. ")'> <i class='fas fa-trash'></i> </button>";
+                                          
+                                            echo "<button class='bg-teal-300 cursor-pointer rounded p-1 mx-1 text-red-500' onclick='showDelete(" .$row1['prod_id']. ")'> <i class='fas fa-trash'></i> </button>";
+                                            
                                             echo "</td>";
                                             echo "</tr>";
                                         }
@@ -253,6 +255,23 @@ if(isset($admin_id))
             window.location.href = 'insert_product_view.php?id=' + id + '&name=' + encodeURIComponent(name) + '&price=' + price + '&description=' + encodeURIComponent(description) + '&quan=' + quantity + '&cat=' + encodeURIComponent(category) + '&fname=' + encodeURIComponent(farmerName) + '&image=' + encodeURIComponent(image);
         }
     });
+}
+
+    function showDelete(id) {
+        Swal.fire({
+        title: "Are you sure?",
+        text: "You want to delete this product!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Redirect to insert_product_view.php with all the values as parameters
+            window.location.href = 'delete_product_view.php?id=' + id;
+        }
+    }); 
 }
 
 
