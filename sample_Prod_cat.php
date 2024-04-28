@@ -151,7 +151,7 @@
         $result = $connection->query($sql);
         ?>
         <?php while ($row = $result->fetch_assoc()): ?>
-            <form class="product-form">
+            <form class="form-submit">
                 <div class="card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
                         <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
@@ -176,7 +176,7 @@
                             <!-- Quantity input -->
                             <!-- <input type="number" id="quantity-input" class="quantity" value="1"> -->
                             <!-- Add to cart button -->
-                            <button type="submit" class="addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                            <button class="addToCart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -185,99 +185,80 @@
     </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var addToCartButtons = document.querySelectorAll('.addItemBtn');
 
-    addToCartButtons.forEach(function (button) {
-        button.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default form submission
 
-            var productId = this.parentElement.querySelector('.pid').value;
-            var productName = this.parentElement.querySelector('.pname').value;
-            var productPrice = this.parentElement.querySelector('.pprice').value;
-            var productImage = this.parentElement.querySelector('.pimage').value;
-            var userId = this.parentElement.querySelector('.uid').value;
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
-            var formData = new FormData();
-            formData.append('pid', productId);
-            formData.append('pname', productName);
-            formData.append('pprice', productPrice);
-            formData.append('pqty', 1); // Default quantity, you can change this if needed
-            formData.append('pimage', productImage);
-            formData.append('uid', userId);
+  <script type="text/javascript">
+  $(document).ready(function() {
+    // Send product details to the server
+    $(".addToCart").click(function(e) {
+        e.preventDefault();
+        var addButton = $(this);
+        var $form = $(this).closest(".form-submit"); // Corrected to find the closest form
+        var productId = $form.find(".pid").val();
+        var productName = $form.find(".pname").val();
+        var productPrice = $form.find(".pprice").val();
+        var productImage = $form.find(".pimage").val();
+        var userid = $form.find(".userid").val();
+        var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
+        addButton.prop('disabled', true);
 
-            fetch('cart_action.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log(data);
-                // Handle the response as needed
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle errors here
-            });
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'post',
+            data: {
+                pid: productId,            // Key: Different variable name, Value: Value of the productId variable
+                pname: productName,        // Key: Different variable name, Value: Value of the productName variable
+                pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
+                pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
+                pimage: productImage,
+                uid:userid
+            },
+            success: function(response) {
+                $("#message").html(response);
+                console.log("Success")
+                window.scrollTo(0, 0);
+                addButton.prop('disabled', false);
+                
+                // Display alert message based on response
+                if (response.trim() === 'Product added to cart successfully.') {
+                    // alert('Product added to cart successfully.');
+                } else {
+                    alert('Item already added to your cart!');
+                }
+                
+                // Reload the page or perform any other action as needed
+
+                load_cart_item_number();
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText);
+            }
         });
     });
+
+    // Load total number of items added to the cart
+    load_cart_item_number();
+
+    function load_cart_item_number() {
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'get',
+            data: {
+                cartItem: "cart_item"
+            },
+            success: function(response) {
+                $("#cart-item").html(response);
+            }
+        });
+    }
 });
 
-</script>
-<!-- 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-<script type="text/javascript">
-//     $(document).ready(function () {
-//         // Send product details to the server
-//         $(".addItemBtn").click(function (e) {
-//             e.preventDefault();
-//             var $form = $(this).closest("form.product-form");
-//             var productId = $form.find(".pid").val();
-//             var productName = $form.find(".pname").val();
-//             var productPrice = $form.find(".pprice").val();
-//             var productImage = $form.find(".pimage").val();
-//             var productQuantity = 1;
+  </script>
 
-//             $.ajax({
-//                 url: 'cart_action.php',
-//                 method: 'post',
-//                 data: {
-//                     pid: productId,
-//                     pname: productName,
-//                     pprice: productPrice,
-//                     pqty: productQuantity,
-//                     pimage: productImage
-//                 },
-//                 success: function (response) {
-//                     $("#message").html(response);
-//                     console.log("Success");
-//                     window.scrollTo(0, 0);
-//                     load_cart_item_number();
-//                 },
-//                 error: function (xhr, status, error) {
-//                     console.error(xhr.responseText);
-//                 }
-//             });
-//         });
-
-//         // Load total number of items added to the cart
-//         load_cart_item_number();
-
-//         function load_cart_item_number() {
-//             $.ajax({
-//                 url: 'cart_action.php',
-//                 method: 'get',
-//                 data: {
-//                     cartItem: "cart_item"
-//                 },
-//                 success: function (response) {
-//                     $("#cart-item").html(response);
-//                 }
-//             });
-//         }
-//     });
-// </script> -->
 
   <script>
   let sidebar = document.querySelector(".sidebar");

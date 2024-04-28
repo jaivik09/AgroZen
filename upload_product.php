@@ -38,6 +38,7 @@
             z-index: 1000; /* Ensure the header stays on top */
         }
         .container {
+            width:700px;
             margin-top: 50px; /* Adjust margin to create space below the header */
             padding: 20px;
             position: relative;
@@ -119,7 +120,7 @@
 
       <div class="input-box">
           <label class="block mb-2 text-sm font-medium text-#3CBC00-900 dark:text-white">Product ID</label>
-          <input type="text" name="pid" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product name" required />
+          <input type="text" name="pid" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter product id" required />
         </div>
 
         <div class="input-box">
@@ -173,25 +174,5 @@
             </div>   
       </form>
 </div>
-<footer>
-        <div class="footer-container" id="FOOTER" data-aos="fade-up">
-            <div class="footer-head">
-                <p>LETS GET CONNECTED</p>
-                <div class="footer-icon">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                    <i class="fa-brands fa-square-google-plus"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                </div>
-            </div>
-            <div class="footer-tail">
-                <div class="fixed bottom-0 left-0 z-20 w-full p-2 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-                    <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900">© 2024 <a href="index.html" class="hover:underline">AgroZen™</a>. All Rights Reserved.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
   </body>
 </html>

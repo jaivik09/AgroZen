@@ -170,7 +170,7 @@ $result = $connection->query($sql);
         </div>
         <div class="flex items-center justify-between">
             <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
-            <a href="#" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
+            <a href="#" class=" addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</a>
         </div>
     </div>
 </div>
@@ -223,7 +223,7 @@ $result = $connection->query($sql);
                 pid: productId,            // Key: Different variable name, Value: Value of the productId variable
                 pname: productName,        // Key: Different variable name, Value: Value of the productName variable
                 pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
-                pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
+                pqty: 1,     // Key: Different variable name, Value: Value of the productQuantity variable
                 pimage: productImage 
             },
             success: function(response) {

@@ -7,8 +7,6 @@ header("Accept: application/json");
 header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-Allow-Methods,Content-Type');
 
 
-if(isset($_POST['billing_name']) && isset($_POST['billing_mobile']) && isset($_POST['billing_email']))
-{
   if(isset($_POST['action']) && $_POST['action']='payOrder'){
 
     $razorpay_mode='test';
@@ -98,10 +96,6 @@ if(isset($_POST['billing_name']) && isset($_POST['billing_mobile']) && isset($_P
     else{
         echo json_encode(['res'=>'error']); exit;
     }
-}
-else{
-  echo 'variables not set....';
-}
 
 
        ?>   
