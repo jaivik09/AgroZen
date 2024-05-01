@@ -176,7 +176,7 @@
                             <!-- Quantity input -->
                             <!-- <input type="number" id="quantity-input" class="quantity" value="1"> -->
                             <!-- Add to cart button -->
-                            <button class="addToCart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                            <button class="addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
                         </div>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
   $(document).ready(function() {
     // Send product details to the server
     $(".addToCart").click(function(e) {
@@ -238,6 +238,28 @@
                 console.error(xhr.responseText);
             }
         });
+    }); -->
+    <script type="text/javascript">
+$(document).ready(function() {
+    // Redirect to sample_prod_view.php with prod_id
+    $(".addItemBtn").click(function(e) {
+        e.preventDefault();
+        var $form = $(this).closest(".form-submit");
+        var productId = $form.find(".pid").val();
+        var productName = $form.find(".pname").val();
+        var productPrice = $form.find(".pprice").val();
+        var productImage = $form.find(".pimage").val();
+        var productQuantity = $form.find("#quantity-input").val();
+
+        // Construct the URL with details of the clicked product and prod_id
+        var url = 'sample_prod_view.php?pid=' + encodeURIComponent(productId) +
+                  '&pname=' + encodeURIComponent(productName) +
+                  '&pprice=' + encodeURIComponent(productPrice) +
+                  '&pqty=' + encodeURIComponent(productQuantity) +
+                  '&pimage=' + encodeURIComponent(productImage);
+
+        // Redirect to the sample_prod_view.php
+        window.location.href = url;
     });
 
     // Load total number of items added to the cart

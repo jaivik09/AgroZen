@@ -85,7 +85,7 @@
       </li>
 
       <li>
-       <a href="crops.php">
+       <a href="sample_prod_cat.php">
        <i class="fa-regular fa-lemon"></i>
          <span class="links_name">crops</span>
        </a>
@@ -140,43 +140,37 @@ $sql = "SELECT * FROM product_view WHERE prod_cat='fruits' ";
 $result = $connection->query($sql);
 ?>
 <?php while ($row = $result->fetch_assoc()): ?>
-  <form class="form-submit">    
-<div class=" card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ">
-    <a class="pid" href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-        <img class=" pimage p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
-    </a>
-    <div class="px-5 pb-5">
-        <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
-            <h5 class=" pname text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
-        </a>
-        <div class="flex items-center mt-2.5 mb-5">
-            <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-                <svg class="w-4 h-4 text-gray-200 dark:text-gray-600" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
-                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
-                </svg>
-            </div>
-            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
-        </div>
-        <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
-            <button class="addToCart text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
-        </div>
-    </div>
-</div>
-</form>
-<?php endwhile; ?>
+            <form class="form-submit">
+                <div class="card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                        <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
+                    </a>
+                    <div class="px-5 pb-5">
+                        <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                            <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
+                        </a>
+                        <div class="flex items-center mt-2.5 mb-5">
+                            <!-- Star ratings -->
+                            <!-- Your star rating SVGs -->
+                            <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-3xl font-bold text-gray-900 dark:text-white"><?php echo $row['prod_price']; ?></span>
+                            <!-- Hidden inputs for product details -->
+                            <input type="hidden" class="pid" value="<?php echo $row['prod_id']; ?>">
+                            <input type="hidden" class="pname" value="<?php echo $row['prod_name']; ?>">
+                            <input type="hidden" class="pprice" value="<?php echo $row['prod_price']; ?>">
+                            <input type="hidden" class="pimage" value="<?php echo $row['main_img']; ?>">
+                            <input type="hidden" class="userid" value="<?php echo $user_id; ?>">
+                            <!-- Quantity input -->
+                            <!-- <input type="number" id="quantity-input" class="quantity" value="1"> -->
+                            <!-- Add to cart button -->
+                            <button class="addItemBtn text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        <?php endwhile; ?>
     
      </div> 
   </section>
@@ -208,37 +202,26 @@ $result = $connection->query($sql);
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
   <script type="text/javascript">
- $(document).ready(function() {
-    // Send product details to the server
-    $(".form-submit").submit(function(e) {
+$(document).ready(function() {
+    // Redirect to sample_prod_view.php with prod_id
+    $(".addItemBtn").click(function(e) {
         e.preventDefault();
-        var $form = $(this); // Get the form that was submitted
-        var productId = $form.find(".pid").attr("href");
-        var productName = $form.find(".pname").text();
-        var productPrice = $form.find(".pprice").text();
-        var productImage = $form.find(".pimage").attr("src");
+        var $form = $(this).closest(".form-submit");
+        var productId = $form.find(".pid").val();
+        var productName = $form.find(".pname").val();
+        var productPrice = $form.find(".pprice").val();
+        var productImage = $form.find(".pimage").val();
+        var productQuantity = $form.find("#quantity-input").val();
 
-        $.ajax({
-            url: 'cart_action.php',
-            method: 'post',
-            data: {
-                pid: productId,
-                pname: productName,
-                pprice: productPrice,
-                pqty: 1,
-                pimage: productImage,
-                uid: <?php echo isset($_SESSION['id']) ? $_SESSION['id'] : null; ?> // Pass user ID from PHP session
-            },
-            success: function(response) {
-                $("#message").html(response);
-                console.log("Success")
-                window.scrollTo(0, 0);
-                load_cart_item_number();
-            },
-            error: function(xhr, status, error) {
-                console.error(xhr.responseText);
-            }
-        });
+        // Construct the URL with details of the clicked product and prod_id
+        var url = 'sample_prod_view.php?pid=' + encodeURIComponent(productId) +
+                  '&pname=' + encodeURIComponent(productName) +
+                  '&pprice=' + encodeURIComponent(productPrice) +
+                  '&pqty=' + encodeURIComponent(productQuantity) +
+                  '&pimage=' + encodeURIComponent(productImage);
+
+        // Redirect to the sample_prod_view.php
+        window.location.href = url;
     });
 
     // Load total number of items added to the cart

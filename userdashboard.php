@@ -135,7 +135,7 @@
                             </a>
                         </div>
                         <div class="wrapper mt-10 ml-10">
-                            <a href="logout.php">
+                            <a href="#" onclick="return onConfirm();">
                                 <button type="button"
                                     class="px-6 py-3.5 text-base font-medium text-white bg-[#FF5722] hover:bg-[#FF401C] focus:outline-none focus:ring-blue-300 rounded-lg text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                     Logout
@@ -161,6 +161,27 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+         function onConfirm() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to Log out!!!!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Proceed with clearing the cart
+            window.location.href = 'logout.php';
+        }
+    });
+    // Prevent default link behavior
+    return false;
+}
+</script>
 </body>
 
 </html>

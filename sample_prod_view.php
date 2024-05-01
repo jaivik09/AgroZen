@@ -147,11 +147,11 @@
 
 <?php
 include_once 'config.php';
-$pid=$_GET['prod_id'];
+$prod_id = isset($_GET['pid']) ? $_GET['pid'] : null;
 // SQL query to fetch product data
-$sql = "SELECT * FROM product_view WHERE prod_id=$pid";
+$sql = "SELECT * FROM product_view WHERE prod_id='$prod_id'";
 $result = $connection->query($sql);
-$sql2="SELECT * FROM images WHERE id=$pid";
+$sql2="SELECT * FROM images WHERE id=$prod_id";
 $multiple_img=$connection->query($sql2);
 ?>
 <section class="home-section">
@@ -265,6 +265,7 @@ function resetActiveImg(){
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script type="text/javascript">
   $(document).ready(function() {
@@ -301,8 +302,10 @@ function resetActiveImg(){
                 // Display alert message based on response
                 if (response.trim() === 'Product added to cart successfully.') {
                     // alert('Product added to cart successfully.');
+                    Swal.fire("Product added to cart successfully.");
                 } else {
-                    alert('Item already added to your cart!');
+                    // alert('Item already added to your cart!');
+                    Swal.fire("Item already added to your cart!.");
                 }
                 
                 // Reload the page or perform any other action as needed

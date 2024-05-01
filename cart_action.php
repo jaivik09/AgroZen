@@ -6,48 +6,42 @@
 
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST['pid'], $_POST['pname'], $_POST['pprice'], $_POST['pqty'], $_POST['pimage'],$_POST['uid'])) {
-            // Sanitize and store the POST data
-            $pid = $_POST['pid'];
-            $pname = $_POST['pname'];
-            $pprice = $_POST['pprice'];
-            $pqty = $_POST['pqty'];
-            $pimage = $_POST['pimage'];
-            $total_price = $pprice * $pqty;
+		if(isset($_POST['pid'], $_POST['pname'], $_POST['pprice'], $_POST['pqty'], $_POST['pimage'],$_POST['uid'])) {
+			// Sanitize and store the POST data
+			$pid = $_POST['pid'];
+			$pname = $_POST['pname'];
+			$pprice = $_POST['pprice'];
+			$pqty = $_POST['pqty'];
+			$pimage = $_POST['pimage'];
+			$total_price = $pprice * $pqty;
 			$userid = $_POST['uid'];
-
-
-			$stmt = $connection->prepare('SELECT id FROM cart WHERE id=?');
-			$stmt->bind_param('s', $pid);
+	
+			$stmt = $connection->prepare('SELECT id FROM cart WHERE id=? AND user_id=?');
+			$stmt->bind_param('ii', $pid, $userid);
 			$stmt->execute();
 			$res = $stmt->get_result();
-			$code = $res->num_rows; 
-
-                if($code==0)
-                {
-                    // Prepare SQL statement to insert data into the cart table
-            $stmt = $connection->prepare("INSERT INTO cart (id,user_id, product_name, product_price, product_image, qty, total_price) VALUES (?,?, ?, ?, ?, ?, ?)");
-            // Bind parameters
-            $stmt->bind_param("iisdsdd", $pid,$userid, $pname, $pprice, $pimage, $pqty, $total_price);
-            // Execute the statement
-            if ($stmt->execute()) {
-                echo "Product added to cart successfully.";
-            } else {
-                echo "Error adding product to cart.";
-            }
-            // Close the statement
-            $stmt->close();
-        }  else {
-			echo '<div class="alert alert-danger alert-dismissible mt-2">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<strong>Item already added to your cart!</strong>
-		</div>';
-              }
-        }
-            
-    } else {
-        echo "";
-    }
+			$code = $res->num_rows;
+	
+			if($code == 0) {
+				// Item not in the cart, add it
+				$stmt = $connection->prepare("INSERT INTO cart (id,user_id, product_name, product_price, product_image, qty, total_price) VALUES (?, ?, ?, ?, ?, ?, ?)");
+				$stmt->bind_param("iisdsdd", $pid, $userid, $pname, $pprice, $pimage, $pqty, $total_price);
+				if ($stmt->execute()) {
+					echo "Product added to cart successfully.";
+				} else {
+					echo "Error adding product to cart.";
+				}
+				$stmt->close();
+			} else {
+				// Item already in the cart
+				echo "Item already added to your cart!";
+			}
+		}
+	} else {
+		echo "";
+	}
+	
+	
 
 	$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     

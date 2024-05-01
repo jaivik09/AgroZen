@@ -160,7 +160,7 @@
                 <th>Quantity</th>
                 <th>Total Price</th>
                 <th>
-                  <a href="cart_action.php?clear=all" class="badge-danger badge p-1" onclick="return confirm('Are you sure want to clear your cart?');"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
+                  <a href="cart_action.php?clear=all" class="badge-danger badge p-1" onclick="return confirmClearCart();"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
                 </th>
               </tr>
             </thead>
@@ -188,7 +188,8 @@
                 </td>
                 <td><i class="fas fa-rupee-sign"></i>&nbsp;&nbsp;<?= number_format($row['total_price'],2); ?></td>
                 <td>
-                  <a href="cart_action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirm('Are you sure want to remove this item?');"><i class="fas fa-trash-alt"></i></a>
+                  <!-- <a href="cart_action.php?remove=<?= $row['id'] ?>" class="text-danger lead" onclick="return confirmRemoveItem();"><i class="fas fa-trash-alt"></i></a> -->
+                  <a href="#" class="text-danger lead" onclick="return confirmRemoveItem(<?= $row['id'] ?>);"><i class="fas fa-trash-alt"></i></a>
                 </td>
               </tr>
               <?php $grand_total += $row['total_price']; ?>
@@ -217,6 +218,7 @@ $stmt->close();
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script type="text/javascript">
   $(document).ready(function() {
@@ -260,6 +262,46 @@ $stmt->close();
       });
     }
   });
+
+  function confirmClearCart() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to remove all the items!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Proceed with clearing the cart
+            window.location.href = 'cart_action.php?clear=all';
+        }
+    });
+    // Prevent default link behavior
+    return false;
+}
+
+function confirmRemoveItem(itemId) {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You want to remove this item!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes"
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Proceed with removing the item
+            window.location.href = 'cart_action.php?remove=' + itemId;
+        }
+    });
+
+    // Prevent default link behavior until user confirms
+    return false;
+}
+
   </script>
 
 <script>
