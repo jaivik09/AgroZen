@@ -71,18 +71,19 @@
                                 Order List
                             </li>
                         </a>
-                        <a href="sample_Prod_cat.php">
-                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Buy Product
-                            </li>
-                        </a>
                         <a href="upload_product.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Add Product
                             </li>
-                        </a><a href="far_display_reg_events.php">
+                        </a>
+                        <a href="far_display_reg_events.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Regisetered Events
+                            </li>
+                        </a>
+                        <a href="prod_feedback.php">
+                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
+                                Product Feedback
                             </li>
                         </a>
                     </ul>

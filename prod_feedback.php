@@ -15,10 +15,10 @@
     $result =mysqli_query($link,$sql);
     $row = mysqli_fetch_array($result);
     $imagename = $row['ProfileImage'];
-    $email = $row['Email'];
+    $name = $row['Name'];
 
-    $reg_events = mysqli_query($link,"SELECT * FROM events_reg WHERE Email = '$email'");
-    $events = mysqli_fetch_all($reg_events, MYSQLI_ASSOC);
+    $feedbacks_sql = mysqli_query($link,"SELECT * FROM feedback_table WHERE farmer_name = '$name'");
+    $feedbacks = mysqli_fetch_all($feedbacks_sql, MYSQLI_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -38,28 +38,6 @@
     <link href="css/my/ownstyles1.css" rel="stylesheet">
     <link href="res/images/logo.png" rel="icon">
     <title>AgroZen™</title>
-    <style>
-        /* Additional CSS styles for the table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-    </style>
 </head>
 
 <body class="font-['Inter']">
@@ -113,37 +91,19 @@
                 </div>
             </div>
         </div>
-        <div class="w-[70%]">
-            <form>
-                <div class="col-lg-8 mt-8 mr-8">
-                    <div class="bg-white shadow-sm rounded-md border border-gray-300">
-                        <div class="border-b border-gray-900 px-4 py-3">
-                            <h3 class="font-medium text-3xl"><i class="far fa-clone pr-1"></i>Event Details</h3>
-                        </div>
-                        <div class="px-6 py-4">
-                            <table class="table-auto w-full border-collapse">
-                            <tr>
-                                    <th>Id</th>
-                                    <th>Title</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Location</th>
-                                </tr>
-                                <?php foreach ($events as $event): ?>
-                                <tr>
-                                    <td><?php echo $event['R_id']; ?></td>
-                                    <td><?php echo $event['Title']; ?></td>
-                                    <td><?php echo $event['Date']; ?></td>
-                                    <td><?php echo $event['Time']; ?></td>
-                                    <td><?php echo $event['Location']; ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </table>
-                        </div>
+        <div class="w-[70%] mt-4 mr-16 relative">
+            <h2 class="text-center text-2xl font-bold text-gray-900 dark:text-white mb-4">Notifications</h2>
+            <?php foreach ($feedbacks as $feedback): ?>
+                <!-- card -->
+                <div class="mb-4">
+                    <div class="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow transition-transform duration-300 transform hover:scale-105 hover:shadow-lg hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $feedback['fb_id']; ?></h5>
+                        <p class="font-normal text-gray-700 dark:text-gray-400"><?php echo $feedback['feedback']; ?></p>
+                        <button type="button" class="absolute bottom-3 right-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
                     </div>
-                   
                 </div>
-            </form>
+                <!-- /card -->
+            <?php endforeach; ?>
         </div>
     </div>
 
