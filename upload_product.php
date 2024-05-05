@@ -18,10 +18,7 @@
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css"  rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-    
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
-  
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     
@@ -38,11 +35,11 @@
             z-index: 1000; /* Ensure the header stays on top */
         }
         .container {
-            width:700px;
-            margin-top: 50px; /* Adjust margin to create space below the header */
-            padding: 20px;
-            position: relative;
-        }
+        width: 700px !important; /* Adjusted width with !important */
+        margin-top: 50px !important;
+        padding: 20px !important;
+        position: relative;
+    }
         .add{
             
             font-size:30px;
