@@ -1,12 +1,4 @@
 
-<?php 
-if(isset($_GET)){
-    
-    echo "<pre>";
-    print_r($_GET);
-    echo "</p>";
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -155,7 +147,7 @@ if(isset($_GET)){
         color: #32a852;
     }
 
-    }
+
     
     @keyframes print {
         0% {

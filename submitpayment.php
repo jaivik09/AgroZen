@@ -95,11 +95,11 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
           $productQuantity = $matches[2];
 
           // Assuming you have a table named 'orders' with columns 'user_id', 'product_name', 'quantity', 'billing_name', 'billing_mobile', 'billing_email', 'payment_option', 'amount_paid'
-          $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          // Assuming you have a user_id stored in $_SESSION['id']
-          $stmt->bind_param("ississsds", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
-          $stmt->execute();
-          $stmt->close();
+                $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                // Assuming you have a user_id stored in $_SESSION['id']
+                $stmt->bind_param("ississsds", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
+                $stmt->execute();
+                $stmt->close();
       }
   }
      
