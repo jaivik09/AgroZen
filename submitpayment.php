@@ -1,5 +1,7 @@
 
 <?php
+require 'config.php';
+$user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods:POST,GET,PUT,PATCH,DELETE');
 header("Content-Type: application/json");
@@ -89,18 +91,21 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
 
       // Insert each product into the database
       foreach ($productList as $product) {
-          // Extract product name and quantity from the product string
-          preg_match('/^(.*?)\s*\((\d+)\)$/', $product, $matches);
-          $productName = $matches[1];
-          $productQuantity = $matches[2];
-
-          // Assuming you have a table named 'orders' with columns 'user_id', 'product_name', 'quantity', 'billing_name', 'billing_mobile', 'billing_email', 'payment_option', 'amount_paid'
-                $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-                // Assuming you have a user_id stored in $_SESSION['id']
-                $stmt->bind_param("ississsds", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
-                $stmt->execute();
-                $stmt->close();
-      }
+        // Extract product name and quantity from the product string
+        preg_match('/^(.*?)\s*\((\d+)\)$/', $product, $matches);
+        $productName = $matches[1];
+        $productQuantity = $matches[2];
+    
+        // Assuming you have a table named 'orders' with columns 'user_id', 'product_name', 'quantity', 'billing_name', 'billing_mobile', 'billing_email', 'payment_option', 'amount_paid'
+        $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
+        // Assuming you have a user_id stored in $_SESSION['id']
+        $stmt->bind_param("ississsdi", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
+        
+        $stmt->execute();
+        $stmt->close();
+    }
+    
   }
      
     $dataArr=array(
