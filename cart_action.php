@@ -2,6 +2,18 @@
 	session_start();
 	require 'config.php';
 	
+	$userId = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+	if(isset($_POST['checkLogin'])) {
+		// Check if the user is logged in
+		if(isset($_SESSION['id'])) {
+			// User is logged in
+			echo 'loggedIn';
+		} else {
+			// User is not logged in
+			echo 'notLoggedIn';
+		}
+		exit; // Stop further execution of the script
+	}
 
 
 
