@@ -198,15 +198,15 @@
 
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="consumertable.php" class="no-underline text-white text-2xl">
+                                <a href="prod_orders.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result3 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
+                                        $result3 =mysqli_query($link,"SELECT id FROM orders");
                                         $row_count2 = mysqli_num_rows($result3);
                                         echo $row_count2;
                                     ?>
                                 </a>
-                                <a href="consumertable.php" class="no-underline text-white text-lg">
-                                    consumer
+                                <a href="prod_orders.php" class="no-underline text-white text-lg">
+                                    Orders
                                 </a>
                             </div>
                         </div>

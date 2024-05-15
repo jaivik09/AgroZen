@@ -66,7 +66,7 @@
                                 Machineries
                             </li>
                         </a> -->
-                         <a href="wishlist.html">
+                         <a href="orderHistory.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Order List
                             </li>
