@@ -14,6 +14,8 @@
 	$grand_total = 0;
 	$allItems = '';
 	$items = [];
+  $productNames = [];
+$productQuantities = [];
 
   $productId = isset($_GET['pid']) ? $_GET['pid'] : null;
   $productName = isset($_GET['pname']) ? $_GET['pname'] : null;
@@ -36,6 +38,14 @@
     while ($row = $result->fetch_assoc()) {
       $grand_total += $row['total_price'];
       $items[] = $row['ItemQty'];
+       // Split each item from the database into product name and quantity
+       $itemParts = explode('(', $row['ItemQty']);
+       $productName = trim($itemParts[0]);
+       $productQuantity = (int) filter_var($itemParts[1], FILTER_SANITIZE_NUMBER_INT);
+
+       // Add product name and quantity to respective arrays
+       $products[] = $productName;
+       $quantities[] = $productQuantity;
     }
     $allItems = implode(', ', $items);
 
@@ -77,8 +87,9 @@
       <h5 class="text-xl font-bold">Total Amount Payable : <?= number_format($grand_total, 2) ?>/-</h5>
     </div>
     <form method="post" id="placeOrder" class="mt-4">
-      <input type="hidden" class="products" name="products" value="<?= $allItems; ?>">
+      <input type="hidden" class="products" name="products" id="products" value="<?= $allItems; ?>">
       <input type="hidden" class="tot_amount" name="grand_total" id="grand_total" value="<?= $grand_total; ?>">
+      <input type="hidden" class="quantities" name="quantities" id="quantities" value="<?= implode(',', $quantities); ?>">
       <div class="mb-4">
         <input type="text" name="name" id="name" class="form-input block w-full" placeholder="Enter Name" required>
       </div>
@@ -209,6 +220,8 @@ rzp1.on('payment.failed', function (response){
         let billing_mobile = $('#phone').val();
         let billing_email = $('#email').val();
         var payAmount = $('#grand_total').val();
+        var products = $('#products').val();
+        var quantities = $('#quantities').val();
         var request_url = "submitpayment.php";
         var formData = {
           billing_name: billing_name,
@@ -216,8 +229,12 @@ rzp1.on('payment.failed', function (response){
           billing_email: billing_email,
           paymentOption: paymentOption,
           payAmount: payAmount,
+           products: products,
+           quantities: quantities, 
           action: 'payOrder'
         };
+
+        console.log('Form Data Sent to Server:', formData);
 
         $.ajax({
           type: 'POST',
@@ -226,6 +243,7 @@ rzp1.on('payment.failed', function (response){
           dataType: 'json',
           encode: true,
           success: function(data) {
+            console.log('Response from Server:', data);
             if (data.res == 'success') {
               var orderID = data.order_number;
               var options = {
