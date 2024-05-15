@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
 </head>
 <style>
-    body {
+   body {
         background: #dcf0fa;
     }
 
@@ -51,8 +51,7 @@
         z-index: 2;
         margin: 0 12px;
         margin-top: -12px;
-        animation: print 5000ms cubic-bezier(0.68, -0.55, 0.265, 0.9) infinite;
-        -moz-animation: print 5000ms cubic-bezier(0.68, -0.55, 0.265, 0.9) infinite;
+        animation: print 5s cubic-bezier(0.68, -0.55, 0.265, 0.9) forwards;
     }
 
     .main-contents {
@@ -60,7 +59,7 @@
         padding: 24px;
     }
 
-    // Paper Jagged Edge
+    /* Paper Jagged Edge */
     .jagged-edge {
         position: relative;
         height: 20px;
@@ -72,7 +71,6 @@
         content: "";
         display: block;
         position: absolute;
-        //bottom: 20px;
         left: 0;
         right: 0;
         height: 20px;
@@ -124,7 +122,6 @@
         text-align: center;
         color: #333;
         font-weight: bold;
-
     }
 
     .order-number-label {
@@ -140,54 +137,13 @@
         padding: 8px 0;
         margin-bottom: 24px;
     }
-    
+
     .complement {
         font-size: 18px;
         margin-bottom: 8px;
         color: #32a852;
     }
-
-
     
-    @keyframes print {
-        0% {
-            transform: translateY(-90%);
-        }
-
-        100% {
-            transform: translateY(0%);
-        }
-    }
-
-    @-webkit-keyframes print {
-        0% {
-            -webkit-transform: translateY(-90%);
-        }
-
-        100% {
-            -webkit-transform: translateY(0%);
-        }
-    }
-
-    @-moz-keyframes print {
-        0% {
-            -moz-transform: translateY(-90%);
-        }
-
-        100% {
-            -moz-transform: translateY(0%);
-        }
-    }
-
-    @-ms-keyframes print {
-        0% {
-            -ms-transform: translateY(-90%);
-        }
-
-        100% {
-            -ms-transform: translateY(0%);
-        }
-    }
 </style>
 
 <body>

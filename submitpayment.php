@@ -1,6 +1,6 @@
 
 <?php
-require 'config.php';
+session_start();
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods:POST,GET,PUT,PATCH,DELETE');
@@ -78,35 +78,80 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
     curl_close($curl);
     $orderRes= json_decode($response);
      
-    if(isset($orderRes->id)){
+  //   if(isset($orderRes->id)){
      
-    $rpay_order_id=$orderRes->id;
+  //   $rpay_order_id=$orderRes->id;
 
-    if (isset($_POST['products'])) {
-      // Extract products from the form
-      $products = $_POST['products'];
+  //   if (isset($_POST['products'])) {
+  //     // Extract products from the form
+  //     $products = $_POST['products'];
 
-      // Split products string into an array
-      $productList = explode(', ', $products);
+  //     // Split products string into an array
+  //     $productList = explode(', ', $products);
 
-      // Insert each product into the database
-      foreach ($productList as $product) {
-        // Extract product name and quantity from the product string
-        preg_match('/^(.*?)\s*\((\d+)\)$/', $product, $matches);
-        $productName = $matches[1];
-        $productQuantity = $matches[2];
+  //     // Insert each product into the database
+  //     foreach ($productList as $product) {
+  //       // Extract product name and quantity from the product string
+  //       preg_match('/^(.*?)\s*\((\d+)\)$/', $product, $matches);
+  //       $productName = $matches[1];
+  //       $productQuantity = $matches[2];
     
-        // Assuming you have a table named 'orders' with columns 'user_id', 'product_name', 'quantity', 'billing_name', 'billing_mobile', 'billing_email', 'payment_option', 'amount_paid'
-        $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  //       // Assuming you have a table named 'orders' with columns 'user_id', 'product_name', 'quantity', 'billing_name', 'billing_mobile', 'billing_email', 'payment_option', 'amount_paid'
+  //       $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, billing_mobile, billing_email, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         
-        // Assuming you have a user_id stored in $_SESSION['id']
-        $stmt->bind_param("ississsdi", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
+  //       // Assuming you have a user_id stored in $_SESSION['id']
+  //       $stmt->bind_param("ississsdi", $_SESSION['id'], $productName, $productQuantity, $billing_name, $billing_mobile, $billing_email, $paymentOption, $payAmount, $rpay_order_id);
         
-        $stmt->execute();
-        $stmt->close();
+  //       $stmt->execute();
+  //       $stmt->close();
+  //   }
+    
+  // }
+
+  $hostName = "localhost"; // host name
+$username = "root";  // database username
+$password = ""; // database password
+$databaseName = "agrozen"; // database name
+
+$connection = new mysqli($hostName,$username,$password,$databaseName);
+if (!$connection) {
+    die("Error in database connection". $connection->connect_error);
+}
+
+  if (isset($orderRes->id)) {
+    $rpay_order_id = $orderRes->id;
+
+    // Insert order details into the database
+    if ($user_id && isset($_POST['products'])) {
+        // Extract products from the form
+        if (isset($_POST['products']) && isset($_POST['quantities'])) {
+          // Extract products and quantities from the form
+          $products = $_POST['products'];
+          $quantities = $_POST['quantities'];
+          
+          // Split products and quantities strings into arrays
+          $productList = explode(', ', $products);
+          $quantityList = explode(',', $quantities);
+      
+          // Insert each product into the database
+          for ($i = 0; $i < count($productList); $i++) {
+              $productName = trim(explode('(', $productList[$i])[0]);
+              $productQuantity = (int) trim(explode('(', $productList[$i])[1], ')');
+              // Get the corresponding quantity
+              $quantity = (int) $quantityList[$i];
+      
+              // Insert this product into the database
+              $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+              $stmt->bind_param("issssds", $user_id, $productName, $quantity, $billing_name, $paymentOption, $payAmount, $rpay_order_id);
+              $stmt->execute();
+              $stmt->close();
+          }
+      
+          // Close the database connection
+          $connection->close();
+      }
+      
     }
-    
-  }
      
     $dataArr=array(
       'amount'=>$payAmount,
