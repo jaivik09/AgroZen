@@ -199,15 +199,15 @@
 
                         <div class="shadow bg-warning border-l-8 hover:bg-warning-dark border-warning-dark mb-2 p-2 md:w-1/4 mx-2">
                             <div class="p-4 flex flex-col">
-                                <a href="consumertable.php" class="no-underline text-white text-2xl">
+                                <a href="prod_orders.php" class="no-underline text-white text-2xl">
                                     <?php 
-                                        $result3 =mysqli_query($link,"SELECT id FROM users WHERE Role='consumer'");
+                                        $result3 =mysqli_query($link,"SELECT id FROM orders");
                                         $row_count2 = mysqli_num_rows($result3);
                                         echo $row_count2;
                                     ?>
                                 </a>
-                                <a href="consumertable.php" class="no-underline text-white text-lg">
-                                    consumer
+                                <a href="prod_orders.php" class="no-underline text-white text-lg">
+                                    Orders
                                 </a>
                             </div>
                         </div>
@@ -242,18 +242,18 @@
                                 <table class="table text-grey-darkest">
                                     <thead class="bg-grey-dark text-white text-normal">
                                         <tr>
-                                            <th scope="col">id</th>
+                                            <!-- <th scope="col">id</th> -->
+                                            <th scope="col">userId</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Contact</th>
-                                            <th scope="col">Role</th>
-                                            <th scope="col">Gender</th>
+                                            <th scope="col">Product Name</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Amount</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php
                                         // Fetch consumers
-                                        $sql = "SELECT * FROM users WHERE Role = 'consumer'";
+                                        $sql = "SELECT * FROM orders";
                                         $result = mysqli_query($link, $sql);
 
                                         // Check if there are any consumers
@@ -262,12 +262,12 @@
                                             while ($row = mysqli_fetch_assoc($result)) {
                                                 // Display consumer data in table rows
                                                 echo "<tr>";
-                                                echo "<td>" . $row['id'] . "</td>";
-                                                echo "<td>" . $row['Name'] . "</td>";
-                                                echo "<td>" . $row['Email'] . "</td>";
-                                                echo "<td>" . $row['Phone'] . "</td>";
-                                                echo "<td>" . $row['Role'] . "</td>";
-                                                echo "<td>" . $row['Gender'] . "</td>";
+                                                // echo "<td>" . $row['id'] . "</td>";
+                                                echo "<td>" . $row['user_id'] . "</td>";
+                                                echo "<td>" . $row['billing_name'] . "</td>";
+                                                echo "<td>" . $row['product_name'] . "</td>";
+                                                echo "<td>" . $row['quantity'] . "</td>";
+                                                echo "<td>" . $row['amount_paid'] . "</td>";
                                                 echo "</tr>";
                                             }
                                         } else {

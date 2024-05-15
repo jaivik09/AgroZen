@@ -102,9 +102,9 @@
                 <!-- card -->
                 <div class="mb-4">
                     <div class="block max-w-full p-6 bg-white border border-gray-200 rounded-lg shadow transition-transform duration-300 transform hover:scale-105 hover:shadow-lg hover:border-gray-300 dark:bg-gray-800 dark:border-gray-700">
-                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><?php echo $feedback['fb_id']; ?></h5>
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Product :: <?php echo $feedback['prod_name']; ?></h5>
                         <p class="font-normal text-gray-700 dark:text-gray-400"><?php echo $feedback['feedback']; ?></p>
-                        <button type="button" class="absolute bottom-3 right-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button>
+                        <!-- <button type="button" class="absolute bottom-3 right-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Okay</button> -->
                     </div>
                 </div>
                 <!-- /card -->
