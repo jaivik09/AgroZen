@@ -40,9 +40,8 @@
   <title>Cart</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+  <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' /> -->
   <link href="css/my/style.css" rel="stylesheet">
-    <!-- <link href="css/my/ownstyles.css" rel="stylesheet"> -->
     <link href="css/my/product_view.css" rel="stylesheet">
     <link href="css/my/product_catalog.css" rel="stylesheet">
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
@@ -129,20 +128,18 @@
         }
     ?>
     
-
-
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <div style="display:<?php if (isset($_SESSION['showAlert'])) {
-  echo $_SESSION['showAlert'];
-} else {
-  echo 'none';
-} unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
-          <button type="button" class="close" data-dismiss="alert">&times;</button>
-          <strong><?php if (isset($_SESSION['message'])) {
-  echo $_SESSION['message'];
-} unset($_SESSION['showAlert']); ?></strong>
+          echo $_SESSION['showAlert'];
+        } else {
+          echo 'none';
+        } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong><?php if (isset($_SESSION['message'])) {
+          echo $_SESSION['message'];
+        } unset($_SESSION['showAlert']); ?></strong>
         </div>
         <div class="table-responsive mt-2">
           <table class="table table-bordered table-striped text-center">
