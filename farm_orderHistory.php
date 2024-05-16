@@ -26,7 +26,7 @@ $imagename = $user['ProfileImage'];
 $stmt->close();
 
 // Fetch orders
-$sql = "SELECT * FROM orders WHERE billing_name = ?";
+$sql = "SELECT * FROM orders WHERE ordered_by = ?";
 $stmt = $link->prepare($sql);
 $stmt->bind_param("s", $user['Name']);
 $stmt->execute();
@@ -75,7 +75,7 @@ $stmt->close();
                         </a>
                         <a href="farm_orderHistory.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Order List
+                                Order History
                             </li>
                         </a>
                         <a href="upload_product.php">
@@ -109,16 +109,24 @@ $stmt->close();
                             <table class="table-auto w-full border-collapse">
                                 <thead>
                                     <tr>
+                                        <th class="px-4 py-2">Billing Name</th>
                                         <th class="px-4 py-2">Product Name</th>
                                         <th class="px-4 py-2">Quantity</th>
+                                        <th class="px-4 py-2">Address</th>
+                                        <th class="px-4 py-2">Phone No.</th>
+                                        <th class="px-4 py-2">Payment ID</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                 <?php if ($orders->num_rows > 0): ?>
                                     <?php while ($order = $orders->fetch_assoc()): ?>
                                         <tr>
+                                            <td class="border px-4 py-2"><?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td class="border px-4 py-2"><?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td class="border px-4 py-2"><?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="border px-4 py-2"><?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="border px-4 py-2"><?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="border px-4 py-2"><?php echo htmlspecialchars($order['rpay_order_id'], ENT_QUOTES, 'UTF-8'); ?></td>
                                         </tr>
                                     <?php endwhile; ?>
                                 <?php else: ?>

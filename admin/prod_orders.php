@@ -243,11 +243,16 @@
                                     <thead class="bg-grey-dark text-white text-normal">
                                         <tr>
                                             <!-- <th scope="col">id</th> -->
-                                            <th scope="col">userId</th>
+                                            <!-- <th scope="col">userId</th> -->
                                             <th scope="col">Name</th>
                                             <th scope="col">Product Name</th>
                                             <th scope="col">Quantity</th>
+                                            <th scope="col">Billing Name</th>
+                                            <th scope="col">Payment Type</th>
+                                            <th scope="col">Payment ID</th>
+                                            <th scope="col">Address</th>
                                             <th scope="col">Amount</th>
+                                            <th scope="col">Order on</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -263,11 +268,16 @@
                                                 // Display consumer data in table rows
                                                 echo "<tr>";
                                                 // echo "<td>" . $row['id'] . "</td>";
-                                                echo "<td>" . $row['user_id'] . "</td>";
-                                                echo "<td>" . $row['billing_name'] . "</td>";
+                                                // echo "<td>" . $row['user_id'] . "</td>";
+                                                echo "<td>" . $row['ordered_by'] . "</td>";
                                                 echo "<td>" . $row['product_name'] . "</td>";
                                                 echo "<td>" . $row['quantity'] . "</td>";
+                                                echo "<td>" . $row['billing_name'] . "</td>";
+                                                echo "<td>" . $row['payment_option'] . "</td>";
+                                                echo "<td>" . $row['rpay_order_id'] . "</td>";
+                                                echo "<td>" . $row['address'] . "</td>";
                                                 echo "<td>" . $row['amount_paid'] . "</td>";
+                                                echo "<td>" . $row['created_at'] . "</td>";
                                                 echo "</tr>";
                                             }
                                         } else {
