@@ -68,7 +68,7 @@
                         </a> -->
                          <a href="farm_orderHistory.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Order List
+                                Order History
                             </li>
                         </a>
                         <a href="upload_product.php">

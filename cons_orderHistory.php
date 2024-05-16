@@ -26,7 +26,7 @@ $imagename = $user['ProfileImage'];
 $stmt->close();
 
 // Fetch orders
-$sql = "SELECT * FROM orders WHERE billing_name = ?";
+$sql = "SELECT * FROM orders WHERE ordered_by = ?";
 $stmt = $link->prepare($sql);
 $stmt->bind_param("s", $user['Name']);
 $stmt->execute();
@@ -111,6 +111,10 @@ $stmt->close();
                                 <tr>
                                     <th class="px-4 py-2">Product Name</th>
                                     <th class="px-4 py-2">Quantity</th>
+                                    <th class="px-4 py-2">Address</th>
+                                    <th class="px-4 py-2">Phone No.</th>
+                                    <th class="px-4 py-2">Payment ID</th>
+                                    <th class="px-4 py-2">Billing Name</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -119,6 +123,10 @@ $stmt->close();
                                     <tr>
                                         <td class="border px-4 py-2"><?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td class="border px-4 py-2"><?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['rpay_order_id'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></td>
                                     </tr>
                                 <?php endwhile; ?>
                             <?php else: ?>
