@@ -286,6 +286,7 @@ function resetActiveImg(){
             url: 'cart_action.php',
             method: 'post',
             data: {
+               // checkLogin: true,
                 pid: productId,            // Key: Different variable name, Value: Value of the productId variable
                 pname: productName,        // Key: Different variable name, Value: Value of the productName variable
                 pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
@@ -294,6 +295,8 @@ function resetActiveImg(){
                 uid:userid
             },
             success: function(response) {
+                // if(response === 'loggedIn')
+                // {
                 $("#message").html(response);
                 console.log("Success")
                 window.scrollTo(0, 0);
@@ -311,6 +314,19 @@ function resetActiveImg(){
                 // Reload the page or perform any other action as needed
 
                 load_cart_item_number();
+            // }else {
+            //         // User is not logged in, show popup and redirect to login page
+            //         // alert('Please login to add products to cart.');
+            //         // window.location.href = 'login.php';
+            //         Swal.fire({
+            //     title: 'Not Loged in!!!',
+            //     text: 'Please Login first to add product',
+            //     icon: 'warning'
+            // }).then(() => {
+            //     window.location.href = 'login.php';
+            // });
+
+            //     }
             },
             error: function(xhr, status, error) {
                 // Handle errors
@@ -350,15 +366,29 @@ function resetActiveImg(){
         var productImage = $form.find(".pimage").val();
         var productQuantity = $form.find("#quantity-input").val();
 
-        // Construct the URL with details of the clicked product
-        var url = 'checkout.php?pid=' + encodeURIComponent(productId) +
-                  '&pname=' + encodeURIComponent(productName) +
-                  '&pprice=' + encodeURIComponent(productPrice) +
-                  '&pqty=' + encodeURIComponent(productQuantity) +
-                  '&pimage=' + encodeURIComponent(productImage);
+        var userid = $form.find(".userid").val();
+        if (!userid) {
+            // User is not logged in, show popup and redirect to login page
+            Swal.fire({
+                title: 'Not Logged in!!!',
+                text: 'Please login first to buy the product',
+                icon: 'warning'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        }
+        else {
 
-        // Redirect to the checkout page
-        window.location.href = url;
+            // Construct the URL with details of the clicked product
+            var url = 'checkout.php?pid=' + encodeURIComponent(productId) +
+            '&pname=' + encodeURIComponent(productName) +
+            '&pprice=' + encodeURIComponent(productPrice) +
+            '&pqty=' + encodeURIComponent(productQuantity) +
+            '&pimage=' + encodeURIComponent(productImage);
+            
+            // Redirect to the checkout page
+            window.location.href = url;
+        }
     });
 
     // Load total number of items added to the cart

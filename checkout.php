@@ -11,24 +11,25 @@
       require_once('unsetheader.html');
   }
 
-	$grand_total = 0;
+  
+
 	$allItems = '';
-	$items = [];
-  $productNames = [];
-$productQuantities = [];
+$grand_total = 0;
+$quantities = [];
 
-  $productId = isset($_GET['pid']) ? $_GET['pid'] : null;
-  $productName = isset($_GET['pname']) ? $_GET['pname'] : null;
-  $productPrice = isset($_GET['pprice']) ? $_GET['pprice'] : null;
-  $productQuantity = isset($_GET['pqty']) ? $_GET['pqty'] : null;
-  $productImage = isset($_GET['pimage']) ? $_GET['pimage'] : null;
-
-  // Check if product details are provided in URL parameters
-  if ($productId && $productName && $productPrice && $productQuantity && $productImage) {
-      // Append the details of the clicked product to the list of items
-      $allItems .= $productName . ' (' . $productQuantity . ')';
-      $grand_total += $productQuantity*$productPrice;
-  }
+// Check if URL parameters are set
+if (isset($_GET['pid'], $_GET['pname'], $_GET['pprice'], $_GET['pqty'])) {
+    // Populate form fields with URL parameters
+    $productName = $_GET['pname'];
+    $productQuantity = (int)$_GET['pqty'];
+    $productPrice = $_GET['pprice'];
+    
+    // Append details to $allItems
+    $allItems .= $productName . ' (' . $productQuantity . ')';
+    
+    // Calculate grand total
+    $grand_total += $productQuantity * $productPrice;
+}
   else{
 
     $sql = "SELECT CONCAT(product_name, '(',qty,')') AS ItemQty, total_price FROM cart WHERE user_id=$user_id";
@@ -73,12 +74,23 @@ $productQuantities = [];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
+<style> .divbody {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f3f4f6;
+        }
+        .mydiv {
+          margin-top: 7vh;
+        }
+    </style>
 </head>
 
 <body>
- 
-<div class="min-h-screen flex items-center justify-center bg-white-100 ">
+
+<div class="mydiv min-h-screen flex items-center justify-center bg-white-100 m-2">
   <div class="max-w-md w-full p-6 bg-white rounded-lg shadow-lg py-10 ">
     <h4 class="text-center text-blue-500">Complete your order!</h4>
     <div class="rounded-lg bg-white-100 p-4 text-center">
@@ -221,6 +233,7 @@ rzp1.on('payment.failed', function (response){
         let billing_email = $('#email').val();
         var payAmount = $('#grand_total').val();
         var products = $('#products').val();
+        var address = $('#address').val();
         var quantities = $('#quantities').val();
         var request_url = "submitpayment.php";
         var formData = {
@@ -230,7 +243,8 @@ rzp1.on('payment.failed', function (response){
           paymentOption: paymentOption,
           payAmount: payAmount,
            products: products,
-           quantities: quantities, 
+           quantities: quantities,
+           address : address, 
           action: 'payOrder'
         };
 

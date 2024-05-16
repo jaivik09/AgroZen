@@ -1,110 +1,66 @@
 <?php
-  session_start();
-//   if (isset($_SESSION['productDetails'])) {
-//     $productDetails = $_SESSION['productDetails'];
-//     // You can access $productDetails['productId'], $productDetails['productName'], etc.
-
-//     // Here, you can use the $productDetails array to display the product information
-//     $productId = $productDetails['productId'];
-//     $productName = $productDetails['productName'];
-//     $productPrice = $productDetails['productPrice'];
-//     $productImage = $productDetails['productImage'];
-//     $productQuantity = $productDetails['productQuantity'];
-
-//     // Display the product information
-//     echo "<div>";
-//     echo "<h2>Product Details</h2>";
-//     echo "<p>Product ID: $productId</p>";
-//     echo "<p>Product Name: $productName</p>";
-//     echo "<p>Price: $productPrice</p>";
-//     echo "<p>Quantity: $productQuantity</p>";
-//     echo "<img src='$productImage' alt='Product Image'>";
-//     echo "</div>";
-
-//     // Optionally, you can remove the stored product details from the session after displaying them
-//     // unset($_SESSION['productDetails']);
-// } else {
-//     echo "<p>No product details available.</p>";
-//     // Proceed with your usual database fetching mechanism or display an error message
-// }
+session_start();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="author" content="Sahil Kumar">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Cart</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
-  <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' /> -->
-  <link href="css/my/style.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="author" content="Sahil Kumar">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css' />
+    <link href="css/my/style.css" rel="stylesheet">
     <link href="css/my/product_view.css" rel="stylesheet">
     <link href="css/my/product_catalog.css" rel="stylesheet">
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
     <link href="css/my/ownstyles1.css" rel="stylesheet">
-
-    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
-     -->
     <link href="res/images/logo.png" rel="icon">
-    <script
-      src="https://example.com/fontawesome/v6.5.1/js/all.js"
-      data-auto-a11y="true"
-    ></script>
+    <script src="https://example.com/fontawesome/v6.5.1/js/all.js" data-auto-a11y="true"></script>
+    <!-- Bootstrap CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
 </head>
 
-<body>
-  
-<?php     
-    // echo "Session ID: " . $_SESSION['id']; 
-        $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
-        if(isset($user_id))
-        {
-            require_once('setheader.php');
-        } else {
-            require_once('unsetheader.html');
-        }
+<body class="font-sans bg-gray-100">
+    <?php     
+    $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+    if(isset($user_id)) {
+        require_once('setheader.php');
+    } else {
+        require_once('unsetheader.html');
+    }
     ?>
-    
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div style="display:<?php if (isset($_SESSION['showAlert'])) {
-          echo $_SESSION['showAlert'];
-        } else {
-          echo 'none';
-        } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
-                  <button type="button" class="close" data-dismiss="alert">&times;</button>
-                  <strong><?php if (isset($_SESSION['message'])) {
-          echo $_SESSION['message'];
-        } unset($_SESSION['showAlert']); ?></strong>
-        </div>
-        <div class="table-responsive mt-2">
-          <table class="table table-bordered table-striped text-center">
-            <thead>
-              <tr>
-                <td colspan="7">
-                  <h4 class="text-center text-info m-0">Products in your cart!</h4>
-                </td>
-              </tr>
-              <tr>
-                <th>ID</th>
-                <th>Image</th>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-                <th>
-                  <a href="cart_action.php?clear=all" class="badge-danger badge p-1" onclick="return confirmClearCart();"><i class="fas fa-trash"></i>&nbsp;&nbsp;Clear Cart</a>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
+
+    <div class="container mx-auto p-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div style="display:<?php if (isset($_SESSION['showAlert'])) {
+                    echo $_SESSION['showAlert'];
+                } else {
+                    echo 'none';
+                } unset($_SESSION['showAlert']); ?>" class="alert alert-success alert-dismissible mt-3">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <strong><?php if (isset($_SESSION['message'])) {
+                        echo $_SESSION['message'];
+                    } unset($_SESSION['showAlert']); ?></strong>
+                </div>
+                <div class="table-responsive mt-2">
+                    <table class="table table-bordered table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
               <?php
                 require 'config.php';
                 $stmt = $connection->prepare('SELECT * FROM cart WHERE user_id = ?');
@@ -146,21 +102,19 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+                    </table>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  <?php
+    <?php
 // Close the statement
 $stmt->close();
 ?>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-  <script type="text/javascript">
+    <script type="text/javascript">
   $(document).ready(function() {
 
     // Change the item quantity
@@ -265,7 +219,8 @@ function confirmRemoveItem(itemId) {
    }
   }
   </script>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css' />
+    <!-- Bootstrap JavaScript -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 </body>
 
 </html>

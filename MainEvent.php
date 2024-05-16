@@ -162,7 +162,7 @@
 <div id="indicators-carousel" class="relative w-full slider1" data-carousel="static">
     <!-- Carousel wrapper -->
     <div class="relative h-4/5 rounded-lg md:h-4/5 shadow-lg">
-        <div class="hidden  ease-in-out bx content-between transition-all duration-700 hover:scale-110  " data-carousel-item="active">
+        <div class="hidden bx content-between " data-carousel-item="active">
             <div class="flex space-x-4 ">
                 <?php foreach ($events as $event): ?>
                     <div class="w-1/2 w-50 h-8 ">
@@ -175,7 +175,7 @@
                                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 "><?php echo $event['Title']; ?></h5>
                                 </a>
                                 <p class=" description mb-3 font-normal text-gray-700 "><?php echo $event['Description']; ?></p>
-                                <a href="event_details.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="card-button inline-flex items-center px-3 py-2 text-md font-medium text-center text-white rounded-lg">
+                                <a href="event_details.php?event_id=<?php echo $event['id']; ?>&user_id=<?php echo $user_id; ?>" name="event-register" class="bg-[#FF5722] hover:bg-[#FF401C] inline-flex items-center px-3 py-2 text-md font-medium text-center text-white rounded-lg">
     Register
     
 </a>
