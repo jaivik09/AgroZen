@@ -47,6 +47,8 @@
     <link rel="shortcut icon" href="res/imagesFarmtech.jpg" type="image/x-icon">
     <link href="css/my/ownstyles1.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
@@ -65,7 +67,7 @@
         $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
         if(isset($user_id))
         {
-            require_once('setheader.php');
+            require_once('boot_setheader.php');
         } else {
             require_once('unsetheader.html');
         }
