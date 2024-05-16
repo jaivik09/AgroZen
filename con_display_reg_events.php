@@ -87,7 +87,7 @@
                                 View cart
                             </li>
                         </a>
-                        <a href="orderHistory.php">
+                        <a href="cons_orderHistory.php">
                             <li class="mt-3 text-xl text-white bg-[#4CAF50] text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 Order History
                             </li>
