@@ -79,11 +79,11 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <li>
+      <!-- <li>
           <i class='bx bx-search' ></i>
          <input type="text" placeholder="Search...">
          <span class="tooltip">Search</span>
-      </li>
+      </li> -->
 
       <li>
        <a href="sample_prod_cat.php">
