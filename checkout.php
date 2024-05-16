@@ -233,6 +233,7 @@ rzp1.on('payment.failed', function (response){
         let billing_email = $('#email').val();
         var payAmount = $('#grand_total').val();
         var products = $('#products').val();
+        var address = $('#address').val();
         var quantities = $('#quantities').val();
         var request_url = "submitpayment.php";
         var formData = {
@@ -242,7 +243,8 @@ rzp1.on('payment.failed', function (response){
           paymentOption: paymentOption,
           payAmount: payAmount,
            products: products,
-           quantities: quantities, 
+           quantities: quantities,
+           address : address, 
           action: 'payOrder'
         };
 

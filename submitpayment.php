@@ -1,7 +1,36 @@
 
 <?php
 session_start();
+
+$hostName = "localhost"; // host name
+$username = "root";  // database username
+$password = ""; // database password
+$databaseName = "agrozen"; // database name
+
+$connection = new mysqli($hostName,$username,$password,$databaseName);
+if (!$connection) {
+    die("Error in database connection". $connection->connect_error);
+}
 $user_id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
+if ($user_id) {
+  $user_query = "SELECT Name FROM users WHERE id = '$user_id'";
+  $user_result = $connection->query($user_query);
+  if ($user_result && $user_result->num_rows > 0) {
+      $user_data = $user_result->fetch_assoc();
+      $user_name = $user_data['Name'];
+  }
+}
+
+if ($user_id) {
+  $user_query = "SELECT Phone FROM users WHERE id = '$user_id'";
+  $user_result = $connection->query($user_query);
+  if ($user_result && $user_result->num_rows > 0) {
+      $user_data = $user_result->fetch_assoc();
+      $phone_no = $user_data['Phone'];
+  }
+}
+//$user_name = isset($_SESSION['Name']) ? $_SESSION['Name'] : null;
+
 header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods:POST,GET,PUT,PATCH,DELETE');
 header("Content-Type: application/json");
@@ -43,6 +72,7 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
     // $shipping_email=$_POST['shipping_email'];
     $paymentOption=$_POST['paymentOption'];
     $payAmount=$_POST['payAmount'];
+    $address=$_POST['address'];
     
     $note="Payment of amount Rs. ".$payAmount;
     
@@ -77,6 +107,7 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
     
     curl_close($curl);
     $orderRes= json_decode($response);
+    
      
   //   if(isset($orderRes->id)){
      
@@ -108,15 +139,6 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
     
   // }
 
-  $hostName = "localhost"; // host name
-$username = "root";  // database username
-$password = ""; // database password
-$databaseName = "agrozen"; // database name
-
-$connection = new mysqli($hostName,$username,$password,$databaseName);
-if (!$connection) {
-    die("Error in database connection". $connection->connect_error);
-}
 
   if (isset($orderRes->id)) {
     $rpay_order_id = $orderRes->id;
@@ -141,16 +163,16 @@ if (!$connection) {
               $quantity = (int) $quantityList[$i];
       
               // Insert this product into the database
-              $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, payment_option, amount_paid, rpay_order_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-              $stmt->bind_param("issssds", $user_id, $productName, $quantity, $billing_name, $paymentOption, $payAmount, $rpay_order_id);
+              $stmt = $connection->prepare("INSERT INTO orders (user_id, product_name, quantity, billing_name, payment_option, amount_paid, rpay_order_id,ordered_by,address,phone_no) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?)");
+              $stmt->bind_param("issssdssss", $user_id, $productName, $quantity, $billing_name, $paymentOption, $payAmount, $rpay_order_id,$user_name,$address,$phone_no);
               $stmt->execute();
               $stmt->close();
           }
 
-          $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
-          $stmt->bind_param("i", $user_id);
-          $stmt->execute();
-          $stmt->close();
+          // $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
+          // $stmt->bind_param("i", $user_id);
+          // $stmt->execute();
+          // $stmt->close();
       
           // Close the database connection
           $connection->close();
