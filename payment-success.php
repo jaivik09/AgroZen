@@ -7,6 +7,14 @@
     <link rel="icon" href="images/dollar.png" type="image/png" sizes="16x16">
     <title>Payment Success</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@latest/dist/flowbite.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@flowbite/css/dist/flowbite.min.css' />
+    <script>
+        function goToHomePage() {
+            window.location.href = 'index.php'; 
+            console.log("go to home") // Adjust this URL to your actual home page URL
+        }
+    </script>
 </head>
 <style>
    body {
@@ -143,7 +151,7 @@
         margin-bottom: 8px;
         color: #32a852;
     }
-    
+
 </style>
 
 <body>
@@ -171,6 +179,9 @@
                 <div class="jagged-edge"></div>
             </div>
         </div>
+        <div class="mb-4 flex justify-center">
+      <button id="PayNow" class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2" type="button" onclick="goToHomePage()">Home</button>
+      </div>
     </div>
 </body>
 </html>

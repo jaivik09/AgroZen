@@ -146,6 +146,11 @@ if (!$connection) {
               $stmt->execute();
               $stmt->close();
           }
+
+          $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
+          $stmt->bind_param("i", $user_id);
+          $stmt->execute();
+          $stmt->close();
       
           // Close the database connection
           $connection->close();
