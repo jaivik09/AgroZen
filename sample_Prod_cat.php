@@ -89,11 +89,11 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <!-- <li>
+      <li>
           <i class='bx bx-search' ></i>
          <input type="text" placeholder="Search...">
          <span class="tooltip">Search</span>
-      </li> -->
+      </li>
 
       <li>
        <a href="crops.php">
@@ -153,11 +153,11 @@
         <?php while ($row = $result->fetch_assoc()): ?>
             <form class="form-submit">
                 <div class="card w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                <a href="sample_prod_view.php?pid=<?php echo $row['prod_id']; ?>&pname=<?php echo $row['prod_name']; ?>&pprice=<?php echo $row['prod_price']; ?>&pqty=undefined&pimage=<?php echo $row['main_img']; ?>">
                         <img class="p-8 rounded-t-lg" src="uploads/<?php echo $row['main_img']; ?>" alt="" />
                     </a>
                     <div class="px-5 pb-5">
-                        <a href="sample_prod_view.php?prod_id=<?php echo $row['prod_id']; ?>">
+                    <a href="sample_prod_view.php?pid=<?php echo $row['prod_id']; ?>&pname=<?php echo $row['prod_name']; ?>&pprice=<?php echo $row['prod_price']; ?>&pqty=undefined&pimage=<?php echo $row['main_img']; ?>">
                             <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white"><?php echo $row['prod_name']; ?></h5>
                         </a>
                         <div class="flex items-center mt-2.5 mb-5">
