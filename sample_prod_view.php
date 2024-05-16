@@ -286,7 +286,7 @@ function resetActiveImg(){
             url: 'cart_action.php',
             method: 'post',
             data: {
-                checkLogin: true,
+               // checkLogin: true,
                 pid: productId,            // Key: Different variable name, Value: Value of the productId variable
                 pname: productName,        // Key: Different variable name, Value: Value of the productName variable
                 pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
@@ -295,8 +295,8 @@ function resetActiveImg(){
                 uid:userid
             },
             success: function(response) {
-                if(response === 'loggedIn')
-                {
+                // if(response === 'loggedIn')
+                // {
                 $("#message").html(response);
                 console.log("Success")
                 window.scrollTo(0, 0);
@@ -314,19 +314,19 @@ function resetActiveImg(){
                 // Reload the page or perform any other action as needed
 
                 load_cart_item_number();
-            }else {
-                    // User is not logged in, show popup and redirect to login page
-                    // alert('Please login to add products to cart.');
-                    // window.location.href = 'login.php';
-                    Swal.fire({
-                title: 'Not Loged in!!!',
-                text: 'Please Login first to add product',
-                icon: 'warning'
-            }).then(() => {
-                window.location.href = 'login.php';
-            });
+            // }else {
+            //         // User is not logged in, show popup and redirect to login page
+            //         // alert('Please login to add products to cart.');
+            //         // window.location.href = 'login.php';
+            //         Swal.fire({
+            //     title: 'Not Loged in!!!',
+            //     text: 'Please Login first to add product',
+            //     icon: 'warning'
+            // }).then(() => {
+            //     window.location.href = 'login.php';
+            // });
 
-                }
+            //     }
             },
             error: function(xhr, status, error) {
                 // Handle errors
