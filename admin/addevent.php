@@ -269,71 +269,88 @@
             <!--/Sidebar-->
             <!--Main-->
             <div class="mr-20 ml-20" >
+            <?php
+    if(isset($_POST['verify']))
+    {
+      $title = isset($_POST['title']) ? trim($_POST['title']) : '';
+      $description = isset($_POST['description']) ? trim($_POST['description']) : '';
+      $time = isset($_POST['time']) ? trim($_POST['time']) : '';
+      $location = isset($_POST['location']) ? trim($_POST['location']) : '';
+      $date = isset($_POST['date']) ? trim($_POST['date']) : ''; 
+      
+      $con = mysqli_connect('localhost','root','','agrozen');
+
+      if($_FILES['profile_image']['error'] == UPLOAD_ERR_OK)
+      {
+        $targetDir = "res/eventImage/";
+
+        // Get the original name of the uploaded file
+        $imageName = basename($_FILES['profile_image']['name']);
+        $targetFile = $targetDir . $imageName;
+
+        if(file_exists($targetFile))
+        {
+          echo "<script>alert('File is already exits')</script>";
+        } else {
+          if(move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetFile))
+          {
+            $sql = "INSERT INTO events(Title,Description,Time,Date,Location,Image) VALUES ('$title','$description','$time','$date','$location','$imageName')";
+
+            if(mysqli_query($con,$sql))
+            {
+              echo "<script>alert('Event added successfully!!!!')</script>";
+            } else {
+              echo "<script>alert('Error while uploading the Event')</script>";
+            }
+          } else {
+            echo "<script>alert('Error while uploading the Event')</script>";
+          }
+        }
+      } else {
+        echo "<script>alert('No file uploaded')</script>";
+      }      
+    }
+  ?>
   
-                <?php
-                    if(isset($_POST['verify']))
-                    {
-                    $title = isset($_POST['title']) ? trim($_POST['title']) : '';
-                    $description = isset($_POST['description']) ? trim($_POST['description']) : ''; 
-                    
-                    $con = mysqli_connect('localhost','root','','agrozen');
+  <div class="container">
+    <div class="title">EVENT DETAILS</div>
+    <div class="content ">
+      <form class="max-w-sm mx-auto" method="post" action="" enctype="multipart/form-data">
+      <div class="mb-5">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+          <input type="text" id="name" name="title" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
+        </div>
+        <div class="mb-5">
+            <label for="message" name="description" class="block text-sm font-semibold leading-6 text-gray-900">Description</label>
+            <div class="mt-2.5">
+              <textarea name="description" id="message" rows="4" class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+            </div>
+        </div>
+        <div class="mb-5">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
+          <input type="text" id="name" name="time" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
+        </div>
+        <div class="mb-5">
+    <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+    <input type="date" id="date" name="date" class="datepicker shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" placeholder="Select date" required />
+</div>
 
-                    if($_FILES['profile_image']['error'] == UPLOAD_ERR_OK)
-                    {
-                        $targetDir = "../res/eventImage/";
-
-                        // Get the original name of the uploaded file
-                        $imageName = basename($_FILES['profile_image']['name']);
-                        $targetFile = $targetDir . $imageName;
-
-                        if(file_exists($targetFile))
-                        {
-                        echo "<script>alert('File is already exits')</script>";
-                        } else {
-                        if(move_uploaded_file($_FILES['profile_image']['tmp_name'], $targetFile))
-                        {
-                            $sql = "INSERT INTO events(Title,Description,Image) VALUES ('$title','$description','$imageName')";
-
-                            if(mysqli_query($con,$sql))
-                            {
-                            echo "<script>alert('Event added successfully!!!!')</script>";
-                            } else {
-                            echo "<script>alert('Error while uploading the Event')</script>";
-                            }
-                        } else {
-                            echo "<script>alert('Error while uploading the Event')</script>";
-                        }
-                        }
-                    } else {
-                        echo "<script>alert('No file uploaded')</script>";
-                    }      
-                    }
-                ?>
-            
-                <div class="container">
-                    <b><div class="title">Add New Event</div></b>
-                    <div class="content ">
-                        <form class="max-w-sm mx-auto" method="post" action="" enctype="multipart/form-data">
-                            <div class="mb-5">
-                                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
-                                <input type="text" id="title" name="title" placeholder="Enter event title" class="input-field" required />
-                            </div>
-                            <div class="mb-5">
-                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                <textarea id="description" name="description" placeholder="Enter event description" rows="4" class="input-field"></textarea>
-                            </div>
-                            <div class="mb-5 file-input">
-                                <label for="profile-image"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image</label>
-                                <input type="file" id="profile-image" name="profile_image" accept="image/*" class="input-field" />
-                                <button type="button" class="file-btn">Choose File</button>
-                                <div class="selected-file" id="selected-file">No file selected</div>
-                            </div>
-                            <div class="flex items-start mb-5">
-                                <button type="submit" name="verify" class="submit-btn">Upload</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+<div class="mb-5">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Location</label>
+          <input type="text" id="name" name="location" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"  required />
+        </div>
+        <div class="mb-5 file-input">
+            <label for="profile-image"  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Profile Image</label>
+            <input type="file" id="profile-image" name="profile_image" accept="image/*" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" />
+            <button type="button">Choose File</button>
+            <div class="selected-file" id="selected-file">No file selected</div>
+          </div>
+        
+        <div class="flex items-start mb-5">
+        <button type="submit" name="verify" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload </button>
+    </form>
+    </div>
+  </div>
 
             </div>
             <!--/Main-->

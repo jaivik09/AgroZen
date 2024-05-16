@@ -162,13 +162,13 @@ $multiple_img=$connection->query($sql2);
             <div class = "img-container flex items-center justify-center">
             <img src="uploads/<?php echo $row['main_img']; ?>" alt="" class="large_img">
             </div>
-            <div class="flex items-center justify-center">
-                <?php while ($row2 = $multiple_img->fetch_assoc()): ?>
+            <!-- <div class="flex items-center justify-center">
+                <?php //while ($row2 = $multiple_img->fetch_assoc()): ?>
                     <div class = "hover-container">
-                        <div><img src = "uploads/<?php echo $row2['file_name']; ?>"></div>
+                        <div><img src = "uploads/<?php //echo $row2['file_name']; ?>"></div>
                     </div>
-                <?php endwhile; ?>
-                </div>
+                <?php //endwhile; ?>
+                </div> -->
         </div>
         <div class = "product-div-right">
             <span class = "product-name"><?php echo $row['prod_name']; ?></span>
