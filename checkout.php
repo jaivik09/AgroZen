@@ -29,6 +29,7 @@ if (isset($_GET['pid'], $_GET['pname'], $_GET['pprice'], $_GET['pqty'])) {
     
     // Calculate grand total
     $grand_total += $productQuantity * $productPrice;
+    $quantities[] = $productQuantity;
 }
   else{
 
