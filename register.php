@@ -82,6 +82,17 @@ function checkStudentExistance($email,$mobile)
   return $count == 0;
 }
 
+function checkStudentExistanceName($firstName)
+{
+  $con1 = mysqli_connect('localhost','root','','agrozen');
+  
+  $sql1 = "SELECT Name FROM users WHERE Name='$firstName' ";
+  $re1 = mysqli_query($con1,$sql1);
+  $count = mysqli_num_rows($re1);
+
+  mysqli_close($con1);
+  return $count == 0;
+}
 function register($firstName, $email, $mobile, $password, $profileImage, $role, $gender)
 {
     $con = mysqli_connect('localhost', 'root', '', 'agrozen');
@@ -152,6 +163,10 @@ if (isset($_POST['verify'])) {
       if(!checkStudentExistance($email,$mobile))
       {
         echo "<script>swal('Error','Email or Mobile no. is already registered.','warning')</script>";
+      }
+      else if (!checkStudentExistanceName($firstName))
+      {
+        echo "<script>swal('Error','Name is already registered.','warning')</script>";
       }
       else 
       {
