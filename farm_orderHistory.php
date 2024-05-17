@@ -99,35 +99,33 @@ $stmt->close();
         </div>
         <div class="sm:w-full md:w-[70%]">
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 mx-4">
-                <?php if ($orders->num_rows > 0): ?>
-                    <?php while ($order = $orders->fetch_assoc()): ?>
-                        <div class='p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-                            <a href='#'>
-                                <h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>
-                                    <?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?>
-                                </h5>
-                            </a>
-                            <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Product :</b> <?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?></p>
-                            <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Quantity :</b> <?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></p>
-                            <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Bought On :</b> <?php echo htmlspecialchars($order['created_at'], ENT_QUOTES, 'UTF-8'); ?></p>
-                            <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Amount :</b> <?php echo htmlspecialchars($order['amount_paid'], ENT_QUOTES, 'UTF-8'); ?> ₹</p>
-                            <a href='#' class='bg-[#FF401C] inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
-                                More Detail
-                                <svg class='rtl:rotate-180 w-3.5 h-3.5 ml-2' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 14 10'>
-                                    <path stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M1 5h12m0 0L9 1m4 4L9 9'/>
-                                </svg>
-                            </a>
-                        </div>
-                    <?php endwhile; ?>
-                <?php else: ?>
-                    <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 text-center">
-                        No Products Bought
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 mx-4">
+            <?php if ($orders->num_rows > 0): ?>
+                <?php while ($order = $orders->fetch_assoc()): ?>
+                    <div class='p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                        <a href='#'>
+                            <h5 class='mb-2 text-center text-[35px] font-bold tracking-tight text-gray-900 dark:text-white'>
+                                <?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?>
+                            </h5>
+                        </a>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Quantity :</b> <?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Bought On :</b> <?php echo htmlspecialchars($order['created_at'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Amount :</b> <?php echo htmlspecialchars($order['amount_paid'], ENT_QUOTES, 'UTF-8'); ?> ₹</p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Payment ID :</b> <?php echo htmlspecialchars($order['rpay_order_id'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Billing Name :</b> <?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Address :</b> <?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Contact :</b> <?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></p>
+
                     </div>
-                <?php endif; ?>
-            </div>
-                            
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 text-center">
+                    No Products Bought
+                </div>
+            <?php endif; ?>
         </div>
+                        
+    </div>
     </div>
 
 <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
