@@ -290,7 +290,7 @@ $(document).ready(function() {
         var productPrice = $form.find(".pprice").val();
         var productImage = $form.find(".pimage").val();
         var userid = $form.find(".userid").val();
-        var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
+        var productQuantity = 1; // Corrected to get quantity input value
         addButton.prop('disabled', true);
 
         if (!userid) {
@@ -398,6 +398,9 @@ $(document).ready(function() {
    }
   }
   </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>

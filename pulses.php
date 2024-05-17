@@ -201,26 +201,122 @@ $result = $connection->query($sql);
   <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script>
 
   <script type="text/javascript">
-  $(document).ready(function() {
-    // Redirect to sample_prod_view.php with prod_id
+//   $(document).ready(function() {
+//     // Redirect to sample_prod_view.php with prod_id
+//     $(".addItemBtn").click(function(e) {
+//         e.preventDefault();
+//         var $form = $(this).closest(".form-submit");
+//         var productId = $form.find(".pid").val();
+//         var productName = $form.find(".pname").val();
+//         var productPrice = $form.find(".pprice").val();
+//         var productImage = $form.find(".pimage").val();
+//         var productQuantity = $form.find("#quantity-input").val();
+
+//         // Construct the URL with details of the clicked product and prod_id
+//         var url = 'sample_prod_view.php?pid=' + encodeURIComponent(productId) +
+//                   '&pname=' + encodeURIComponent(productName) +
+//                   '&pprice=' + encodeURIComponent(productPrice) +
+//                   '&pqty=' + encodeURIComponent(productQuantity) +
+//                   '&pimage=' + encodeURIComponent(productImage);
+
+//         // Redirect to the sample_prod_view.php
+//         window.location.href = url;
+//     });
+
+//     // Load total number of items added to the cart
+//     load_cart_item_number();
+
+//     function load_cart_item_number() {
+//         $.ajax({
+//             url: 'cart_action.php',
+//             method: 'get',
+//             data: {
+//                 cartItem: "cart_item"
+//             },
+//             success: function(response) {
+//                 $("#cart-item").html(response);
+//             }
+//         });
+//     }
+// });
+
+$(document).ready(function() {
+    // Send product details to the server
     $(".addItemBtn").click(function(e) {
         e.preventDefault();
-        var $form = $(this).closest(".form-submit");
+        var addButton = $(this);
+        var $form = $(this).closest(".form-submit"); // Corrected to find the closest form
         var productId = $form.find(".pid").val();
         var productName = $form.find(".pname").val();
         var productPrice = $form.find(".pprice").val();
         var productImage = $form.find(".pimage").val();
-        var productQuantity = $form.find("#quantity-input").val();
+        var userid = $form.find(".userid").val();
+        var productQuantity = 1; // Corrected to get quantity input value
+        addButton.prop('disabled', true);
 
-        // Construct the URL with details of the clicked product and prod_id
-        var url = 'sample_prod_view.php?pid=' + encodeURIComponent(productId) +
-                  '&pname=' + encodeURIComponent(productName) +
-                  '&pprice=' + encodeURIComponent(productPrice) +
-                  '&pqty=' + encodeURIComponent(productQuantity) +
-                  '&pimage=' + encodeURIComponent(productImage);
+        if (!userid) {
+            // User is not logged in, show popup and redirect to login page
+            Swal.fire({
+                title: 'Not Logged in!!!',
+                text: 'Please login first to buy the product',
+                icon: 'warning'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        }
+        else {
+        $.ajax({
+            url: 'cart_action.php',
+            method: 'post',
+            data: {
+               // checkLogin: true,
+                pid: productId,            // Key: Different variable name, Value: Value of the productId variable
+                pname: productName,        // Key: Different variable name, Value: Value of the productName variable
+                pprice: productPrice,      // Key: Different variable name, Value: Value of the productPrice variable
+                pqty: productQuantity,     // Key: Different variable name, Value: Value of the productQuantity variable
+                pimage: productImage,
+                uid:userid
+            },
+            success: function(response) {
+                // if(response === 'loggedIn')
+                // {
+                $("#message").html(response);
+                console.log("Success")
+                window.scrollTo(0, 0);
+                addButton.prop('disabled', false);
+                
+                // Display alert message based on response
+                if (response.trim() === 'Product added to cart successfully.') {
+                    // alert('Product added to cart successfully.');
+                    Swal.fire("Product added to cart successfully.");
+                } else {
+                    // alert('Item already added to your cart!');
+                    Swal.fire("Item already added to your cart!.");
+                }
+                
+                // Reload the page or perform any other action as needed
 
-        // Redirect to the sample_prod_view.php
-        window.location.href = url;
+                load_cart_item_number();
+            // }else {
+            //         // User is not logged in, show popup and redirect to login page
+            //         // alert('Please login to add products to cart.');
+            //         // window.location.href = 'login.php';
+            //         Swal.fire({
+            //     title: 'Not Loged in!!!',
+            //     text: 'Please Login first to add product',
+            //     icon: 'warning'
+            // }).then(() => {
+            //     window.location.href = 'login.php';
+            // });
+
+            //     }
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText);
+            }
+        });
+        }
     });
 
     // Load total number of items added to the cart
@@ -239,6 +335,13 @@ $result = $connection->query($sql);
         });
     }
 });
+
+
+  </script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js'></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
   </script>
 </body>
