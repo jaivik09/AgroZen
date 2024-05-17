@@ -292,9 +292,12 @@ $(document).ready(function() {
                 if (response.trim() === 'Product added to cart successfully.') {
                     // alert('Product added to cart successfully.');
                     Swal.fire("Product added to cart successfully.");
-                } else {
+                } else if(response.trim() === 'Item already added to your cart!') {
                     // alert('Item already added to your cart!');
                     Swal.fire("Item already added to your cart!.");
+                }
+                else{
+                    Swal.fire("Demanded quantity is not available in stock..");
                 }
                 
                 // Reload the page or perform any other action as needed
