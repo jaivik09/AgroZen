@@ -282,6 +282,17 @@ function resetActiveImg(){
         var productQuantity = $form.find("#quantity-input").val(); // Corrected to get quantity input value
         addButton.prop('disabled', true);
 
+        if (!userid) {
+            // User is not logged in, show popup and redirect to login page
+            Swal.fire({
+                title: 'Not Logged in!!!',
+                text: 'Please login first to buy the product',
+                icon: 'warning'
+            }).then(() => {
+                window.location.href = 'login.php';
+            });
+        }
+        else {
         $.ajax({
             url: 'cart_action.php',
             method: 'post',
@@ -333,6 +344,7 @@ function resetActiveImg(){
                 console.error(xhr.responseText);
             }
         });
+        }
     });
 
     // Load total number of items added to the cart
