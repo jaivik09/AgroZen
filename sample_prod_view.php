@@ -364,7 +364,7 @@ function resetActiveImg(){
     }
 });
 
-  </script>
+</script>
 
 <script type="text/javascript">
   $(document).ready(function() {
