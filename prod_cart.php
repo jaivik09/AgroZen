@@ -90,12 +90,11 @@
           <table class="table table-bordered table-striped text-center">
             <thead>
               <tr>
-                <td colspan="7">
+                <td colspan="6">
                   <h4 class="text-center text-info m-0">Products in your cart!</h4>
                 </td>
               </tr>
               <tr>
-                <th>ID</th>
                 <th>Image</th>
                 <th>Product</th>
                 <th>Price</th>
@@ -117,7 +116,7 @@
                 while ($row = $result->fetch_assoc()):
               ?>
               <tr>
-                <td><?= $row['id'] ?></td>
+                
                 <input type="hidden" class="pid" value="<?= $row['id'] ?>">
                 <td><img src="uploads/<?php echo $row['product_image']; ?>" width="50"></td>
                 <td><?= $row['product_name'] ?></td>
@@ -137,7 +136,7 @@
               <?php $grand_total += $row['total_price']; ?>
               <?php endwhile; ?>
               <tr>
-                <td colspan="3">
+                <td colspan="2">
                   <a href="sample_Prod_cat.php" class="btn btn-success"><i class="fas fa-cart-plus"></i>&nbsp;&nbsp;Continue
                     Shopping</a>
                 </td>

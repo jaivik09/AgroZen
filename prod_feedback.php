@@ -60,21 +60,16 @@
         <div class="w-[30%]">
             <div class="left-0 flex justify-center">
                 <div class="w-[250px] h-[250px] rounded-full py-3">
-                    <img  class="rounded-[100%]" src="<?php echo "res/profileImage/".$imageName; ?>" alt="User Avatar">
+                    <img class="rounded-full" src="<?php echo "res/profileImage/" . htmlspecialchars($imagename, ENT_QUOTES, 'UTF-8'); ?>" alt="User Avatar">
                     <ul>
                         <a href="prod_cart.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
                                 View cart
                             </li>
                         </a>
-                        <!-- <a href="orderhistory.html">
+                        <a href="farm_orderHistory.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Machineries
-                            </li>
-                        </a> -->
-                         <a href="wishlist.html">
-                            <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Order List
+                                Order History
                             </li>
                         </a>
                         <a href="upload_product.php">
@@ -84,7 +79,7 @@
                         </a>
                         <a href="far_display_reg_events.php">
                             <li class="mt-3 text-xl bg-[#4CAF50] text-white text-center py-3 rounded-[10px] hover:bg-[#2e7d32]">
-                                Regisetered Events
+                                Registered Events
                             </li>
                         </a>
                         <a href="prod_feedback.php">
