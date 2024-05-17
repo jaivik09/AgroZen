@@ -27,8 +27,22 @@
 			$pimage = $_POST['pimage'];
 			$total_price = $pprice * $pqty;
 			$userid = $_POST['uid'];
-	
-			$stmt = $connection->prepare('SELECT id FROM cart WHERE id=? AND user_id=?');
+
+
+			$stmt = $connection->prepare('SELECT prod_quant FROM product_view WHERE prod_id = ?');
+			if (!$stmt) {
+				echo "Prepare failed: (" . $connection->errno . ") " . $connection->error;
+			} else {
+				$stmt->bind_param('i', $pid);
+				if (!$stmt->execute()) {
+					echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+				} else {
+					$stmt->bind_result($available_quantity);
+					$stmt->fetch();
+					$stmt->close();
+		
+					if ($available_quantity >= $pqty) {
+						$stmt = $connection->prepare('SELECT id FROM cart WHERE id=? AND user_id=?');
 			$stmt->bind_param('ii', $pid, $userid);
 			$stmt->execute();
 			$res = $stmt->get_result();
@@ -48,6 +62,15 @@
 				// Item already in the cart
 				echo "Item already added to your cart!";
 			}
+						
+					} else {
+						// Demanded quantity not available, show alert
+						echo "Demanded quantity is not available in stock.";
+					}
+				}
+			}
+	
+			
 		}
 	} else {
 		echo "";

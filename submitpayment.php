@@ -167,6 +167,11 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
               $stmt->bind_param("issssdssss", $user_id, $productName, $quantity, $billing_name, $paymentOption, $payAmount, $rpay_order_id,$user_name,$address,$phone_no);
               $stmt->execute();
               $stmt->close();
+
+              $updateStmt = $connection->prepare("UPDATE product_view SET prod_quant = prod_quant - ? WHERE prod_name = ?");
+              $updateStmt->bind_param("is", $quantity, $productName);
+              $updateStmt->execute();
+              $updateStmt->close();
           }
 
           // $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
