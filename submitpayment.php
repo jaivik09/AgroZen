@@ -174,10 +174,10 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
               $updateStmt->close();
           }
 
-          // $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
-          // $stmt->bind_param("i", $user_id);
-          // $stmt->execute();
-          // $stmt->close();
+          $stmt = $connection->prepare("DELETE FROM cart WHERE user_id = ?");
+          $stmt->bind_param("i", $user_id);
+          $stmt->execute();
+          $stmt->close();
       
           // Close the database connection
           $connection->close();
@@ -204,3 +204,6 @@ header('Access-Control-Allow-Headers:Access-Control-Allow-Origin,Access-Control-
 
 
        ?>   
+
+
+
