@@ -99,10 +99,10 @@ $stmt->close();
     </div>
     <div class="sm:w-full md:w-[70%]">
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 mx-4">
+        <div class="ml-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 mx-4">
             <?php if ($orders->num_rows > 0): ?>
                 <?php while ($order = $orders->fetch_assoc()): ?>
-                    <div class='p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                    <div class='transform transition-transform duration-300 hover:scale-110 shadow-lg p-6 bg-white border border-gray-400 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700'>
                         <a href='#'>
                             <h5 class='mb-2 text-center text-[35px] font-bold tracking-tight text-gray-900 dark:text-white'>
                                 <?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?>
@@ -115,11 +115,10 @@ $stmt->close();
                         <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Billing Name :</b> <?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></p>
                         <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Address :</b> <?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></p>
                         <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Contact :</b> <?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></p>
-
                     </div>
                 <?php endwhile; ?>
             <?php else: ?>
-                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 text-center">
+                <div class='center text-center transform transition-transform duration-300 hover:scale-110 shadow-lg p-6 bg-white border border-gray-400 rounded-lg shadow dark:bg-gray-900 dark:border-gray-700'>
                     No Products Bought
                 </div>
             <?php endif; ?>
@@ -130,8 +129,15 @@ $stmt->close();
 
 <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
     <div id="FOOTER">
-        <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2">
-            <p>LET'S GET CONNECTED</p>
+        <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2 flex justify-between">
+            <p class="mr-2">LETS GET CONNECTED</p>
+            <div class="footer-icon">
+                <a href="https://www.instagram.com/your_instagram_username"><i class="fab fa-instagram mr-2"></i></a>
+                <a href="https://www.linkedin.com/in/your_linkedin_profile"><i class="fab fa-linkedin mr-2"></i></a>
+                <a href="https://plus.google.com/your_google_plus_profile"><i class="fab fa-google-plus-square mr-2"></i></a>
+                <a href="https://www.facebook.com/your_facebook_profile"><i class="fab fa-facebook mr-2"></i></a>
+                <a href="https://twitter.com/your_twitter_profile"><i class="fab fa-twitter mr-2"></i></a>
+            </div>
         </div>
         <div class="bg-gray-300 text-center">
             <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">

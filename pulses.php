@@ -70,7 +70,7 @@
         }
     ?>
         
-<div class="sidebar">
+<div class="sidebar mt-2">
     <div class="logo-details">
       
         <i class='bx bx-menu' id="btn" ></i>

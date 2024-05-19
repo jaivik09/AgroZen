@@ -54,7 +54,7 @@
     <div class="flex">
         <div class="w-[30%]">
             <div class="left-0 flex justify-center">
-                <div class="w-[250px] h-[250px] rounded-full py-3">
+                <div class="w-[18rem] h-[18rem] rounded-full py-3">
                     <img class="rounded-[100%]" src="<?php echo "res/profileImage/".$imageName; ?>" alt="User Avatar">
                     <ul>
                         <a href="prod_cart.php">
@@ -150,8 +150,15 @@
 
     <footer class="w-full fixed bottom-0 left-0" id="FOOTER">
         <div id="FOOTER">
-            <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2">
-                <p>LETS GET CONNECTED</p>
+            <div class="bg-[#4CAF50] text-white text-3xl font-medium py-2 px-2 flex justify-between">
+                <p class="mr-2">LETS GET CONNECTED</p>
+                <div class="footer-icon">
+                    <a href="https://www.instagram.com/your_instagram_username"><i class="fab fa-instagram mr-2"></i></a>
+                    <a href="https://www.linkedin.com/in/your_linkedin_profile"><i class="fab fa-linkedin mr-2"></i></a>
+                    <a href="https://plus.google.com/your_google_plus_profile"><i class="fab fa-google-plus-square mr-2"></i></a>
+                    <a href="https://www.facebook.com/your_facebook_profile"><i class="fab fa-facebook mr-2"></i></a>
+                    <a href="https://twitter.com/your_twitter_profile"><i class="fab fa-twitter mr-2"></i></a>
+                </div>
             </div>
             <div class="bg-gray-300 text-center">
                 <p class="text-sm text-gray-900 sm:text-center dark:text-gray-900 my-0 leading-normal">
