@@ -84,7 +84,7 @@
       </li> -->
 
       <li>
-       <a href="crops.php">
+       <a href="sample_Prod_cat.php">
        <i class="fa-regular fa-lemon"></i>
          <span class="links_name">crops</span>
        </a>
