@@ -89,11 +89,11 @@
         <i class='bx bx-menu' id="btn" ></i>
     </div>
     <ul class="nav-list">
-      <li>
+      <!-- <li>
           <i class='bx bx-search' ></i>
          <input type="text" placeholder="Search...">
          <span class="tooltip">Search</span>
-      </li>
+      </li> -->
 
       <li>
        <a href="crops.php">
@@ -328,9 +328,12 @@ $(document).ready(function() {
                 if (response.trim() === 'Product added to cart successfully.') {
                     // alert('Product added to cart successfully.');
                     Swal.fire("Product added to cart successfully.");
-                } else {
+                } else if(response.trim() === 'Item already added to your cart!') {
                     // alert('Item already added to your cart!');
                     Swal.fire("Item already added to your cart!.");
+                }
+                else{
+                    Swal.fire("Demanded quantity is not available in stock..");
                 }
                 
                 // Reload the page or perform any other action as needed

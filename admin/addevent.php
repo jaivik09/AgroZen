@@ -282,7 +282,7 @@
 
       if($_FILES['profile_image']['error'] == UPLOAD_ERR_OK)
       {
-        $targetDir = "res/eventImage/";
+        $targetDir = "../res/eventImage/";
 
         // Get the original name of the uploaded file
         $imageName = basename($_FILES['profile_image']['name']);

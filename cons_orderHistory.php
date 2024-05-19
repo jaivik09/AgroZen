@@ -62,8 +62,8 @@ $stmt->close();
     }
     ?>
 
-<div class="flex">
-    <div class="w-[30%]">
+<div class="flex flex-col sm:flex-row">
+    <div class="sm:w-full md:w-[30%]">
         <div class="left-0 flex justify-center">
             <div class="w-[250px] h-[250px] rounded-full py-3">
                 <img class="rounded-[100%]" src="<?php echo "res/profileImage/".$imageName; ?>" alt="User Avatar">
@@ -97,49 +97,34 @@ $stmt->close();
             </div>
         </div>
     </div>
-    <div class="w-[70%]">
-        <div class="col-lg-8 mt-8 mr-8">
-            <div class="flex flex-1 flex-col md:flex-row lg:flex-row mx-2">
-                <!-- Orders List -->
-                <div class="w-full bg-white shadow-sm rounded-md border border-gray-300">
-                    <div class="border-b border-gray-900 px-4 py-3">
-                        <h3 class="font-medium text-3xl"><i class="far fa-clone pr-1"></i> Order History</h3>
+    <div class="sm:w-full md:w-[70%]">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 mb-4 mx-4">
+            <?php if ($orders->num_rows > 0): ?>
+                <?php while ($order = $orders->fetch_assoc()): ?>
+                    <div class='p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                        <a href='#'>
+                            <h5 class='mb-2 text-center text-[35px] font-bold tracking-tight text-gray-900 dark:text-white'>
+                                <?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?>
+                            </h5>
+                        </a>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Quantity :</b> <?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Bought On :</b> <?php echo htmlspecialchars($order['created_at'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Amount :</b> <?php echo htmlspecialchars($order['amount_paid'], ENT_QUOTES, 'UTF-8'); ?> ₹</p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Payment ID :</b> <?php echo htmlspecialchars($order['rpay_order_id'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Billing Name :</b> <?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Address :</b> <?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></p>
+                        <p class='mb-3 font-normal text-gray-700 dark:text-gray-400 text-[18px]'><b>Contact :</b> <?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></p>
+
                     </div>
-                    <div class="px-6 py-4">
-                        <table class="table-auto w-full border-collapse">
-                            <thead>
-                                <tr>
-                                    <th class="px-4 py-2">Product Name</th>
-                                    <th class="px-4 py-2">Quantity</th>
-                                    <th class="px-4 py-2">Address</th>
-                                    <th class="px-4 py-2">Phone No.</th>
-                                    <th class="px-4 py-2">Payment ID</th>
-                                    <th class="px-4 py-2">Billing Name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <?php if ($orders->num_rows > 0): ?>
-                                <?php while ($order = $orders->fetch_assoc()): ?>
-                                    <tr>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['product_name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['quantity'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['address'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['phone_no'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['rpay_order_id'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td class="border px-4 py-2"><?php echo htmlspecialchars($order['billing_name'], ENT_QUOTES, 'UTF-8'); ?></td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            <?php else: ?>
-                                <tr>
-                                    <td colspan="2" class="border px-4 py-2 text-center">No Products Bought</td>
-                                </tr>
-                            <?php endif; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <div class="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 text-center">
+                    No Products Bought
                 </div>
-            </div>  
+            <?php endif; ?>
         </div>
+                        
     </div>
 </div>
 
