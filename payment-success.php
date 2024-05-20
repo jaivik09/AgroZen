@@ -1,4 +1,5 @@
 
+<?php //include('send_success_mail.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 
