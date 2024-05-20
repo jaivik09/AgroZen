@@ -4,7 +4,7 @@ include_once 'config.php';
 
 if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && isset($_POST['pprice']) && isset($_POST['pcategory']) && isset($_POST['pquant']) && isset($_POST['submit'])){ 
     // File upload configuration 
-    $targetDir = "uploads/"; 
+    $targetDir = "../uploads/"; 
     $allowTypes = array('jpg','png','jpeg','gif'); 
 
     $pid = $_POST['pid'];
@@ -65,3 +65,7 @@ if(isset($_POST['pid']) && isset($_POST['pname']) && isset($_POST['pdes']) && is
 // Display status message
 }
 ?>
+<!-- 
+<script>
+    window.localhref
+</script> -->
